@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Claude Code 使い方 VSCode編｜拡張機能の導入からログインと許可設定まで</title>
-<meta name="description" content="この記事では、VSCodeにClaude Codeの拡張機能を入れ、ログインして、最初の指示を送れるところまで進めます。初めて使うなら、まずは左側に表示されるチャットパネルから始めれば十分です。ターミナルから使う方法もありますが、いまは選択肢に入れません。">
+<meta name="description" content="「拡張機能を入れれば使える」と書いてある記事もあれば、「ターミナルでclaudeと入力する」と書いてある記事もあります。初めてだと、最初の画面から違って見えるかもしれません。この記事では、VSCodeの左側に出るチャットパネルを使います。拡張機能を入れ、ログインして、最初の指示を送るところまで。">
 <meta property="og:title" content="Claude Code 使い方 VSCode編｜拡張機能の導入からログインと許可設定まで">
-<meta property="og:description" content="この記事では、VSCodeにClaude Codeの拡張機能を入れ、ログインして、最初の指示を送れるところまで進めます。初めて使うなら、まずは左側に表示されるチャットパネルから始めれば十分です。ターミナルから使う方法もありますが、いまは選択肢に入れません。">
+<meta property="og:description" content="「拡張機能を入れれば使える」と書いてある記事もあれば、「ターミナルでclaudeと入力する」と書いてある記事もあります。初めてだと、最初の画面から違って見えるかもしれません。この記事では、VSCodeの左側に出るチャットパネルを使います。拡張機能を入れ、ログインして、最初の指示を送るところまで。">
 <meta property="og:type" content="article">
 <link rel="canonical" href="https://gamigamigamigami.github.io/a/claude-code-使い方-vscode編-拡張機能の導入からログインと許可設定まで/">
 <style>
@@ -165,39 +165,40 @@ tbody tr:last-child td { border-bottom:0; }
 <a href="/#articles">記事一覧</a><a href="/#about">このサイトについて</a>
 </nav></div></header>
 <main class="wrap" id="main">
-<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">ClaudeCode</span><span class="badge price">無料公開 + note ¥500</span></div><h1>Claude Code 使い方 VSCode編｜拡張機能の導入からログインと許可設定まで</h1><p class="article-dek">この記事では、VSCodeにClaude Codeの拡張機能を入れ、ログインして、最初の指示を送れるところまで進めます。初めて使うなら、まずは左側に表示されるチャットパネルから始めれば十分です。ターミナルから使う方法もありますが、いまは選択肢に入れません。</p></header><div class="article-layout"><div class="article-body"><p>この記事では、VSCodeにClaude Codeの拡張機能を入れ、ログインして、最初の指示を送れるところまで進めます。初めて使うなら、まずは<strong>左側に表示されるチャットパネル</strong>から始めれば十分です。ターミナルから使う方法もありますが、いまは選択肢に入れません。最初の送信ができた後に、必要なら使い分ければよいからです。</p>
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">ClaudeCode</span><span class="badge price">無料公開 + note ¥500</span></div><h1>Claude Code 使い方 VSCode編｜拡張機能の導入からログインと許可設定まで</h1><p class="article-dek">「拡張機能を入れれば使える」と書いてある記事もあれば、「ターミナルでclaudeと入力する」と書いてある記事もあります。初めてだと、最初の画面から違って見えるかもしれません。この記事では、VSCodeの左側に出るチャットパネルを使います。拡張機能を入れ、ログインして、最初の指示を送るところまで。</p></header><div class="article-layout"><div class="article-body"><p>「拡張機能を入れれば使える」と書いてある記事もあれば、「ターミナルで<code>claude</code>と入力する」と書いてある記事もあります。初めてだと、最初の画面から違って見えるかもしれません。</p>
+<p>この記事では、VSCodeの左側に出る<strong>チャットパネル</strong>を使います。拡張機能を入れ、ログインして、最初の指示を送るところまで。まずはここまでできれば十分です。ターミナルを使う方法は、実際に一度話しかけてから必要になったときに見れば間に合います。</p>
 <h2 id="まずはチャットパネルから始める">まずはチャットパネルから始める</h2>
 <p>VSCodeの左端には、ファイルや検索、拡張機能などを開くアイコンが縦に並んでいます。Claude Codeの拡張機能を入れると、ここにClaudeのアイコンが加わります。そのアイコンを押して開く入力欄が、この記事で使うチャットパネルです。</p>
 <p>ほかの記事で見かける「ターミナルを開いて<code>claude</code>と入力する」という方法は、同じClaude Codeを別の入口から使う手順です。途中でそちらへ移ると画面が合わなくなるので、この記事では後半まで使いません。まずはチャットパネルを表示させます。</p>
 <h2 id="インストール前に-ログイン方法だけ確認する">インストール前に、ログイン方法だけ確認する</h2>
 <p>拡張機能を入れた後にはログイン画面が出ます。普段Claudeを使っているアカウントがあり、その契約がClaude Codeに対応しているなら、そのアカウントで進みます。仕事でAnthropic ConsoleやAmazon Bedrockを使うよう指定されている場合だけ、そちらを選びます。指定に心当たりがなければ、最初から三つの違いを覚える必要はありません。</p>
-<p>ここで確認したいのは、<strong>拡張機能のインストールとログインは別の作業</strong>だという一点です。アイコンが表示されても、ログインが終わるまでは会話できません。反対に、アイコンが出ていない段階では、アカウントを見直しても先へ進みません。この順番を分けておくと、止まった場所を見失わずに済みます。</p>
+<p>ここで覚えておきたいのは、<strong>拡張機能を入れることと、ログインすることは別</strong>だという点です。アイコンが表示されても、ログインが終わるまでは会話できません。反対に、アイコンが出ていない段階では、アカウントを見直しても先へ進みません。この順番を分けておくと、止まった場所を見失わずに済みます。</p>
 <p>MacとWindowsで操作が分かれるのは、主にターミナルを使う場面です。ここから行う拡張機能の検索、インストール、チャットパネルの表示は、どちらも同じ流れで進められます。</p>
-<h2 id="インストール後は-画面に出たものを順番に見る">インストール後は、画面に出たものを順番に見る</h2>
-<p>ここから先の確認順は決まっています。まず左側にClaudeのアイコンが出たか。次にチャットパネルが開いたか。その次にログインが終わったか。最後に入力欄へ最初の指示を送れたか、です。先の項目が終わるまで、後ろの設定は触りません。</p>
-<p>この順番で見る理由は、手前で止まっているのに後ろを直しても状態が変わらないからです。たとえばアイコンが無いときにログイン方法を調べても解決しませんし、入力欄まで出ているときに拡張機能を入れ直す必要もありません。</p>
-<p>まず必要なのは最初のアイコンです。次の手順で、公式の拡張機能を選んでチャットパネルを表示します。</p>
+<h2 id="インストール後は-目の前の画面から確認する">インストール後は、目の前の画面から確認する</h2>
+<p>インストールを押したら、まず左側にClaudeのアイコンが出たかを見ます。出ていたら押してみて、チャットパネルが開くかを確認します。ログインを見るのはそのあとです。最後に入力欄へ短い指示を送れたら、導入は終わっています。</p>
+<p>この順番で見るのは、手前で止まっているのに後ろの設定を変えても直らないからです。たとえばアイコンが無いときにログイン方法を調べても解決しませんし、入力欄まで出ているときに拡張機能を入れ直す必要もありません。</p>
+<p>では、最初の目印になるClaudeのアイコンを表示させます。</p>
 <h2 id="公式の拡張機能を見分けて入れ-チャットパネルを出すまで">公式の拡張機能を見分けて入れ、チャットパネルを出すまで</h2>
 <p>まずはチャットパネルを開けるところまで進めます。</p>
 <ol>
 <li>VSCode 左端のアクティビティバーから拡張機能ビューを開き、検索欄に <code>Claude</code> と入力します。</li>
 <li>一覧から<code>Claude Code</code>を選び、<strong>提供元がAnthropicであること</strong>を確認します。検索結果の並び順だけでは判断しません。</li>
 <li>Install を押します。拡張機能は自動的に有効化されるので、追加の操作は要りません。</li>
-<li>左のアクティビティバーにアイコンが増えたか見ます。増えていれば、チャットパネルを開ける状態です。</li>
+<li>左のアクティビティバーにアイコンが増えたか見ます。増えていれば、そこを押してチャットパネルを開けます。</li>
 <li>増えていなければ、VSCode 本体と拡張機能を再起動します。インストールの失敗ではなく表示の反映漏れなので、これで出てきます。</li>
 </ol>
 <p>VSCode のメニューが英語のままでも、Claude Code とは日本語で会話できます。故障ではないので、いまはそのまま進めて構いません。チャットパネルが開いたら、次はログインです。</p>
 <h2 id="有料部分の中身">有料部分の中身</h2>
 <ul>
-<li><strong>症状と原因層の対応表</strong>（「画面に出ていること／止まっている層／次に触る場所」の3列で7症状ぶん。例：「ログイン画面から先に進まない → アカウントの層 → 拡張の設定ではなくプランか API キー側を変える」）</li>
+<li><strong>画面ごとの対処表</strong>（「画面に出ていること／考えられる原因／次に確認するところ」の3列で7症状ぶん。例：「ログイン画面から先に進まない → 契約か接続方法を確認する」）</li>
 <li><strong>現在の許可モードの選び分け</strong>（Manual／Plan／Edit automaticallyを、最初の作業でどう使い分けるか）</li>
 <li><strong>プランモードのレビュー往復</strong>（プランがチャットではなく中央のエディター領域に出る理由と、範囲選択でコメントを複数付けて返す手順）</li>
 <li><strong>定額プランとAPI利用を混ぜない確認方法</strong>、WindowsのPowerShell差、生成コードの誤りを機械的に見つける組み合わせ</li>
-<li><strong>3分で終わる接続診断シート</strong>（画面で見えた状態を埋めると、次に触る場所が1つに決まる記入式テンプレート）</li>
+<li><strong>3分で終わる接続診断シート</strong>（いま見えている画面を埋めると、次に確認するところが分かる記入式テンプレート）</li>
 </ul>
 <p>診断シートは、たとえば次の形で使います。</p>
-<div class="table-wrap"><table><thead><tr><th>確認したもの</th><th>記入例</th><th>この時点で分かること</th></tr></thead><tbody><tr><td>左側のClaudeアイコン</td><td>ある</td><td>インストールと表示は通過</td></tr><tr><td>チャット入力欄</td><td>ない</td><td>接続完了前。コード生成の問題ではない</td></tr><tr><td>ブラウザ認証</td><td>許可を押していない</td><td>次に触る場所はブラウザだけ</td></tr></tbody></table></div>
-<p>設定を片端から変えるのではなく、いま画面に出ているものから次の一手を一つに絞ります。迷ったときに同じ場所へ戻れるよう、記入して使える形にしてあります。</p><section class="cta" aria-label="noteで続きを読む"><p class="cta-label">CONTINUE ON NOTE</p><p>7症状の対応表と3分診断シートで、止まっている層と次に触る場所を1つに絞れます。</p><a class="button" href="/go/n84353f0a198c/">noteで続きを読む <span aria-hidden="true">→</span></a></section></div><aside class="article-side"><nav class="toc" aria-label="この記事の目次"><p class="toc-title">この記事の目次</p><ol><li><a href="#まずはチャットパネルから始める">まずはチャットパネルから始める</a></li><li><a href="#インストール前に-ログイン方法だけ確認する">インストール前に、ログイン方法だけ確認する</a></li><li><a href="#インストール後は-画面に出たものを順番に見る">インストール後は、画面に出たものを順番に見る</a></li><li><a href="#公式の拡張機能を見分けて入れ-チャットパネルを出すまで">公式の拡張機能を見分けて入れ、チャットパネルを出すまで</a></li><li><a href="#有料部分の中身">有料部分の中身</a></li></ol></nav><aside class="side-cta"><p>7症状の対応表と3分診断シートで、止まっている層と次に触る場所を1つに絞れます。</p><a class="button" href="/go/n84353f0a198c/">noteで続きを読む</a></aside></aside></div></article><div class="mobile-cta"><span>続きはnoteで読めます</span><a class="button" href="/go/n84353f0a198c/">続きを読む</a></div>
+<div class="table-wrap"><table><thead><tr><th>確認したもの</th><th>記入例</th><th>この時点で分かること</th></tr></thead><tbody><tr><td>左側のClaudeアイコン</td><td>ある</td><td>インストールはできている</td></tr><tr><td>チャット入力欄</td><td>ない</td><td>接続完了前。コード生成の問題ではない</td></tr><tr><td>ブラウザ認証</td><td>許可を押していない</td><td>次に確認するのはブラウザ</td></tr></tbody></table></div>
+<p>設定を片端から変えるのではなく、いま画面に出ているものから次の一手を一つに絞ります。迷ったときに同じ場所へ戻れるよう、記入して使える形にしてあります。</p><section class="cta" aria-label="noteで続きを読む"><p class="cta-label">CONTINUE ON NOTE</p><p>7つの画面例と3分診断シートを使い、いま確認するところを一つに絞れます。</p><a class="button" href="/go/n84353f0a198c/">noteで続きを読む <span aria-hidden="true">→</span></a></section></div><aside class="article-side"><nav class="toc" aria-label="この記事の目次"><p class="toc-title">この記事の目次</p><ol><li><a href="#まずはチャットパネルから始める">まずはチャットパネルから始める</a></li><li><a href="#インストール前に-ログイン方法だけ確認する">インストール前に、ログイン方法だけ確認する</a></li><li><a href="#インストール後は-目の前の画面から確認する">インストール後は、目の前の画面から確認する</a></li><li><a href="#公式の拡張機能を見分けて入れ-チャットパネルを出すまで">公式の拡張機能を見分けて入れ、チャットパネルを出すまで</a></li><li><a href="#有料部分の中身">有料部分の中身</a></li></ol></nav><aside class="side-cta"><p>7つの画面例と3分診断シートを使い、いま確認するところを一つに絞れます。</p><a class="button" href="/go/n84353f0a198c/">noteで続きを読む</a></aside></aside></div></article><div class="mobile-cta"><span>続きはnoteで読めます</span><a class="button" href="/go/n84353f0a198c/">続きを読む</a></div>
 </main>
 <footer class="site-footer"><div class="footer-inner">
 <span>つくりながら書いています</span><span>テーマを限定せず、調べて書く。</span>

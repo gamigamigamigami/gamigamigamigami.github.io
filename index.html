@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>つくりながら書いています</title>
+<meta name="description" content="Claude Code で作った仕組みで、手順と設定の記事を書いています。文章は勘で直さず、検索上位の記事を実測した幅に合わせています。">
+<style>
+:root { color-scheme: light dark; --fg:#1b1d21; --bg:#ffffff; --sub:#5a6270;
+        --accent:#2f6fdd; --line:#e3e6eb; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8ecf2; --bg:#14171c; --sub:#9aa3b0; --accent:#7aa8ff; --line:#272c34; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
+       font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.2rem 5rem; }
+header a { color: var(--fg); text-decoration: none; font-weight: 700; }
+h1 { font-size: 1.6rem; line-height: 1.5; margin: 1.6rem 0 .6rem; }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .6rem; }
+h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
+p, li { font-size: 1rem; }
+a { color: var(--accent); }
+img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.2rem 0; }
+pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+      overflow-x: auto; }
+code { font-size: .92em; }
+.meta { color: var(--sub); font-size: .88rem; }
+.card { display:block; padding:1rem 0; border-bottom:1px solid var(--line);
+        text-decoration:none; color:inherit; }
+.card:hover h2 { color: var(--accent); }
+.card h2 { margin:0 0 .3rem; font-size:1.05rem; }
+.cta { margin-top:3rem; padding:1.2rem; border:1px solid var(--line);
+       border-radius:10px; }
+.cta a { font-weight:700; }
+.about { color: var(--sub); font-size:.95rem; border-left:3px solid var(--line);
+         padding-left:1rem; margin:1.5rem 0 2.5rem; }
+.about p { margin:.6rem 0; }
+footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a href="/">つくりながら書いています</a></header>
+<h1>つくりながら書いています</h1><div class="about"><p>Claude Code で、記事を書く仕組みを自作しています。
+テーマの需要調査から、執筆、推敲、図解、投稿まで通しで動かしています。</p><p>扱うテーマは狭めていません。開発ツールの設定、釣りの予算、車のメンテナンス。
+共通しているのは、読んだあとに自分の状況へ当てはめられることです。</p><p>文章の良し悪しは勘で決めていません。検索上位の記事を実測して、段落の切り方や
+具体例の割合の幅を出し、その中に収まるように直しています。</p><p>記事は途中まで無料です。続きは note にあります。</p></div><h2>記事</h2><a class="card" href="/a/vscodeでのclaude-codeの使い方-拡張機能の導入からskillsまで/"><h2>VSCodeでのClaude Codeの使い方｜拡張機能の導入からSkillsまで</h2><p class="meta"> 「VSCodeでClaude Codeを使う」は、実は3つの別々の部品の話 ![必要な部品は3つある](/Users/gamiryo/NoteOS/data/…</p></a>
+<a class="card" href="/a/obsidianの使い方-初心者が最初に決める4設定と-あとでリンクが壊れない置き方/"><h2>Obsidianの使い方｜初心者が最初に決める4設定と、あとでリンクが壊れない置き方</h2><p class="meta">Vaultの作成画面で、保存先を選ぶところで手が止まっていませんか。 あるいは、数十枚メモを書いたあとで気づいた人もいると思います。画像がVault直下に散らか…</p></a>
+<a class="card" href="/a/claude-code-サブエージェントの作り方-呼ばれない-結果が返らないを直す/"><h2>Claude Code サブエージェントの作り方｜呼ばれない・結果が返らないを直す</h2><p class="meta"> Claude Code サブエージェントが動かないときの直し方 Claude Code でサブエージェントを作る手順そのものは、もう多くの記事に書かれています…</p></a>
+<a class="card" href="/a/webライターの始め方-noteをポートフォリオにして初心者が最初の1件を受注するまで/"><h2>Webライターの始め方｜noteをポートフォリオにして初心者が最初の1件を受注するまで</h2><p class="meta"> この記事が扱う範囲と、扱わない範囲 この記事で扱うのは、まだ1円も受け取っていない状態から、1件目の報酬が口座に着金するまでの区間だけです。月にいくら稼ぐとい…</p></a>
+<a class="card" href="/a/釣りの始め方と予算-初期費用-1回あたりの費用-買い直し費用を3層で見積もる/"><h2>釣りの始め方と予算｜初期費用・1回あたりの費用・買い直し費用を3層で見積もる</h2><p class="meta">「釣り 始める 予算」で検索すると、1,540円で足りるという記事と、3万円は見ておきたいという記事が並んで出てきます。どちらかが間違っているわけではありません…</p></a>
+<a class="card" href="/a/車のメンテナンス一覧表を自分の車用に作る-警告灯マークと交換時期の一覧付き/"><h2>車のメンテナンス一覧表を自分の車用に作る｜警告灯マークと交換時期の一覧付き</h2><p class="meta"> 「車 メンテナンス 一覧」で出てくる一覧は、3種類が混ざっています メーターに見慣れないマークが点いた。あるいは点検の案内が届いて、次に何をやるべきか分からな…</p></a>
+<footer>つくりながら書いています</footer>
+</div>
+<img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
+</body>
+</html>

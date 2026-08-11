@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VSCodeでのClaude Codeの使い方｜拡張機能の導入からSkillsまで</title>
+<meta name="description" content=" 「VSCodeでClaude Codeを使う」は、実は3つの別々の部品の話 ![必要な部品は3つある](/Users/gamiryo/NoteOS/data/figures/boxes-69693f02cf.png) ">
+<style>
+:root { color-scheme: light dark; --fg:#1b1d21; --bg:#ffffff; --sub:#5a6270;
+        --accent:#2f6fdd; --line:#e3e6eb; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8ecf2; --bg:#14171c; --sub:#9aa3b0; --accent:#7aa8ff; --line:#272c34; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
+       font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.2rem 5rem; }
+header a { color: var(--fg); text-decoration: none; font-weight: 700; }
+h1 { font-size: 1.6rem; line-height: 1.5; margin: 1.6rem 0 .6rem; }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .6rem; }
+h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
+p, li { font-size: 1rem; }
+a { color: var(--accent); }
+img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.2rem 0; }
+pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+      overflow-x: auto; }
+code { font-size: .92em; }
+.meta { color: var(--sub); font-size: .88rem; }
+.card { display:block; padding:1rem 0; border-bottom:1px solid var(--line);
+        text-decoration:none; color:inherit; }
+.card:hover h2 { color: var(--accent); }
+.card h2 { margin:0 0 .3rem; font-size:1.05rem; }
+.cta { margin-top:3rem; padding:1.2rem; border:1px solid var(--line);
+       border-radius:10px; }
+.cta a { font-weight:700; }
+.about { color: var(--sub); font-size:.95rem; border-left:3px solid var(--line);
+         padding-left:1rem; margin:1.5rem 0 2.5rem; }
+.about p { margin:.6rem 0; }
+footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a href="/">つくりながら書いています</a></header>
+<h1>VSCodeでのClaude Codeの使い方｜拡張機能の導入からSkillsまで</h1><h2>「VSCodeでClaude Codeを使う」は、実は3つの別々の部品の話</h2>
+<p><img src="/img/boxes-69693f02cf.png" alt="必要な部品は3つある" loading="lazy"></p>
+<p>拡張機能を入れたのに何も起きない、という状態でこのページに来た方が多いはずです。</p>
+<p>先に結論を言うと、それは手順を間違えたからではありません。<strong>Claude Code が VS Code の拡張機能そのものではない</strong>からです。</p>
+<p>本体は、ターミナルで動く <code>claude</code> という名前のコマンドラインプログラム。拡張機能はその本体を VS Code 側から見えるようにする受け口であって、本体の代わりではありません。</p>
+<p>この前後関係を取り違えると、以降の作業がすべてずれます。</p>
+<p>必要な部品は3つ。(1) <code>claude</code> 本体、(2) VS Code 拡張機能「Claude Code for VS Code」、そして (3) その2つを繋ぐ<strong>接続</strong>です。3つ目が独立して存在する、というのがこの記事の中心になる話です。</p>
+<p>拡張機能を入れる作業は (2) を満たすだけであって、(1) と (3) には手を付けていません。</p>
+<p>接続が成立しているかどうかは、体感ではなく表示で分かります。CLI 側で <code>/ide</code> を実行したときに接続先の IDE 名が出るか、<code>/status</code> に IDE の項目が出るか。ここが空なら、拡張機能が入っていても「入っているだけ」の状態です。</p>
+<p>接続が成立したときに変わることも、具体的に決まっています。編集提案が<strong>エディタの差分ビュー</strong>としてタブで開き、VS Code で選択している範囲が自動で文脈に入り、Problems パネルに出ている Lint エラーや型エラーが Claude 側から見えるようになる。この3つが起きていなければ、繋がっていません。</p>
+<p>一次情報は公式の <a href="https://docs.claude.com/en/docs/claude-code/ide-integrations">IDE integrations</a> にあります。</p>
+<h2>なぜ「拡張機能を入れたのに何も起きない」が起きるのか</h2>
+<p>Marketplace から拡張機能を入れれば使える、という手順は多くのツールで完結します。しかし Claude Code の拡張機能は本体を同梱していないので、本体が無ければ起動する対象が存在しません。ここで止まっている場合、VS Code の画面をいくら探しても原因は見つかりません。</p>
+<p>具体的には、拡張機能一覧で Claude Code が有効になっていても、ターミナルで <code>claude --version</code> がバージョンを返さない限り、拡張機能が呼び出す先そのものが存在しないということです。</p>
+<p>逆のパターンもあります。CLI を先に入れて統合ターミナルで <code>claude</code> を起動すると、拡張機能は自動で導入される経路があるためです。入手ルートは「Marketplace で手で入れる」「ターミナルから起動して自動で入る」の2つ。どちらを通ったかで、次に確認すべき場所が変わります。</p>
+<p>3つ目の落とし穴は、<strong>起動した場所</strong>。</p>
+<p>VS Code の統合ターミナルで起動した <code>claude</code> は、自分が VS Code の中にいることを環境変数から検知できます。iTerm2 や Windows Terminal のような<strong>外部のターミナル</strong>で起動した <code>claude</code> は、同じマシンで VS Code が動いていても自動では繋がりません。これが「Mac だと繋がるのに Windows だと繋がらない」と誤解されがちな箇所で、実際の原因は OS ではなく起動場所、という場合が少なくありません。</p>
+<p>ここまでを整理すると、失敗は3つの層に分かれます。<strong>インストール層</strong>（<code>claude</code> が PATH に無い）、<strong>接続層</strong>（拡張機能と CLI が握手していない）、<strong>権限層</strong>（動いてはいるが毎回確認され続けて作業が進まない）。自分の症状がどの層のものかを見分けられれば、対処は機械的に決まります。</p>
+<p>Cursor や Windsurf のような VS Code 派生エディタでも仕組みは同じですが、拡張機能の入手元が異なります。派生エディタを使っているなら、まずこの層のズレを疑ってください。</p>
+<h2>Mac・Windows・WSL で変わるのは「どこ」なのか</h2>
+<p>OS で変わるのは主にインストール方法と PATH の通り方であって、接続の仕組みも使い方も共通です。「Mac 前提の記事しか無い」と困る必要はなく、<strong>差分がある箇所だけ</strong>を押さえれば足ります。</p>
+<p>Mac と Linux は比較的単純で、公式インストーラか npm 経由（<code>npm install -g @anthropic-ai/claude-code</code>）のどちらか。npm を選ぶと Node.js のバージョン要件が乗ってくるうえ、グローバル install の権限エラーという別問題も発生しえます。</p>
+<p>Windows の分岐は、<strong>ネイティブで動かす</strong>か <strong>WSL の中で動かす</strong>か。この選択が後から効いてきます。</p>
+<p>WSL を選ぶと、VS Code 側の拡張機能も WSL 側にインストールされている必要が生じるためです。ローカルに入れた拡張機能は、WSL のプロジェクトからは見えません。ネイティブを選んだ場合は、Claude Code が内部で Git Bash を使う場面があるので、Git for Windows が入っていない、あるいは非標準の場所に入っていると固有のエラーになります。</p>
+<p>一方で <code>.claude/skills/</code> や CLAUDE.md といったプロジェクト側のファイルは OS に依存しません。一度環境を作ってしまえば、Mac と Windows で同じリポジトリを同じ設定のまま使えます。</p>
+<h2>ここから先で扱うこと</h2>
+<p>ここまでが「何が起きているか」の説明でした。以降は実際の手順に入ります。</p>
+<p>有料部分は、コマンドと確認方法をそのまま実行できる粒度で書き、各手順に「これが表示されたら成功」という判定条件を付けているので、途中で止まった位置を特定できます。すでに導入済みで「繋がらないだけ」の人は、切り分け手順から読んでも成立する構成にしました。</p>
+<ul>
+<li>Mac：インストールから「接続済み」の表示が出るまで</li>
+<li>Windows：ネイティブか WSL か、判断基準と手順</li>
+<li>権限モードと settings.json：毎回の確認を減らす</li>
+<li>Skills を VS Code で使う：置き場所と、呼ばれる条件</li>
+<li>繋がらない・動かないときの切り分け手順</li>
+</ul>
+<h2>この続きと、関連する記事</h2>
+<ul>
+<li><a href="/go/n3b392d0668eb/">Claude Code サブエージェントの作り方と、作っても呼ばれない原因の直し方</a>（¥500）</li>
+</ul><div class="cta"><p>ここから先は note の有料記事です（¥500）。</p><p><a href="/go/n84353f0a198c/">続きを note で読む</a></p></div>
+<footer>つくりながら書いています</footer>
+</div>
+<img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/a/vscode%E3%81%A7%E3%81%AEclaude-code%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9-%E6%8B%A1%E5%BC%B5%E6%A9%9F%E8%83%BD%E3%81%AE%E5%B0%8E%E5%85%A5%E3%81%8B%E3%82%89skills%E3%81%BE%E3%81%A7/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
+</body>
+</html>

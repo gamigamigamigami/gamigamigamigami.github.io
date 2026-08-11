@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>車のメンテナンス一覧表を自分の車用に作る｜警告灯マークと交換時期の一覧付き</title>
+<meta name="description" content=" 「車 メンテナンス 一覧」で出てくる一覧は、3種類が混ざっています メーターに見慣れないマークが点いた。あるいは点検の案内が届いて、次に何をやるべきか分からないまま走っている。そういう場面で「車 メンテナンス 一覧」と">
+<style>
+:root { color-scheme: light dark; --fg:#1b1d21; --bg:#ffffff; --sub:#5a6270;
+        --accent:#2f6fdd; --line:#e3e6eb; }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#e8ecf2; --bg:#14171c; --sub:#9aa3b0; --accent:#7aa8ff; --line:#272c34; }
+}
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
+       font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.2rem 5rem; }
+header a { color: var(--fg); text-decoration: none; font-weight: 700; }
+h1 { font-size: 1.6rem; line-height: 1.5; margin: 1.6rem 0 .6rem; }
+h2 { font-size: 1.25rem; margin: 2.4rem 0 .6rem; }
+h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
+p, li { font-size: 1rem; }
+a { color: var(--accent); }
+img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.2rem 0; }
+pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
+      overflow-x: auto; }
+code { font-size: .92em; }
+.meta { color: var(--sub); font-size: .88rem; }
+.card { display:block; padding:1rem 0; border-bottom:1px solid var(--line);
+        text-decoration:none; color:inherit; }
+.card:hover h2 { color: var(--accent); }
+.card h2 { margin:0 0 .3rem; font-size:1.05rem; }
+.cta { margin-top:3rem; padding:1.2rem; border:1px solid var(--line);
+       border-radius:10px; }
+.cta a { font-weight:700; }
+.about { color: var(--sub); font-size:.95rem; border-left:3px solid var(--line);
+         padding-left:1rem; margin:1.5rem 0 2.5rem; }
+.about p { margin:.6rem 0; }
+footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><a href="/">つくりながら書いています</a></header>
+<h1>車のメンテナンス一覧表を自分の車用に作る｜警告灯マークと交換時期の一覧付き</h1><h2>「車 メンテナンス 一覧」で出てくる一覧は、3種類が混ざっています</h2>
+<p>メーターに見慣れないマークが点いた。あるいは点検の案内が届いて、次に何をやるべきか分からないまま走っている。そういう場面で「車 メンテナンス 一覧」と検索したのだと思います。</p>
+<p>ところが、検索して出てくる「一覧」は同じものではありません。第一に<strong>警告灯マークの一覧</strong>で、メーターに点いた記号が何を意味するかを引くためのもの。第二に<strong>点検・交換時期の一覧</strong>で、何kmまたは何年でどの部品を替えるかを示すもの。第三に<strong>法定点検の項目一覧</strong>で、これは道路運送車両法で定められた点検項目そのものです。</p>
+<p>必要なものは、いま困っている中身によって変わります。マークが点いて検索した人に要るのは1番目で、判断は分単位です。「そろそろ何かやるべきでは」で来た人に要るのは2番目で、こちらは月単位の話。「12ヶ月点検のハガキが来た」で来た人には3番目が要ります。</p>
+<p>3番目の根拠は条文にあります。道路運送車両法の第47条の2が日常点検整備、第48条が定期点検整備を定めており、自家用乗用車は1年ごとの定期点検が義務として書かれています。点検項目は国土交通省令の「自動車点検基準」の別表に列挙されていて、条文の全文は<a href="https://laws.e-gov.go.jp/law/326AC0000000185">e-Gov 法令検索</a>で読めます。</p>
+<p>つまり、ネット上の「メンテナンス一覧表」の多くは、この省令の点検項目と、部品メーカーやオイルメーカーが出している交換目安を混ぜて作られたものです。そのため、あなたの車の取扱説明書に載っている数字とは一致しないことがあります。</p>
+<h2>警告灯は記号を覚えるのではなく、色で仕分けます</h2>
+<p><img src="/img/table-85f1f21dde.png" alt="警告灯は色で緊急度が3段階に分かれる" loading="lazy"></p>
+<p>警告灯は車種ごとに何十種類もあるので、記号を全部暗記するのは現実的ではありません。しかし色には共通のルールがあり、<strong>赤・黄（橙）・緑（青）の3段階</strong>で緊急度が分かれています。この色分けは国際規格（ISO 2575系）と、それを取り込んだ国内の表示ルールに沿っているため、メーカーが違ってもおおむね共通です。</p>
+<p><strong>赤は「そのまま走らせない」</strong>。ブレーキ警告灯、油圧警告灯、充電警告灯、水温の過熱警告、SRSエアバッグ警告灯がここに入ります。<strong>黄（橙）は「走れるが、早めに点検」</strong>で、エンジンチェックランプ、ABS警告灯、タイヤ空気圧警告灯などが該当します。緑と青は警告ではなく作動中の表示で、ヘッドライトやウインカー、ハイブリッド車のREADY表示がこれにあたります。</p>
+<p>ここで注意したいのは、<strong>マークが消えたことは直ったことを意味しない</strong>という点です。多くの警告灯はセンサーが異常を検知しなくなれば消えますが、車載コンピュータには故障コード（DTC）が残ります。断続的に起きる不具合は点いたり消えたりするので、消えたから様子見、を繰り返すと原因究明が遅れていきます。</p>
+<h2>拾ってきた交換時期一覧が、あなたの車に合わない理由</h2>
+<p>交換時期の記載は、ほぼ例外なく<strong>「◯◯kmまたは◯ヶ月のいずれか早い方」</strong>という形をとります。ところがネット上の一覧表は距離だけを載せていることが多い。年間3,000kmしか走らない車にその表を当てると、期間側の基準が丸ごと落ちます。ブレーキフルードのように吸湿で劣化するものは、走らなくても劣化します。</p>
+<p>次に、同じ車種でも基準が2本立てになっています。取扱説明書には標準的な使用条件の数字と、<strong>シビアコンディション</strong>（過酷な条件）の数字が併記されているのが一般的で、後者はおおむね前者の半分の間隔です。悪路走行が多い、短距離走行の繰り返し、山道や登降坂路が多い、低速走行の繰り返し、寒冷地。こうした条件が各社の取説に明記されており、自分がどちらに該当するかを決めないと数字を選べません。</p>
+<p>三つ目に、<strong>部品の有無そのものが車によって違います</strong>。タイミングベルトは交換時期のある部品ですが、現行の多くのエンジンはタイミングチェーンで定期交換部品ではありません。CVTフルードは「無交換」と書かれる車種と交換間隔が指定される車種があり、冷却水もスーパーLLC系と従来のLLCで初回交換までの年数が大きく違います。汎用の表はここを区別できません。</p>
+<p>原因ははっきりしています。<strong>汎用の一覧表は下敷きにはなりますが、そのままでは使えません</strong>。使える1枚にするには、あなたの車の取扱説明書の数字と、車検証の初度登録年月、そして現在の走行距離を突き合わせる作業が要ります。逆に言えば、その3つさえ手元にあれば、あとは決まった手順で埋めるだけです。</p>
+<p>有料部分では、その作業を最後まで通します。</p>
+<ul>
+<li>手順1：材料を3つそろえる（取扱説明書・車検証・走行距離）</li>
+<li>手順2：警告灯マーク一覧を、行動が決まる形で整理する</li>
+<li>手順3：距離基準と期間基準を1行にまとめる列設計</li>
+<li>手順4：一覧に入れる項目を、あなたの車に存在するものだけに絞る</li>
+<li>手順5〜8：法定点検・整備記録簿・警告灯が点いた時の使い方・運用への接続</li>
+</ul><div class="cta"><p>ここから先は note の有料記事です（¥500）。</p><p><a href="/go/n0654f240431d/">続きを note で読む</a></p></div>
+<footer>つくりながら書いています</footer>
+</div>
+<img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/a/%E8%BB%8A%E3%81%AE%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E4%B8%80%E8%A6%A7%E8%A1%A8%E3%82%92%E8%87%AA%E5%88%86%E3%81%AE%E8%BB%8A%E7%94%A8%E3%81%AB%E4%BD%9C%E3%82%8B-%E8%AD%A6%E5%91%8A%E7%81%AF%E3%83%9E%E3%83%BC%E3%82%AF%E3%81%A8%E4%BA%A4%E6%8F%9B%E6%99%82%E6%9C%9F%E3%81%AE%E4%B8%80%E8%A6%A7%E4%BB%98%E3%81%8D/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
+</body>
+</html>

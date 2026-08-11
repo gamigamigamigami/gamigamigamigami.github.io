@@ -4,82 +4,193 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Obsidianの使い方｜初心者が最初に決める4設定と、あとでリンクが壊れない置き方</title>
-<meta name="description" content="Vaultの作成画面で、保存先を選ぶところで手が止まっていませんか。 あるいは、数十枚メモを書いたあとで気づいた人もいると思います。画像がVault直下に散らかっている。スマホから同じノートが開けない。作り直したほうが早">
+<meta name="description" content="Vaultの作成画面を開くと、いきなり保存先を聞かれます。まだノートを一枚も 書いていないのに、どこへ置くのが正解かは判断しにくいものです。 ここを仮の場所で済ませると、しばらくして画像がVault直下に並んだり、スマホから 同じノートを開けなかったりします。">
+<meta property="og:title" content="Obsidianの使い方｜初心者が最初に決める4設定と、あとでリンクが壊れない置き方">
+<meta property="og:description" content="Vaultの作成画面を開くと、いきなり保存先を聞かれます。まだノートを一枚も 書いていないのに、どこへ置くのが正解かは判断しにくいものです。 ここを仮の場所で済ませると、しばらくして画像がVault直下に並んだり、スマホから 同じノートを開けなかったりします。">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://gamigamigamigami.github.io/a/obsidianの使い方-初心者が最初に決める4設定と-あとでリンクが壊れない置き方/">
 <style>
-:root { color-scheme: light dark; --fg:#1b1d21; --bg:#ffffff; --sub:#5a6270;
-        --accent:#2f6fdd; --line:#e3e6eb; }
+:root { color-scheme: light dark; --fg:#202420; --bg:#f7f5ef; --surface:#fffefb;
+        --sub:#626960; --accent:#176b5b; --accent-strong:#0e5346;
+        --accent-soft:#e2f1ec; --warm:#c56538; --warm-soft:#f8e9df;
+        --line:#dfe2da; --shadow:0 16px 40px rgba(42,52,45,.08); }
 @media (prefers-color-scheme: dark) {
-  :root { --fg:#e8ecf2; --bg:#14171c; --sub:#9aa3b0; --accent:#7aa8ff; --line:#272c34; }
+  :root { --fg:#eef2ed; --bg:#151a17; --surface:#1d2420; --sub:#abb5ad;
+          --accent:#79c9b5; --accent-strong:#9bdacb; --accent-soft:#203b34;
+          --warm:#eda47f; --warm-soft:#3a2b24; --line:#354039;
+          --shadow:0 16px 40px rgba(0,0,0,.22); }
 }
 * { box-sizing: border-box; }
+html { scroll-behavior:smooth; }
 body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
-       font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
-.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.2rem 5rem; }
-header a { color: var(--fg); text-decoration: none; font-weight: 700; }
-h1 { font-size: 1.6rem; line-height: 1.5; margin: 1.6rem 0 .6rem; }
-h2 { font-size: 1.25rem; margin: 2.4rem 0 .6rem; }
-h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
-p, li { font-size: 1rem; }
-a { color: var(--accent); }
-img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.2rem 0; }
-pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
-      overflow-x: auto; }
-code { font-size: .92em; }
-.meta { color: var(--sub); font-size: .88rem; }
-.card { display:block; padding:1rem 0; border-bottom:1px solid var(--line);
-        text-decoration:none; color:inherit; }
-.card:hover h2 { color: var(--accent); }
-.card h2 { margin:0 0 .3rem; font-size:1.05rem; }
-.cta { margin-top:3rem; padding:1.2rem; border:1px solid var(--line);
-       border-radius:10px; }
-.cta a { font-weight:700; }
-.about { color: var(--sub); font-size:.95rem; border-left:3px solid var(--line);
-         padding-left:1rem; margin:1.5rem 0 2.5rem; }
-.about p { margin:.6rem 0; }
-footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
+       font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+       -webkit-font-smoothing:antialiased; }
+a { color:var(--accent); text-underline-offset:.18em; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--warm); outline-offset:3px; }
+.skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; padding:.7rem 1rem;
+             background:var(--surface); color:var(--fg); border-radius:.6rem; }
+.skip-link:focus { top:1rem; }
+.site-header { position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 90%,transparent);
+               backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+.header-inner { max-width:74rem; margin:auto; min-height:4.25rem; padding:0 1.5rem;
+                display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.brand { color:var(--fg); text-decoration:none; font-weight:800; letter-spacing:-.02em; }
+.site-nav { display:flex; gap:1.2rem; }
+.site-nav a { color:var(--sub); text-decoration:none; font-size:.9rem; font-weight:700; }
+.site-nav a:hover { color:var(--accent); }
+.wrap { max-width:74rem; margin:0 auto; padding:3rem 1.5rem 6rem; }
+h1,h2,h3 { line-height:1.45; letter-spacing:-.025em; text-wrap:pretty; }
+h1 { font-size:clamp(2rem,4.5vw,3.5rem); margin:.65rem 0 1rem; }
+h2 { font-size:clamp(1.4rem,2.4vw,1.85rem); margin:3.2rem 0 1rem; }
+h3 { font-size:1.18rem; margin:2.2rem 0 .65rem; }
+p,li { font-size:1rem; }
+.eyebrow { margin:0; color:var(--warm); font-size:.78rem; font-weight:800;
+           letter-spacing:.14em; text-transform:uppercase; }
+.hero { max-width:52rem; padding:3rem 0 3.5rem; }
+.hero h1 { max-width:48rem; }
+.hero-copy { max-width:42rem; color:var(--sub); font-size:1.08rem; }
+.button { display:inline-flex; align-items:center; justify-content:center; min-height:3rem;
+          padding:.75rem 1.1rem; border-radius:.75rem; background:var(--accent);
+          color:#fff; text-decoration:none; font-weight:800; box-shadow:0 8px 20px rgba(23,107,91,.18); }
+.button:hover { background:var(--accent-strong); transform:translateY(-1px); }
+.button.secondary { background:var(--surface); color:var(--accent); border:1px solid var(--line);
+                    box-shadow:none; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:1rem;
+                margin-bottom:1.25rem; }
+.section-head h2 { margin:0; }
+.meta { color:var(--sub); font-size:.88rem; }
+.card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.card { display:flex; min-height:15rem; flex-direction:column; padding:1.35rem;
+        border:1px solid var(--line); border-radius:1rem; background:var(--surface);
+        color:inherit; text-decoration:none; box-shadow:0 1px 0 rgba(42,52,45,.03);
+        transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+.card:hover { transform:translateY(-3px); border-color:var(--accent);
+              box-shadow:var(--shadow); }
+.card-top { display:flex; align-items:center; justify-content:space-between; gap:.7rem; }
+.badge { display:inline-flex; align-items:center; min-height:1.65rem; padding:.18rem .58rem;
+         border-radius:999px; background:var(--accent-soft); color:var(--accent-strong);
+         font-size:.76rem; font-weight:800; }
+.badge.price { background:var(--warm-soft); color:var(--warm); }
+.card h3 { margin:1rem 0 .55rem; font-size:1.12rem; }
+.card .summary { margin:0 0 1rem; color:var(--sub); line-height:1.75; }
+.card-more { margin-top:auto; color:var(--accent); font-weight:800; }
+.about-panel { margin-top:5rem; padding:2rem; border-radius:1rem; background:var(--surface);
+               border:1px solid var(--line); }
+.about-panel h2 { margin:0 0 1rem; }
+.about-panel p { max-width:52rem; color:var(--sub); margin:.7rem 0; }
+.breadcrumb { margin:0 0 2rem; font-size:.88rem; color:var(--sub); }
+.breadcrumb a { color:inherit; }
+.article-head { max-width:52rem; margin-bottom:2.5rem; }
+.article-head h1 { font-size:clamp(2rem,4vw,3rem); }
+.article-dek { color:var(--sub); font-size:1.05rem; max-width:44rem; }
+.article-layout { display:grid; grid-template-columns:minmax(0,46rem) minmax(14rem,18rem);
+                  gap:4rem; align-items:start; }
+.article-body { min-width:0; font-size:1.02rem; }
+.article-body > p { margin:0 0 1.25rem; }
+.article-body h2 { padding-top:.8rem; border-top:1px solid var(--line); }
+.article-body strong { font-weight:800; }
+.article-body img { display:block; max-width:100%; height:auto; border-radius:.85rem;
+                    margin:1.5rem auto; border:1px solid var(--line); }
+.article-body ul,.article-body ol { padding-left:1.4rem; margin:0 0 1.4rem; }
+.article-body li { margin:.35rem 0; }
+pre { background:#171b18; color:#eef2ed; padding:1rem 1.1rem; border-radius:.8rem;
+      overflow-x:auto; line-height:1.65; }
+code { font-size:.9em; }
+p code,li code { padding:.12rem .35rem; border-radius:.3rem; background:var(--accent-soft); }
+blockquote { margin:1.5rem 0; padding:.8rem 1rem; border-left:4px solid var(--warm);
+             background:var(--warm-soft); border-radius:0 .6rem .6rem 0; }
+hr { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+.table-wrap { overflow-x:auto; margin:1.5rem 0; border:1px solid var(--line);
+              border-radius:.8rem; background:var(--surface); }
+table { width:100%; border-collapse:collapse; min-width:34rem; font-size:.9rem; }
+th,td { padding:.75rem .85rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+th { background:var(--accent-soft); color:var(--accent-strong); }
+tbody tr:last-child td { border-bottom:0; }
+.article-side { position:sticky; top:6rem; display:grid; gap:1rem; }
+.toc,.side-cta { padding:1.1rem; border:1px solid var(--line); border-radius:.85rem;
+                 background:var(--surface); }
+.toc-title { margin:0 0 .65rem; font-size:.78rem; font-weight:800; letter-spacing:.1em;
+             color:var(--sub); }
+.toc ol { margin:0; padding:0; list-style:none; }
+.toc li { margin:.4rem 0; line-height:1.5; }
+.toc a { color:var(--sub); text-decoration:none; font-size:.84rem; }
+.toc a:hover { color:var(--accent); }
+.side-cta p { margin:0 0 .85rem; font-size:.9rem; line-height:1.65; }
+.side-cta .button { width:100%; }
+.cta { margin-top:3.5rem; padding:1.5rem; border:1px solid var(--accent);
+       border-radius:1rem; background:var(--accent-soft); }
+.cta-label { margin:0 0 .35rem; color:var(--accent-strong); font-size:.78rem;
+             font-weight:800; letter-spacing:.1em; }
+.cta p { margin:.3rem 0 1rem; }
+.mobile-cta { display:none; }
+.site-footer { border-top:1px solid var(--line); }
+.footer-inner { max-width:74rem; margin:auto; padding:2rem 1.5rem 3rem; color:var(--sub);
+                display:flex; justify-content:space-between; gap:1rem; font-size:.85rem; }
+@media (max-width:800px) {
+  .header-inner { min-height:3.75rem; padding:0 1rem; }
+  .site-nav a:last-child { display:none; }
+  .wrap { padding:2rem 1rem 6rem; }
+  .hero { padding:1.2rem 0 2.5rem; }
+  .hero h1 { font-size:2.15rem; }
+  .card-grid { grid-template-columns:1fr; }
+  .card { min-height:0; }
+  .about-panel { margin-top:3rem; padding:1.25rem; }
+  .article-layout { display:flex; flex-direction:column; align-items:stretch; gap:1.5rem; }
+  .article-body { width:100%; }
+  .article-side { position:static; width:100%; order:-1; }
+  .side-cta { display:none; }
+  .article-head { margin-bottom:1.5rem; }
+  .article-head h1 { font-size:1.95rem; }
+  .article-body h2 { font-size:1.45rem; }
+  .mobile-cta { position:fixed; z-index:15; left:.75rem; right:.75rem; bottom:.75rem;
+                display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+                padding:.7rem; border:1px solid var(--line); border-radius:.9rem;
+                background:color-mix(in srgb,var(--surface) 94%,transparent);
+                backdrop-filter:blur(12px); box-shadow:var(--shadow); }
+  .mobile-cta span { font-size:.78rem; font-weight:700; line-height:1.35; }
+  .mobile-cta .button { min-height:2.65rem; padding:.6rem .8rem; white-space:nowrap; }
+  .footer-inner { flex-direction:column; padding-bottom:6rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .card,.button { transition:none; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header><a href="/">つくりながら書いています</a></header>
-<h1>Obsidianの使い方｜初心者が最初に決める4設定と、あとでリンクが壊れない置き方</h1><p>Vaultの作成画面で、保存先を選ぶところで手が止まっていませんか。</p>
-<p>あるいは、数十枚メモを書いたあとで気づいた人もいると思います。画像がVault直下に散らかっている。スマホから同じノートが開けない。作り直したほうが早いのではないか。</p>
-<p>先に結論を書きます。</p>
-<p>Obsidianで最初に決めるべきなのは、プラグインでもテーマでもありません。<strong>Vaultの置き場所・リンク形式・添付ファイルの保存先・同期方式</strong>、この4つです。</p>
-<p>なぜこの4つなのか。Obsidianの保存の仕組みを見ると、説明がつきます。</p>
-<h2>Obsidianが他のノートアプリと決定的に違う一点：保存先がただのフォルダである</h2>
-<p>Obsidianはノートをクラウド上のデータベースに保存しません。</p>
-<p>書き込む先は、<strong>あなたのPCの中の普通のフォルダ</strong>です。そこに拡張子<code>.md</code>のテキストファイルとして保存されます。</p>
-<p>公式ドキュメントの<a href="https://help.obsidian.md/Getting+started/Create+a+vault">Create a vault</a>でも、Vault（保管庫）は「ローカルのフォルダ」と定義されています。</p>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/">つくりながら書いています</a>
+<nav class="site-nav" aria-label="主なメニュー">
+<a href="/#articles">記事一覧</a><a href="/#about">このサイトについて</a>
+</nav></div></header>
+<main class="wrap" id="main">
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">ツール・設定</span><span class="badge price">無料公開 + note ¥500</span></div><h1>Obsidianの使い方｜初心者が最初に決める4設定と、あとでリンクが壊れない置き方</h1><p class="article-dek">Vaultの作成画面を開くと、いきなり保存先を聞かれます。まだノートを一枚も 書いていないのに、どこへ置くのが正解かは判断しにくいものです。 ここを仮の場所で済ませると、しばらくして画像がVault直下に並んだり、スマホから 同じノートを開けなかったりします。</p></header><div class="article-layout"><div class="article-body"><p>Vaultの作成画面を開くと、いきなり保存先を聞かれます。まだノートを一枚も</p>
+<p>書いていないのに、どこへ置くのが正解かは判断しにくいものです。</p>
+<p>ここを仮の場所で済ませると、しばらくして画像がVault直下に並んだり、スマホから</p>
+<p>同じノートを開けなかったりします。作り直す前に確認したいのは、プラグインや</p>
+<p>テーマではありません。**Vaultの置き場所・リンク形式・添付ファイルの保存先・</p>
+<p>同期方式**の4つです。この4つだけは、後から変えたとき既存ノートへ影響します。</p>
+<h2 id="obsidianが他のノートアプリと決定的に違う一点-保存先がただのフォルダである">Obsidianが他のノートアプリと決定的に違う一点：保存先がただのフォルダである</h2>
+<p>Obsidianはノートをクラウド上のデータベースに保存しません。**PCの中の普通の</p>
+<p>フォルダ**へ、拡張子<code>.md</code>のテキストファイルとして書き込みます。Vault（保管庫）</p>
+<p>という名前は付いていますが、Finderやエクスプローラーからも開けます。</p>
 <p>つまりVaultの正体は、Finderやエクスプローラーで開ける、ただのフォルダ。</p>
-<p>そのためObsidianをアンインストールしてもノートは残ります。メモ帳でもVSCodeでも中身が読めます。</p>
-<p>ただし裏返しがあります。<strong>フォルダを移動したり、Obsidian以外のアプリでファイル名を変えたりすると、その操作がそのままノートに影響します</strong>。</p>
-<p>アプリが中身を管理してくれるEvernoteやNotionとは、ここで道が分かれます。</p>
-<p>Vaultの中には<code>.obsidian</code>というフォルダが自動で作られます。設定・ホットキー・プラグイン・テーマが、全部そこに入ります。</p>
-<p>ドット始まりなので、多くのOSでは隠しフォルダ扱いになる。そして<strong>この一点が後の同期トラブルの主犯になります</strong>。</p>
-<p>置けるのはMarkdownだけではありません。</p>
-<p>公式の<a href="https://help.obsidian.md/Files+and+folders/Accepted+file+formats">Accepted file formats</a>にある通り、画像（png / jpg / gif / svg / webp）、音声、動画、PDFもVault内に置けばノートから参照できます。</p>
-<p>Vaultは資料置き場でもあります。そのため、<strong>どこに何を置くかを決めないと確実に散らかります</strong>。</p>
-<h2>初心者がつまずくのは機能ではなく「決める順番」——2週間後に壊れる仕組み</h2>
-<p><img src="/img/table-b37b5bbfc8.png" alt="後から変えると何が起きるか" loading="lazy"></p>
-<p>開いた直後のObsidianには、機能らしい機能がほとんど見えません。</p>
-<p>そのため多くの入門記事は「プラグインを入れよう」「グラフビューを見よう」と進みます。しかし最初に開くべきは<strong>設定 → Files and links（ファイルとリンク）</strong>です。</p>
-<p>理由は単純です。ここの項目はノートが増えてから変えると、既に書いたリンクの意味が変わるからです。</p>
-<p>たとえばリンク形式の<code>New link format</code>には、「Shortest path when possible」「Relative path to file」「Absolute path in vault」の3択があります。既定は最短パス。</p>
-<p><code>[[議事録]]</code>と書くだけで済むので快適です。しかし<strong>同名のファイルがVault内に2つできた瞬間、どちらを指すかが曖昧になります</strong>。</p>
-<p>50枚では起きず、300枚になると起きる。</p>
-<p>これが「最初は快適だったのに後から壊れる」の中身です。</p>
-<p>添付ファイルも同じ構造です。</p>
-<p><code>Default location for new attachments</code>の初期値では、Vaultのルートに画像が保存されます。そのためスクリーンショットを貼るたびに、直下が埋まっていきます。</p>
-<p>しかも後から専用フォルダへ移すと、<strong>リンク形式によっては移動した瞬間に画像が表示されなくなります</strong>。</p>
-<p>同期も同様。PCだけならiCloudでもDropboxでも問題なく動きます。</p>
-<p>ところがスマホアプリを入れた時点で、iOSがアプリに許すファイル保存先の制約と、クラウド側の「実体をダウンロードしていないファイル」の扱いがぶつかります。</p>
-<p>ここまでを一言でまとめます。Obsidianの初期設定は好みではなく<strong>後戻りコスト</strong>で決まります。</p>
-<p>テーマ・フォント・ホットキーは後から変えても無害です。一方、リンク形式・添付先・Vaultの場所・同期方式は既存ノートに波及する。</p>
-<p>この線引きが、この記事の中心です。</p>
-<h2>この記事で扱う範囲と、有料部分に入っているもの</h2>
-<p>無料部分で扱ったのは、「Obsidianは何なのか」と「なぜ順番を間違えると壊れるのか」まで。</p>
-<p>ここから先は、<strong>どの設定画面のどの項目を、どの値にするのか</strong>です。選択肢ごとの結果の違いつきで書いています。</p>
+<p>そのためObsidianをアンインストールしてもノートは残りますし、メモ帳でもVSCodeでも中身が読めます。ただし裏返しがあって、<strong>フォルダを移動したり、Obsidian以外のアプリでファイル名を変えたりすると、その操作がそのままノートに影響します</strong>。アプリが中身を管理してくれるEvernoteやNotionとは、ここで道が分かれます。</p>
+<p>Vaultの中には<code>.obsidian</code>というフォルダが自動で作られ、設定・ホットキー・プラグイン・テーマが全部そこに入ります。ドット始まりなので多くのOSでは隠しフォルダ扱いになり、<strong>この一点が後の同期トラブルの主犯になります</strong>。</p>
+<p>置けるのはMarkdownだけではありません。画像（png / jpg / gif / svg / webp）、</p>
+<p>音声、動画、PDFもVault内に置けばノートから参照できます。文章だけのつもりで</p>
+<p>始めても、画面を一枚貼った時点でVaultは資料置き場になります。添付先を最初に</p>
+<p>決める理由はここにあります。</p>
+<h2 id="初心者がつまずくのは機能ではなく-決める順番-2週間後に壊れる仕組み">初心者がつまずくのは機能ではなく「決める順番」——2週間後に壊れる仕組み</h2>
+<p>開いた直後のObsidianには、機能らしい機能がほとんど見えません。そのため多くの入門記事は「プラグインを入れよう」「グラフビューを見よう」と進みますが、最初に開くべきは<strong>設定 → Files and links（ファイルとリンク）</strong>です。</p>
+<p>理由は単純で、ここの項目はノートが増えてから変えると、既に書いたリンクの意味が変わるからです。</p>
+<p>たとえばリンク形式の<code>New link format</code>には「Shortest path when possible」「Relative path to file」「Absolute path in vault」の3択があり、既定は最短パス。<code>[[議事録]]</code>と書くだけで済むので快適ですが、<strong>同名のファイルがVault内に2つできた瞬間、どちらを指すかが曖昧になります</strong>。50枚では起きず、300枚になると起きる。これが「最初は快適だったのに後から壊れる」の中身です。</p>
+<p>添付ファイルも同じ構造です。<code>Default location for new attachments</code>の初期値ではVaultのルートに画像が保存されるため、スクリーンショットを貼るたびに直下が埋まっていきます。しかも後から専用フォルダへ移すと、<strong>リンク形式によっては移動した瞬間に画像が表示されなくなります</strong>。</p>
+<p>同期も同様。PCだけならiCloudでもDropboxでも問題なく動きますが、スマホアプリを入れた時点で、iOSがアプリに許すファイル保存先の制約と、クラウド側の「実体をダウンロードしていないファイル」の扱いがぶつかります。</p>
+<p>ここまでを一言でまとめると、Obsidianの初期設定は好みではなく<strong>後戻りコスト</strong>で決まります。テーマ・フォント・ホットキーは後から変えても無害ですが、リンク形式・添付先・Vaultの場所・同期方式は既存ノートに波及する。この線引きが、この記事の中心です。</p>
+<h2 id="この記事で扱う範囲と-有料部分に入っているもの">この記事で扱う範囲と、有料部分に入っているもの</h2>
+<p>無料部分で扱ったのは「Obsidianは何なのか」と「なぜ順番を間違えると壊れるのか」まで。ここから先は、<strong>どの設定画面のどの項目を、どの値にするのか</strong>を、選択肢ごとの結果の違いつきで書いています。</p>
 <p>有料部分の見出しです。</p>
 <ul>
 <li>Vaultを作る前に決める3つ：保存場所・名前・同期方式</li>
@@ -88,12 +199,14 @@ footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
 <li>スマホアプリ：iOSとAndroidで選べる同期が違う</li>
 <li>壊したときに戻す手順（先に確認しておく3つの復旧経路）</li>
 </ul>
-<p>「おすすめプラグイン20選」は入れていません。</p>
-<p>代わりに、コアプラグインでどこまでできて、どこからがコミュニティプラグインの領域なのかという境界線を書いています。なぜなら、自分で判断できたほうが、他人のおすすめを追い続けるより早く落ち着くからです。</p>
-<p>必要な前提は、<a href="https://obsidian.md/download">公式サイト</a>からダウンロード済みであることだけ。</p>
-<p>まだVaultを作っていない状態が理想です。ただし既に作った人向けに、作り直さずに直す手順も併記しています。</p><div class="cta"><p>ここから先は note の有料記事です（¥500）。</p><p><a href="/go/nfb323fc7c2d7/">続きを note で読む</a></p></div>
-<footer>つくりながら書いています</footer>
-</div>
+<p>「おすすめプラグイン20選」は入れていません。先に必要なのは数を増やすことでは</p>
+<p>なく、コア機能で足りない作業を見つけることだからです。どこまでがコア機能で、</p>
+<p>どこからコミュニティプラグインを検討するのか、その境界を書いています。</p>
+<p>必要な前提は、公式サイトからダウンロード済みであることだけ。まだVaultを作っていない状態が理想ですが、既に作った人向けに、作り直さずに直す手順も併記しています。</p><section class="cta" aria-label="noteで続きを読む"><p class="cta-label">CONTINUE ON NOTE</p><p>保存場所から同期方式まで、4設定を選択肢ごとの結果で決める記入欄を用意しています。</p><a class="button" href="/go/nfb323fc7c2d7/">noteで続きを読む <span aria-hidden="true">→</span></a></section></div><aside class="article-side"><nav class="toc" aria-label="この記事の目次"><p class="toc-title">この記事の目次</p><ol><li><a href="#obsidianが他のノートアプリと決定的に違う一点-保存先がただのフォルダである">Obsidianが他のノートアプリと決定的に違う一点：保存先がただのフォルダである</a></li><li><a href="#初心者がつまずくのは機能ではなく-決める順番-2週間後に壊れる仕組み">初心者がつまずくのは機能ではなく「決める順番」——2週間後に壊れる仕組み</a></li><li><a href="#この記事で扱う範囲と-有料部分に入っているもの">この記事で扱う範囲と、有料部分に入っているもの</a></li></ol></nav><aside class="side-cta"><p>保存場所から同期方式まで、4設定を選択肢ごとの結果で決める記入欄を用意しています。</p><a class="button" href="/go/nfb323fc7c2d7/">noteで続きを読む</a></aside></aside></div></article><div class="mobile-cta"><span>続きはnoteで読めます</span><a class="button" href="/go/nfb323fc7c2d7/">続きを読む</a></div>
+</main>
+<footer class="site-footer"><div class="footer-inner">
+<span>つくりながら書いています</span><span>迷ったところから、次の一手へ。</span>
+</div></footer>
 <img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/a/obsidian%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9-%E5%88%9D%E5%BF%83%E8%80%85%E3%81%8C%E6%9C%80%E5%88%9D%E3%81%AB%E6%B1%BA%E3%82%81%E3%82%8B4%E8%A8%AD%E5%AE%9A%E3%81%A8-%E3%81%82%E3%81%A8%E3%81%A7%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%8C%E5%A3%8A%E3%82%8C%E3%81%AA%E3%81%84%E7%BD%AE%E3%81%8D%E6%96%B9/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
 </body>
 </html>

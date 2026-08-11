@@ -4,70 +4,198 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Claude Code サブエージェントの作り方｜呼ばれない・結果が返らないを直す</title>
-<meta name="description" content=" Claude Code サブエージェントが動かないときの直し方 Claude Code でサブエージェントを作る手順そのものは、もう多くの記事に書かれています。それを読んで .claude/agents/ に Mark">
+<meta name="description" content=".claude/agents/ にMarkdownファイルを置いた。書式も合っている。それなのに サブエージェントが自動で呼ばれないことがあります。名指しなら動くのに報告が 薄かったり、VS Codeでは一覧にさえ出なかったりすることもあります。">
+<meta property="og:title" content="Claude Code サブエージェントの作り方｜呼ばれない・結果が返らないを直す">
+<meta property="og:description" content=".claude/agents/ にMarkdownファイルを置いた。書式も合っている。それなのに サブエージェントが自動で呼ばれないことがあります。名指しなら動くのに報告が 薄かったり、VS Codeでは一覧にさえ出なかったりすることもあります。">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://gamigamigamigami.github.io/a/claude-code-サブエージェントの作り方-呼ばれない-結果が返らないを直す/">
 <style>
-:root { color-scheme: light dark; --fg:#1b1d21; --bg:#ffffff; --sub:#5a6270;
-        --accent:#2f6fdd; --line:#e3e6eb; }
+:root { color-scheme: light dark; --fg:#202420; --bg:#f7f5ef; --surface:#fffefb;
+        --sub:#626960; --accent:#176b5b; --accent-strong:#0e5346;
+        --accent-soft:#e2f1ec; --warm:#c56538; --warm-soft:#f8e9df;
+        --line:#dfe2da; --shadow:0 16px 40px rgba(42,52,45,.08); }
 @media (prefers-color-scheme: dark) {
-  :root { --fg:#e8ecf2; --bg:#14171c; --sub:#9aa3b0; --accent:#7aa8ff; --line:#272c34; }
+  :root { --fg:#eef2ed; --bg:#151a17; --surface:#1d2420; --sub:#abb5ad;
+          --accent:#79c9b5; --accent-strong:#9bdacb; --accent-soft:#203b34;
+          --warm:#eda47f; --warm-soft:#3a2b24; --line:#354039;
+          --shadow:0 16px 40px rgba(0,0,0,.22); }
 }
 * { box-sizing: border-box; }
+html { scroll-behavior:smooth; }
 body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
-       font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
-.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.2rem 5rem; }
-header a { color: var(--fg); text-decoration: none; font-weight: 700; }
-h1 { font-size: 1.6rem; line-height: 1.5; margin: 1.6rem 0 .6rem; }
-h2 { font-size: 1.25rem; margin: 2.4rem 0 .6rem; }
-h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
-p, li { font-size: 1rem; }
-a { color: var(--accent); }
-img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.2rem 0; }
-pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
-      overflow-x: auto; }
-code { font-size: .92em; }
-.meta { color: var(--sub); font-size: .88rem; }
-.card { display:block; padding:1rem 0; border-bottom:1px solid var(--line);
-        text-decoration:none; color:inherit; }
-.card:hover h2 { color: var(--accent); }
-.card h2 { margin:0 0 .3rem; font-size:1.05rem; }
-.cta { margin-top:3rem; padding:1.2rem; border:1px solid var(--line);
-       border-radius:10px; }
-.cta a { font-weight:700; }
-.about { color: var(--sub); font-size:.95rem; border-left:3px solid var(--line);
-         padding-left:1rem; margin:1.5rem 0 2.5rem; }
-.about p { margin:.6rem 0; }
-footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
+       font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+       -webkit-font-smoothing:antialiased; }
+a { color:var(--accent); text-underline-offset:.18em; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--warm); outline-offset:3px; }
+.skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; padding:.7rem 1rem;
+             background:var(--surface); color:var(--fg); border-radius:.6rem; }
+.skip-link:focus { top:1rem; }
+.site-header { position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 90%,transparent);
+               backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+.header-inner { max-width:74rem; margin:auto; min-height:4.25rem; padding:0 1.5rem;
+                display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.brand { color:var(--fg); text-decoration:none; font-weight:800; letter-spacing:-.02em; }
+.site-nav { display:flex; gap:1.2rem; }
+.site-nav a { color:var(--sub); text-decoration:none; font-size:.9rem; font-weight:700; }
+.site-nav a:hover { color:var(--accent); }
+.wrap { max-width:74rem; margin:0 auto; padding:3rem 1.5rem 6rem; }
+h1,h2,h3 { line-height:1.45; letter-spacing:-.025em; text-wrap:pretty; }
+h1 { font-size:clamp(2rem,4.5vw,3.5rem); margin:.65rem 0 1rem; }
+h2 { font-size:clamp(1.4rem,2.4vw,1.85rem); margin:3.2rem 0 1rem; }
+h3 { font-size:1.18rem; margin:2.2rem 0 .65rem; }
+p,li { font-size:1rem; }
+.eyebrow { margin:0; color:var(--warm); font-size:.78rem; font-weight:800;
+           letter-spacing:.14em; text-transform:uppercase; }
+.hero { max-width:52rem; padding:3rem 0 3.5rem; }
+.hero h1 { max-width:48rem; }
+.hero-copy { max-width:42rem; color:var(--sub); font-size:1.08rem; }
+.button { display:inline-flex; align-items:center; justify-content:center; min-height:3rem;
+          padding:.75rem 1.1rem; border-radius:.75rem; background:var(--accent);
+          color:#fff; text-decoration:none; font-weight:800; box-shadow:0 8px 20px rgba(23,107,91,.18); }
+.button:hover { background:var(--accent-strong); transform:translateY(-1px); }
+.button.secondary { background:var(--surface); color:var(--accent); border:1px solid var(--line);
+                    box-shadow:none; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:1rem;
+                margin-bottom:1.25rem; }
+.section-head h2 { margin:0; }
+.meta { color:var(--sub); font-size:.88rem; }
+.card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.card { display:flex; min-height:15rem; flex-direction:column; padding:1.35rem;
+        border:1px solid var(--line); border-radius:1rem; background:var(--surface);
+        color:inherit; text-decoration:none; box-shadow:0 1px 0 rgba(42,52,45,.03);
+        transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+.card:hover { transform:translateY(-3px); border-color:var(--accent);
+              box-shadow:var(--shadow); }
+.card-top { display:flex; align-items:center; justify-content:space-between; gap:.7rem; }
+.badge { display:inline-flex; align-items:center; min-height:1.65rem; padding:.18rem .58rem;
+         border-radius:999px; background:var(--accent-soft); color:var(--accent-strong);
+         font-size:.76rem; font-weight:800; }
+.badge.price { background:var(--warm-soft); color:var(--warm); }
+.card h3 { margin:1rem 0 .55rem; font-size:1.12rem; }
+.card .summary { margin:0 0 1rem; color:var(--sub); line-height:1.75; }
+.card-more { margin-top:auto; color:var(--accent); font-weight:800; }
+.about-panel { margin-top:5rem; padding:2rem; border-radius:1rem; background:var(--surface);
+               border:1px solid var(--line); }
+.about-panel h2 { margin:0 0 1rem; }
+.about-panel p { max-width:52rem; color:var(--sub); margin:.7rem 0; }
+.breadcrumb { margin:0 0 2rem; font-size:.88rem; color:var(--sub); }
+.breadcrumb a { color:inherit; }
+.article-head { max-width:52rem; margin-bottom:2.5rem; }
+.article-head h1 { font-size:clamp(2rem,4vw,3rem); }
+.article-dek { color:var(--sub); font-size:1.05rem; max-width:44rem; }
+.article-layout { display:grid; grid-template-columns:minmax(0,46rem) minmax(14rem,18rem);
+                  gap:4rem; align-items:start; }
+.article-body { min-width:0; font-size:1.02rem; }
+.article-body > p { margin:0 0 1.25rem; }
+.article-body h2 { padding-top:.8rem; border-top:1px solid var(--line); }
+.article-body strong { font-weight:800; }
+.article-body img { display:block; max-width:100%; height:auto; border-radius:.85rem;
+                    margin:1.5rem auto; border:1px solid var(--line); }
+.article-body ul,.article-body ol { padding-left:1.4rem; margin:0 0 1.4rem; }
+.article-body li { margin:.35rem 0; }
+pre { background:#171b18; color:#eef2ed; padding:1rem 1.1rem; border-radius:.8rem;
+      overflow-x:auto; line-height:1.65; }
+code { font-size:.9em; }
+p code,li code { padding:.12rem .35rem; border-radius:.3rem; background:var(--accent-soft); }
+blockquote { margin:1.5rem 0; padding:.8rem 1rem; border-left:4px solid var(--warm);
+             background:var(--warm-soft); border-radius:0 .6rem .6rem 0; }
+hr { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+.table-wrap { overflow-x:auto; margin:1.5rem 0; border:1px solid var(--line);
+              border-radius:.8rem; background:var(--surface); }
+table { width:100%; border-collapse:collapse; min-width:34rem; font-size:.9rem; }
+th,td { padding:.75rem .85rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+th { background:var(--accent-soft); color:var(--accent-strong); }
+tbody tr:last-child td { border-bottom:0; }
+.article-side { position:sticky; top:6rem; display:grid; gap:1rem; }
+.toc,.side-cta { padding:1.1rem; border:1px solid var(--line); border-radius:.85rem;
+                 background:var(--surface); }
+.toc-title { margin:0 0 .65rem; font-size:.78rem; font-weight:800; letter-spacing:.1em;
+             color:var(--sub); }
+.toc ol { margin:0; padding:0; list-style:none; }
+.toc li { margin:.4rem 0; line-height:1.5; }
+.toc a { color:var(--sub); text-decoration:none; font-size:.84rem; }
+.toc a:hover { color:var(--accent); }
+.side-cta p { margin:0 0 .85rem; font-size:.9rem; line-height:1.65; }
+.side-cta .button { width:100%; }
+.cta { margin-top:3.5rem; padding:1.5rem; border:1px solid var(--accent);
+       border-radius:1rem; background:var(--accent-soft); }
+.cta-label { margin:0 0 .35rem; color:var(--accent-strong); font-size:.78rem;
+             font-weight:800; letter-spacing:.1em; }
+.cta p { margin:.3rem 0 1rem; }
+.mobile-cta { display:none; }
+.site-footer { border-top:1px solid var(--line); }
+.footer-inner { max-width:74rem; margin:auto; padding:2rem 1.5rem 3rem; color:var(--sub);
+                display:flex; justify-content:space-between; gap:1rem; font-size:.85rem; }
+@media (max-width:800px) {
+  .header-inner { min-height:3.75rem; padding:0 1rem; }
+  .site-nav a:last-child { display:none; }
+  .wrap { padding:2rem 1rem 6rem; }
+  .hero { padding:1.2rem 0 2.5rem; }
+  .hero h1 { font-size:2.15rem; }
+  .card-grid { grid-template-columns:1fr; }
+  .card { min-height:0; }
+  .about-panel { margin-top:3rem; padding:1.25rem; }
+  .article-layout { display:flex; flex-direction:column; align-items:stretch; gap:1.5rem; }
+  .article-body { width:100%; }
+  .article-side { position:static; width:100%; order:-1; }
+  .side-cta { display:none; }
+  .article-head { margin-bottom:1.5rem; }
+  .article-head h1 { font-size:1.95rem; }
+  .article-body h2 { font-size:1.45rem; }
+  .mobile-cta { position:fixed; z-index:15; left:.75rem; right:.75rem; bottom:.75rem;
+                display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+                padding:.7rem; border:1px solid var(--line); border-radius:.9rem;
+                background:color-mix(in srgb,var(--surface) 94%,transparent);
+                backdrop-filter:blur(12px); box-shadow:var(--shadow); }
+  .mobile-cta span { font-size:.78rem; font-weight:700; line-height:1.35; }
+  .mobile-cta .button { min-height:2.65rem; padding:.6rem .8rem; white-space:nowrap; }
+  .footer-inner { flex-direction:column; padding-bottom:6rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .card,.button { transition:none; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header><a href="/">つくりながら書いています</a></header>
-<h1>Claude Code サブエージェントの作り方｜呼ばれない・結果が返らないを直す</h1><p># Claude Code サブエージェントが動かないときの直し方</p>
-<p>Claude Code でサブエージェントを作る手順そのものは、もう多くの記事に書かれています。それを読んで <code>.claude/agents/</code> に Markdown ファイルを置いたのに、自動では呼ばれない、名指しで呼んでも当たり障りのない報告しか返ってこない、VS Code で開くと一覧にすら出てこない——この記事は、そこで止まっている方に向けて書きます。</p>
-<h2>この記事が扱うのは「動かないサブエージェントの直し方」まで</h2>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/">つくりながら書いています</a>
+<nav class="site-nav" aria-label="主なメニュー">
+<a href="/#articles">記事一覧</a><a href="/#about">このサイトについて</a>
+</nav></div></header>
+<main class="wrap" id="main">
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">ツール・設定</span><span class="badge price">無料公開 + note ¥500</span></div><h1>Claude Code サブエージェントの作り方｜呼ばれない・結果が返らないを直す</h1><p class="article-dek">.claude/agents/ にMarkdownファイルを置いた。書式も合っている。それなのに サブエージェントが自動で呼ばれないことがあります。名指しなら動くのに報告が 薄かったり、VS Codeでは一覧にさえ出なかったりすることもあります。</p></header><div class="article-layout"><div class="article-body"><p><code>.claude/agents/</code> にMarkdownファイルを置いた。書式も合っている。それなのに</p>
+<p>サブエージェントが自動で呼ばれないことがあります。名指しなら動くのに報告が</p>
+<p>薄かったり、VS Codeでは一覧にさえ出なかったりすることもあります。</p>
+<p>作成手順をもう一度なぞるより、症状を三つに分けたほうが早く原因へ着けます。</p>
+<p>この記事では「一覧に出ない」「自動で呼ばれない」「呼ばれるが空振りする」を</p>
+<p>別々に切り分けます。</p>
+<h2 id="この記事が扱うのは-動かないサブエージェントの直し方-まで">この記事が扱うのは「動かないサブエージェントの直し方」まで</h2>
 <p>まず前提を共有します。サブエージェントの挙動は、<strong>定義ファイル1枚では決まりません</strong>。実際に効いているのは、ファイルの置き場所、YAML フロントマターの書式、<code>tools</code> の記述、<code>settings.json</code> の <code>permissions</code>、そして委任するときに渡す依頼文の5つで、これらが噛み合って初めて期待どおりに動きます。</p>
-<p>やっかいなのは失敗の出方です。どれか1つが外れても、赤いエラーが出るわけではなく、<strong>静かに何も起きない</strong>、あるいは何となく動いているように見えて中身が薄い、という形で現れます。だから手順記事を何度読み直しても原因にたどり着けません。</p>
-<p>この記事では、その5つの依存関係を分解して、自分の環境のどこが外れているかを特定できるところまで持っていきます。参照するのは公式ドキュメントの <a href="https://docs.claude.com/en/docs/claude-code/sub-agents">Subagents</a> と <a href="https://docs.claude.com/en/docs/claude-code/settings">Settings</a> です。扱う範囲は CLI と、VS Code で動かした場合の差分までとし、Agent SDK でエージェントを実装する話は含めません。</p>
-<h2>サブエージェントの実体は「使い捨ての別セッション」です</h2>
-<p>公式ドキュメントは、サブエージェントを<strong>独立したコンテキストウィンドウ</strong>を持つ特化型のアシスタントとして説明しています。</p>
-<p>ここで大事なのは「独立した」の部分です。これは分かりやすくするための比喩ではなく、そのままの仕様です。つまり、メインの会話でどれだけ丁寧にやり取りしていても、サブエージェント側はそれを一切見ていません。あなたが説明したディレクトリ構成も、直前に読ませたエラーログも、向こうには存在しない情報で、渡されるのはメインの Claude がそのとき書いた<strong>依頼文だけ</strong>になります。</p>
-<p>そして終了時にも、作業の中身はメイン側に戻りません。</p>
-<p>戻ってくるのは最終的な報告テキスト1通で、途中で読んだファイルも試した手順も、メインのコンテキストには積まれない仕組みです。「コンテキストを汚さない」と言われるのは、この一方通行の構造を指しています。</p>
-<p>ここから利点と弱点が両方導けます。利点は、大量のファイルを読む調査を丸ごと別セッションに追い出せることです。一方で弱点は、<strong>前提の共有コストが毎回かかる</strong>ことで、そのため短い依頼文で自己完結する仕事ほど向いていて、あなたと相談しながら詰めていく仕事ほど向きません。</p>
+<p>やっかいなのは失敗の出方です。どれか1つが外れても、赤いエラーが出るわけではありません。<strong>静かに何も起きない</strong>、あるいは何となく動いているように見えて中身が薄い、という形で現れます。だから手順記事を何度読み直しても原因にたどり着けません。</p>
+<p>その5つの依存関係を分解し、どこが外れているかを画面と出力から特定します。</p>
+<p>扱うのはCLIとVS Codeで動かした場合の差分までです。Agent SDKで別の</p>
+<p>エージェントを実装する話は含めません。</p>
+<h2 id="サブエージェントの実体は-使い捨ての別セッション-です">サブエージェントの実体は「使い捨ての別セッション」です</h2>
+<p>サブエージェントは、メインとは<strong>独立したコンテキストウィンドウ</strong>で動きます。</p>
+<p>「別の担当者」のような比喩ではなく、本当に会話の中身が分かれています。</p>
+<p>つまり、メインの会話でどれだけ丁寧にやり取りしていても、サブエージェント側はそれを一切見ていません。あなたが説明したディレクトリ構成も、直前に読ませたエラーログも、向こうには存在しない情報です。渡されるのは、メインの Claude がそのとき書いた<strong>依頼文だけ</strong>になります。</p>
+<p>そして終了時にも、作業の中身はメイン側に戻りません。戻ってくるのは最終的な報告テキスト1通で、途中で読んだファイルも試した手順も、メインのコンテキストには積まれない仕組みです。「コンテキストを汚さない」と言われるのは、この一方通行の構造を指しています。</p>
+<p>ここから利点と弱点が両方導けます。利点は、大量のファイルを読む調査を丸ごと別セッションに追い出せること。一方で弱点は、<strong>前提の共有コストが毎回かかる</strong>ことです。そのため、短い依頼文で自己完結する仕事ほど向いていて、あなたと相談しながら詰めていく仕事ほど向きません。</p>
 <p>なお、サブエージェントと Agent Teams は別の機能として提供されています。どちらも複数の AI が動く点は同じですが、前者は1つのセッションから呼び出す下請けで、後者は別の枠組みです。混同すると「並列で動くはずなのに動かない」という誤解につながります。</p>
-<h2>定義ファイルの4フィールドは、別々の失敗を担当しています</h2>
+<h2 id="定義ファイルの4フィールドは-別々の失敗を担当しています">定義ファイルの4フィールドは、別々の失敗を担当しています</h2>
 <p>定義ファイルは YAML フロントマター付きの Markdown で、フロントマターに書けるのは <code>name</code> / <code>description</code> / <code>tools</code> / <code>model</code> の4つです。加えて、フロントマターより下の本文がそのままシステムプロンプトになります。この4つは役割がきれいに分かれていて、<strong>どれが欠けているかで症状が変わります</strong>。</p>
-<p><code>description</code> が担当するのは「呼ばれるかどうか」です。メインの Claude は、あなたの依頼文と各サブエージェントの <code>description</code> を突き合わせて委任先を決めるので、「コードをレビューします」のように短く曖昧だと、判断材料が足りずに呼ばれません。自動で呼ばれない症状の原因は、ほぼここに集中します。</p>
+<p><code>description</code> が担当するのは「呼ばれるかどうか」です。メインの Claude は、あなたの依頼文と各サブエージェントの <code>description</code> を突き合わせて委任先を決めます。ですから「コードをレビューします」のように短く曖昧だと、判断材料が足りずに呼ばれません。自動で呼ばれない症状の原因は、ほぼここに集中します。</p>
 <p><code>tools</code> が担当するのは「呼ばれた後に何ができるか」です。この行を書かなければ、MCP のツールを含めて利用可能なツールをすべて継承します。逆に書いた場合は書いたものだけになるので、ここで <code>Read</code> や <code>Grep</code> を落とすと、レビュー用のはずのサブエージェントがファイルを1つも読めず、一般論だけを返してきます。</p>
-<p><code>model</code> は「どのモデルで走るか」を決めます。指定しなければ設定に従うため、調査系だけ軽いモデルに寄せる、といった使い分けができますが、難しい判断を任せる役に軽いモデルを当てると、報告の質はその分落ちます。</p>
+<p><code>model</code> は「どのモデルで走るか」です。指定しなければ設定に従うため、調査系だけ軽いモデルに寄せる、といった使い分けができます。ただし難しい判断を任せる役に軽いモデルを当てると、報告の質はその分落ちます。</p>
 <p><code>name</code> は「名指しで呼べるかどうか」を決めます。小文字とハイフンで書く決まりなので、日本語や大文字を混ぜると名指しの委任が通らなくなります。</p>
 <p>本文（システムプロンプト）に書くべきなのは、人格設定ではありません。相手は文脈をまったく持っていないので、<strong>何を確認し何を確認しないか、どういう形式で報告するか</strong>を書かないと、報告の粒度が毎回ぶれます。</p>
-<h2>「呼ばれない」「空振りする」が起きる、仕組み上の理由</h2>
-<p><img src="/img/table-ea9d40dfbc.png" alt="症状①〜③と原因の対応" loading="lazy"></p>
+<h2 id="呼ばれない-空振りする-が起きる-仕組み上の理由">「呼ばれない」「空振りする」が起きる、仕組み上の理由</h2>
 <p>症状は大きく3つに分かれます。①<code>/agents</code> の一覧にそもそも出てこない、②一覧には出るが自動で呼ばれない、③呼ばれるが報告が薄い。原因はそれぞれ違うので、対処も別々になります。</p>
-<p>①はファイルが読み込まれていない状態で、原因の多くは置き場所の間違いか、YAML の書式エラーです。とくに <code>description</code> に「レビュー: 差分を確認します」のようにコロンと半角スペースを含めると、YAML はそこをキーと値の区切りとして解釈するため、フロントマター全体の解析に失敗します。このときエラーは表示されず、単に一覧に現れません。</p>
+<p>①はファイルが読み込まれていない状態です。原因の多くは置き場所の間違いか、YAML の書式エラーになります。とくに <code>description</code> に「レビュー: 差分を確認します」のようにコロンと半角スペースを含めると、YAML はそこをキーと値の区切りとして解釈するため、フロントマター全体の解析に失敗します。このときエラーは表示されず、単に一覧に現れません。</p>
 <p>②は <code>description</code> の情報不足です。委任の判断はその文面だけを見て行われるので、「いつ使うか」が書かれていなければ判断のしようがありません。</p>
-<p>③はコンテキスト分離が原因です。メインの Claude が「レビューして」とだけ書いて委任すると、サブエージェント側は対象ファイルも判断基準も知らないまま作業を始めるため、返ってくるのは当たり障りのない一般論になります。</p>
+<p>③はコンテキスト分離が原因です。メインの Claude が「レビューして」とだけ書いて委任すると、サブエージェント側は対象ファイルも判断基準も知らないまま作業を始めます。その結果、返ってくるのは当たり障りのない一般論になります。</p>
 <p>ここまでが原因の説明です。以降の有料部分では、①〜③をそれぞれ特定して直す手順を扱います。</p>
 <ul>
 <li>置き場所を決める：プロジェクト用とユーザー用、どちらに置くか</li>
@@ -76,12 +204,14 @@ footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
 <li><code>claude</code> コマンドから実行して切り分ける：対話に頼らない確認方法</li>
 <li><code>tools</code> と <code>permissions</code> は別レイヤー：コマンド実行の許可が通らない理由</li>
 </ul>
-<h2>この続きと、関連する記事</h2>
+<h2 id="この続きと-関連する記事">この続きと、関連する記事</h2>
 <ul>
 <li><a href="/go/n84353f0a198c/">Claude Code 使い方 VSCode編｜拡張機能が繋がらない原因と接続手順</a>（¥500）</li>
-</ul><div class="cta"><p>ここから先は note の有料記事です（¥500）。</p><p><a href="/go/n3b392d0668eb/">続きを note で読む</a></p></div>
-<footer>つくりながら書いています</footer>
-</div>
+</ul><section class="cta" aria-label="noteで続きを読む"><p class="cta-label">CONTINUE ON NOTE</p><p>一覧に出ない・呼ばれない・結果が薄いを切り分け、定義ファイルの直す場所を特定できます。</p><a class="button" href="/go/n3b392d0668eb/">noteで続きを読む <span aria-hidden="true">→</span></a></section></div><aside class="article-side"><nav class="toc" aria-label="この記事の目次"><p class="toc-title">この記事の目次</p><ol><li><a href="#この記事が扱うのは-動かないサブエージェントの直し方-まで">この記事が扱うのは「動かないサブエージェントの直し方」まで</a></li><li><a href="#サブエージェントの実体は-使い捨ての別セッション-です">サブエージェントの実体は「使い捨ての別セッション」です</a></li><li><a href="#定義ファイルの4フィールドは-別々の失敗を担当しています">定義ファイルの4フィールドは、別々の失敗を担当しています</a></li><li><a href="#呼ばれない-空振りする-が起きる-仕組み上の理由">「呼ばれない」「空振りする」が起きる、仕組み上の理由</a></li><li><a href="#この続きと-関連する記事">この続きと、関連する記事</a></li></ol></nav><aside class="side-cta"><p>一覧に出ない・呼ばれない・結果が薄いを切り分け、定義ファイルの直す場所を特定できます。</p><a class="button" href="/go/n3b392d0668eb/">noteで続きを読む</a></aside></aside></div></article><div class="mobile-cta"><span>続きはnoteで読めます</span><a class="button" href="/go/n3b392d0668eb/">続きを読む</a></div>
+</main>
+<footer class="site-footer"><div class="footer-inner">
+<span>つくりながら書いています</span><span>迷ったところから、次の一手へ。</span>
+</div></footer>
 <img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/a/claude-code-%E3%82%B5%E3%83%96%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E3%81%AE%E4%BD%9C%E3%82%8A%E6%96%B9-%E5%91%BC%E3%81%B0%E3%82%8C%E3%81%AA%E3%81%84-%E7%B5%90%E6%9E%9C%E3%81%8C%E8%BF%94%E3%82%89%E3%81%AA%E3%81%84%E3%82%92%E7%9B%B4%E3%81%99/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
 </body>
 </html>

@@ -4,60 +4,190 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>車のメンテナンス一覧表を自分の車用に作る｜警告灯マークと交換時期の一覧付き</title>
-<meta name="description" content=" 「車 メンテナンス 一覧」で出てくる一覧は、3種類が混ざっています メーターに見慣れないマークが点いた。あるいは点検の案内が届いて、次に何をやるべきか分からないまま走っている。そういう場面で「車 メンテナンス 一覧」と">
+<meta name="description" content="いま必要なのは、どの一覧か メーターに見慣れないマークが点いたときと、点検の案内が届いたときでは、同じ 「車 メンテナンス 一覧」を検索しても必要な答えが違います。前者はこれから走って よいかを今決めるための一覧、後者は次の整備時期を決めるための一覧です。">
+<meta property="og:title" content="車のメンテナンス一覧表を自分の車用に作る｜警告灯マークと交換時期の一覧付き">
+<meta property="og:description" content="いま必要なのは、どの一覧か メーターに見慣れないマークが点いたときと、点検の案内が届いたときでは、同じ 「車 メンテナンス 一覧」を検索しても必要な答えが違います。前者はこれから走って よいかを今決めるための一覧、後者は次の整備時期を決めるための一覧です。">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://gamigamigamigami.github.io/a/車のメンテナンス一覧表を自分の車用に作る-警告灯マークと交換時期の一覧付き/">
 <style>
-:root { color-scheme: light dark; --fg:#1b1d21; --bg:#ffffff; --sub:#5a6270;
-        --accent:#2f6fdd; --line:#e3e6eb; }
+:root { color-scheme: light dark; --fg:#202420; --bg:#f7f5ef; --surface:#fffefb;
+        --sub:#626960; --accent:#176b5b; --accent-strong:#0e5346;
+        --accent-soft:#e2f1ec; --warm:#c56538; --warm-soft:#f8e9df;
+        --line:#dfe2da; --shadow:0 16px 40px rgba(42,52,45,.08); }
 @media (prefers-color-scheme: dark) {
-  :root { --fg:#e8ecf2; --bg:#14171c; --sub:#9aa3b0; --accent:#7aa8ff; --line:#272c34; }
+  :root { --fg:#eef2ed; --bg:#151a17; --surface:#1d2420; --sub:#abb5ad;
+          --accent:#79c9b5; --accent-strong:#9bdacb; --accent-soft:#203b34;
+          --warm:#eda47f; --warm-soft:#3a2b24; --line:#354039;
+          --shadow:0 16px 40px rgba(0,0,0,.22); }
 }
 * { box-sizing: border-box; }
+html { scroll-behavior:smooth; }
 body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
-       font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
-.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.2rem 5rem; }
-header a { color: var(--fg); text-decoration: none; font-weight: 700; }
-h1 { font-size: 1.6rem; line-height: 1.5; margin: 1.6rem 0 .6rem; }
-h2 { font-size: 1.25rem; margin: 2.4rem 0 .6rem; }
-h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
-p, li { font-size: 1rem; }
-a { color: var(--accent); }
-img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.2rem 0; }
-pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
-      overflow-x: auto; }
-code { font-size: .92em; }
-.meta { color: var(--sub); font-size: .88rem; }
-.card { display:block; padding:1rem 0; border-bottom:1px solid var(--line);
-        text-decoration:none; color:inherit; }
-.card:hover h2 { color: var(--accent); }
-.card h2 { margin:0 0 .3rem; font-size:1.05rem; }
-.cta { margin-top:3rem; padding:1.2rem; border:1px solid var(--line);
-       border-radius:10px; }
-.cta a { font-weight:700; }
-.about { color: var(--sub); font-size:.95rem; border-left:3px solid var(--line);
-         padding-left:1rem; margin:1.5rem 0 2.5rem; }
-.about p { margin:.6rem 0; }
-footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
+       font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+       -webkit-font-smoothing:antialiased; }
+a { color:var(--accent); text-underline-offset:.18em; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--warm); outline-offset:3px; }
+.skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; padding:.7rem 1rem;
+             background:var(--surface); color:var(--fg); border-radius:.6rem; }
+.skip-link:focus { top:1rem; }
+.site-header { position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 90%,transparent);
+               backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+.header-inner { max-width:74rem; margin:auto; min-height:4.25rem; padding:0 1.5rem;
+                display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.brand { color:var(--fg); text-decoration:none; font-weight:800; letter-spacing:-.02em; }
+.site-nav { display:flex; gap:1.2rem; }
+.site-nav a { color:var(--sub); text-decoration:none; font-size:.9rem; font-weight:700; }
+.site-nav a:hover { color:var(--accent); }
+.wrap { max-width:74rem; margin:0 auto; padding:3rem 1.5rem 6rem; }
+h1,h2,h3 { line-height:1.45; letter-spacing:-.025em; text-wrap:pretty; }
+h1 { font-size:clamp(2rem,4.5vw,3.5rem); margin:.65rem 0 1rem; }
+h2 { font-size:clamp(1.4rem,2.4vw,1.85rem); margin:3.2rem 0 1rem; }
+h3 { font-size:1.18rem; margin:2.2rem 0 .65rem; }
+p,li { font-size:1rem; }
+.eyebrow { margin:0; color:var(--warm); font-size:.78rem; font-weight:800;
+           letter-spacing:.14em; text-transform:uppercase; }
+.hero { max-width:52rem; padding:3rem 0 3.5rem; }
+.hero h1 { max-width:48rem; }
+.hero-copy { max-width:42rem; color:var(--sub); font-size:1.08rem; }
+.button { display:inline-flex; align-items:center; justify-content:center; min-height:3rem;
+          padding:.75rem 1.1rem; border-radius:.75rem; background:var(--accent);
+          color:#fff; text-decoration:none; font-weight:800; box-shadow:0 8px 20px rgba(23,107,91,.18); }
+.button:hover { background:var(--accent-strong); transform:translateY(-1px); }
+.button.secondary { background:var(--surface); color:var(--accent); border:1px solid var(--line);
+                    box-shadow:none; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:1rem;
+                margin-bottom:1.25rem; }
+.section-head h2 { margin:0; }
+.meta { color:var(--sub); font-size:.88rem; }
+.card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.card { display:flex; min-height:15rem; flex-direction:column; padding:1.35rem;
+        border:1px solid var(--line); border-radius:1rem; background:var(--surface);
+        color:inherit; text-decoration:none; box-shadow:0 1px 0 rgba(42,52,45,.03);
+        transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+.card:hover { transform:translateY(-3px); border-color:var(--accent);
+              box-shadow:var(--shadow); }
+.card-top { display:flex; align-items:center; justify-content:space-between; gap:.7rem; }
+.badge { display:inline-flex; align-items:center; min-height:1.65rem; padding:.18rem .58rem;
+         border-radius:999px; background:var(--accent-soft); color:var(--accent-strong);
+         font-size:.76rem; font-weight:800; }
+.badge.price { background:var(--warm-soft); color:var(--warm); }
+.card h3 { margin:1rem 0 .55rem; font-size:1.12rem; }
+.card .summary { margin:0 0 1rem; color:var(--sub); line-height:1.75; }
+.card-more { margin-top:auto; color:var(--accent); font-weight:800; }
+.about-panel { margin-top:5rem; padding:2rem; border-radius:1rem; background:var(--surface);
+               border:1px solid var(--line); }
+.about-panel h2 { margin:0 0 1rem; }
+.about-panel p { max-width:52rem; color:var(--sub); margin:.7rem 0; }
+.breadcrumb { margin:0 0 2rem; font-size:.88rem; color:var(--sub); }
+.breadcrumb a { color:inherit; }
+.article-head { max-width:52rem; margin-bottom:2.5rem; }
+.article-head h1 { font-size:clamp(2rem,4vw,3rem); }
+.article-dek { color:var(--sub); font-size:1.05rem; max-width:44rem; }
+.article-layout { display:grid; grid-template-columns:minmax(0,46rem) minmax(14rem,18rem);
+                  gap:4rem; align-items:start; }
+.article-body { min-width:0; font-size:1.02rem; }
+.article-body > p { margin:0 0 1.25rem; }
+.article-body h2 { padding-top:.8rem; border-top:1px solid var(--line); }
+.article-body strong { font-weight:800; }
+.article-body img { display:block; max-width:100%; height:auto; border-radius:.85rem;
+                    margin:1.5rem auto; border:1px solid var(--line); }
+.article-body ul,.article-body ol { padding-left:1.4rem; margin:0 0 1.4rem; }
+.article-body li { margin:.35rem 0; }
+pre { background:#171b18; color:#eef2ed; padding:1rem 1.1rem; border-radius:.8rem;
+      overflow-x:auto; line-height:1.65; }
+code { font-size:.9em; }
+p code,li code { padding:.12rem .35rem; border-radius:.3rem; background:var(--accent-soft); }
+blockquote { margin:1.5rem 0; padding:.8rem 1rem; border-left:4px solid var(--warm);
+             background:var(--warm-soft); border-radius:0 .6rem .6rem 0; }
+hr { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+.table-wrap { overflow-x:auto; margin:1.5rem 0; border:1px solid var(--line);
+              border-radius:.8rem; background:var(--surface); }
+table { width:100%; border-collapse:collapse; min-width:34rem; font-size:.9rem; }
+th,td { padding:.75rem .85rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+th { background:var(--accent-soft); color:var(--accent-strong); }
+tbody tr:last-child td { border-bottom:0; }
+.article-side { position:sticky; top:6rem; display:grid; gap:1rem; }
+.toc,.side-cta { padding:1.1rem; border:1px solid var(--line); border-radius:.85rem;
+                 background:var(--surface); }
+.toc-title { margin:0 0 .65rem; font-size:.78rem; font-weight:800; letter-spacing:.1em;
+             color:var(--sub); }
+.toc ol { margin:0; padding:0; list-style:none; }
+.toc li { margin:.4rem 0; line-height:1.5; }
+.toc a { color:var(--sub); text-decoration:none; font-size:.84rem; }
+.toc a:hover { color:var(--accent); }
+.side-cta p { margin:0 0 .85rem; font-size:.9rem; line-height:1.65; }
+.side-cta .button { width:100%; }
+.cta { margin-top:3.5rem; padding:1.5rem; border:1px solid var(--accent);
+       border-radius:1rem; background:var(--accent-soft); }
+.cta-label { margin:0 0 .35rem; color:var(--accent-strong); font-size:.78rem;
+             font-weight:800; letter-spacing:.1em; }
+.cta p { margin:.3rem 0 1rem; }
+.mobile-cta { display:none; }
+.site-footer { border-top:1px solid var(--line); }
+.footer-inner { max-width:74rem; margin:auto; padding:2rem 1.5rem 3rem; color:var(--sub);
+                display:flex; justify-content:space-between; gap:1rem; font-size:.85rem; }
+@media (max-width:800px) {
+  .header-inner { min-height:3.75rem; padding:0 1rem; }
+  .site-nav a:last-child { display:none; }
+  .wrap { padding:2rem 1rem 6rem; }
+  .hero { padding:1.2rem 0 2.5rem; }
+  .hero h1 { font-size:2.15rem; }
+  .card-grid { grid-template-columns:1fr; }
+  .card { min-height:0; }
+  .about-panel { margin-top:3rem; padding:1.25rem; }
+  .article-layout { display:flex; flex-direction:column; align-items:stretch; gap:1.5rem; }
+  .article-body { width:100%; }
+  .article-side { position:static; width:100%; order:-1; }
+  .side-cta { display:none; }
+  .article-head { margin-bottom:1.5rem; }
+  .article-head h1 { font-size:1.95rem; }
+  .article-body h2 { font-size:1.45rem; }
+  .mobile-cta { position:fixed; z-index:15; left:.75rem; right:.75rem; bottom:.75rem;
+                display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+                padding:.7rem; border:1px solid var(--line); border-radius:.9rem;
+                background:color-mix(in srgb,var(--surface) 94%,transparent);
+                backdrop-filter:blur(12px); box-shadow:var(--shadow); }
+  .mobile-cta span { font-size:.78rem; font-weight:700; line-height:1.35; }
+  .mobile-cta .button { min-height:2.65rem; padding:.6rem .8rem; white-space:nowrap; }
+  .footer-inner { flex-direction:column; padding-bottom:6rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .card,.button { transition:none; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header><a href="/">つくりながら書いています</a></header>
-<h1>車のメンテナンス一覧表を自分の車用に作る｜警告灯マークと交換時期の一覧付き</h1><h2>「車 メンテナンス 一覧」で出てくる一覧は、3種類が混ざっています</h2>
-<p>メーターに見慣れないマークが点いた。あるいは点検の案内が届いて、次に何をやるべきか分からないまま走っている。そういう場面で「車 メンテナンス 一覧」と検索したのだと思います。</p>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/">つくりながら書いています</a>
+<nav class="site-nav" aria-label="主なメニュー">
+<a href="/#articles">記事一覧</a><a href="/#about">このサイトについて</a>
+</nav></div></header>
+<main class="wrap" id="main">
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">車</span><span class="badge price">無料公開 + note ¥500</span></div><h1>車のメンテナンス一覧表を自分の車用に作る｜警告灯マークと交換時期の一覧付き</h1><p class="article-dek">いま必要なのは、どの一覧か メーターに見慣れないマークが点いたときと、点検の案内が届いたときでは、同じ 「車 メンテナンス 一覧」を検索しても必要な答えが違います。前者はこれから走って よいかを今決めるための一覧、後者は次の整備時期を決めるための一覧です。</p></header><div class="article-layout"><div class="article-body"><h2 id="いま必要なのは-どの一覧か">いま必要なのは、どの一覧か</h2>
+<p>メーターに見慣れないマークが点いたときと、点検の案内が届いたときでは、同じ</p>
+<p>「車 メンテナンス 一覧」を検索しても必要な答えが違います。前者はこれから走って</p>
+<p>よいかを今決めるための一覧、後者は次の整備時期を決めるための一覧です。</p>
 <p>ところが、検索して出てくる「一覧」は同じものではありません。第一に<strong>警告灯マークの一覧</strong>で、メーターに点いた記号が何を意味するかを引くためのもの。第二に<strong>点検・交換時期の一覧</strong>で、何kmまたは何年でどの部品を替えるかを示すもの。第三に<strong>法定点検の項目一覧</strong>で、これは道路運送車両法で定められた点検項目そのものです。</p>
 <p>必要なものは、いま困っている中身によって変わります。マークが点いて検索した人に要るのは1番目で、判断は分単位です。「そろそろ何かやるべきでは」で来た人に要るのは2番目で、こちらは月単位の話。「12ヶ月点検のハガキが来た」で来た人には3番目が要ります。</p>
-<p>3番目の根拠は条文にあります。道路運送車両法の第47条の2が日常点検整備、第48条が定期点検整備を定めており、自家用乗用車は1年ごとの定期点検が義務として書かれています。点検項目は国土交通省令の「自動車点検基準」の別表に列挙されていて、条文の全文は<a href="https://laws.e-gov.go.jp/law/326AC0000000185">e-Gov 法令検索</a>で読めます。</p>
+<p>3番目は法律で定められた点検です。道路運送車両法の第47条の2が日常点検整備、</p>
+<p>第48条が定期点検整備を定め、自家用乗用車には1年ごとの定期点検があります。</p>
+<p>点検項目は国土交通省令の「自動車点検基準」に並んでいます。</p>
 <p>つまり、ネット上の「メンテナンス一覧表」の多くは、この省令の点検項目と、部品メーカーやオイルメーカーが出している交換目安を混ぜて作られたものです。そのため、あなたの車の取扱説明書に載っている数字とは一致しないことがあります。</p>
-<h2>警告灯は記号を覚えるのではなく、色で仕分けます</h2>
+<h2 id="警告灯は記号を覚えるのではなく-色で仕分けます">警告灯は記号を覚えるのではなく、色で仕分けます</h2>
 <p><img src="/img/table-85f1f21dde.png" alt="警告灯は色で緊急度が3段階に分かれる" loading="lazy"></p>
 <p>警告灯は車種ごとに何十種類もあるので、記号を全部暗記するのは現実的ではありません。しかし色には共通のルールがあり、<strong>赤・黄（橙）・緑（青）の3段階</strong>で緊急度が分かれています。この色分けは国際規格（ISO 2575系）と、それを取り込んだ国内の表示ルールに沿っているため、メーカーが違ってもおおむね共通です。</p>
 <p><strong>赤は「そのまま走らせない」</strong>。ブレーキ警告灯、油圧警告灯、充電警告灯、水温の過熱警告、SRSエアバッグ警告灯がここに入ります。<strong>黄（橙）は「走れるが、早めに点検」</strong>で、エンジンチェックランプ、ABS警告灯、タイヤ空気圧警告灯などが該当します。緑と青は警告ではなく作動中の表示で、ヘッドライトやウインカー、ハイブリッド車のREADY表示がこれにあたります。</p>
 <p>ここで注意したいのは、<strong>マークが消えたことは直ったことを意味しない</strong>という点です。多くの警告灯はセンサーが異常を検知しなくなれば消えますが、車載コンピュータには故障コード（DTC）が残ります。断続的に起きる不具合は点いたり消えたりするので、消えたから様子見、を繰り返すと原因究明が遅れていきます。</p>
-<h2>拾ってきた交換時期一覧が、あなたの車に合わない理由</h2>
+<h2 id="拾ってきた交換時期一覧が-あなたの車に合わない理由">拾ってきた交換時期一覧が、あなたの車に合わない理由</h2>
 <p>交換時期の記載は、ほぼ例外なく<strong>「◯◯kmまたは◯ヶ月のいずれか早い方」</strong>という形をとります。ところがネット上の一覧表は距離だけを載せていることが多い。年間3,000kmしか走らない車にその表を当てると、期間側の基準が丸ごと落ちます。ブレーキフルードのように吸湿で劣化するものは、走らなくても劣化します。</p>
 <p>次に、同じ車種でも基準が2本立てになっています。取扱説明書には標準的な使用条件の数字と、<strong>シビアコンディション</strong>（過酷な条件）の数字が併記されているのが一般的で、後者はおおむね前者の半分の間隔です。悪路走行が多い、短距離走行の繰り返し、山道や登降坂路が多い、低速走行の繰り返し、寒冷地。こうした条件が各社の取説に明記されており、自分がどちらに該当するかを決めないと数字を選べません。</p>
 <p>三つ目に、<strong>部品の有無そのものが車によって違います</strong>。タイミングベルトは交換時期のある部品ですが、現行の多くのエンジンはタイミングチェーンで定期交換部品ではありません。CVTフルードは「無交換」と書かれる車種と交換間隔が指定される車種があり、冷却水もスーパーLLC系と従来のLLCで初回交換までの年数が大きく違います。汎用の表はここを区別できません。</p>
-<p>原因ははっきりしています。<strong>汎用の一覧表は下敷きにはなりますが、そのままでは使えません</strong>。使える1枚にするには、あなたの車の取扱説明書の数字と、車検証の初度登録年月、そして現在の走行距離を突き合わせる作業が要ります。逆に言えば、その3つさえ手元にあれば、あとは決まった手順で埋めるだけです。</p>
+<p><strong>汎用の一覧表は下敷きにはなりますが、そのまま自分の車へは使えません。</strong></p>
+<p>取扱説明書の数字、車検証の初度登録年月、現在の走行距離を突き合わせて初めて、</p>
+<p>次の交換時期が決まります。有料部分では、その3つを一枚の表へ移すところから</p>
+<p>始めます。</p>
 <p>有料部分では、その作業を最後まで通します。</p>
 <ul>
 <li>手順1：材料を3つそろえる（取扱説明書・車検証・走行距離）</li>
@@ -65,9 +195,11 @@ footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
 <li>手順3：距離基準と期間基準を1行にまとめる列設計</li>
 <li>手順4：一覧に入れる項目を、あなたの車に存在するものだけに絞る</li>
 <li>手順5〜8：法定点検・整備記録簿・警告灯が点いた時の使い方・運用への接続</li>
-</ul><div class="cta"><p>ここから先は note の有料記事です（¥500）。</p><p><a href="/go/n0654f240431d/">続きを note で読む</a></p></div>
-<footer>つくりながら書いています</footer>
-</div>
+</ul><section class="cta" aria-label="noteで続きを読む"><p class="cta-label">CONTINUE ON NOTE</p><p>取説と走行距離から、自分の車だけの10列メンテナンス表を作る手順へ進みます。</p><a class="button" href="/go/n0654f240431d/">noteで続きを読む <span aria-hidden="true">→</span></a></section></div><aside class="article-side"><nav class="toc" aria-label="この記事の目次"><p class="toc-title">この記事の目次</p><ol><li><a href="#いま必要なのは-どの一覧か">いま必要なのは、どの一覧か</a></li><li><a href="#警告灯は記号を覚えるのではなく-色で仕分けます">警告灯は記号を覚えるのではなく、色で仕分けます</a></li><li><a href="#拾ってきた交換時期一覧が-あなたの車に合わない理由">拾ってきた交換時期一覧が、あなたの車に合わない理由</a></li></ol></nav><aside class="side-cta"><p>取説と走行距離から、自分の車だけの10列メンテナンス表を作る手順へ進みます。</p><a class="button" href="/go/n0654f240431d/">noteで続きを読む</a></aside></aside></div></article><div class="mobile-cta"><span>続きはnoteで読めます</span><a class="button" href="/go/n0654f240431d/">続きを読む</a></div>
+</main>
+<footer class="site-footer"><div class="footer-inner">
+<span>つくりながら書いています</span><span>迷ったところから、次の一手へ。</span>
+</div></footer>
 <img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/a/%E8%BB%8A%E3%81%AE%E3%83%A1%E3%83%B3%E3%83%86%E3%83%8A%E3%83%B3%E3%82%B9%E4%B8%80%E8%A6%A7%E8%A1%A8%E3%82%92%E8%87%AA%E5%88%86%E3%81%AE%E8%BB%8A%E7%94%A8%E3%81%AB%E4%BD%9C%E3%82%8B-%E8%AD%A6%E5%91%8A%E7%81%AF%E3%83%9E%E3%83%BC%E3%82%AF%E3%81%A8%E4%BA%A4%E6%8F%9B%E6%99%82%E6%9C%9F%E3%81%AE%E4%B8%80%E8%A6%A7%E4%BB%98%E3%81%8D/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
 </body>
 </html>

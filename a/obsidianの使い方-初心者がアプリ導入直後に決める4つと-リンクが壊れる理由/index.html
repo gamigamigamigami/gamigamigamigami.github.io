@@ -4,159 +4,290 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Obsidianの使い方｜初心者がアプリ導入直後に決める4つと、リンクが壊れる理由</title>
-<meta name="description" content=" この記事が答えること、答えないこと Obsidianを入れて、最初のノートで手が止まっている人向けの記事です。フォルダをどう切るか、スマホとPCでどう同期するか、[[リンク]]をどこまで張るか。決めることが多すぎて、決">
+<meta name="description" content="最初の一枚を書く前に決めること Obsidianを入れた直後は、文章を書く前に選択肢がいくつも出てきます。フォルダを どう分けるか、スマホとPCをどう同期するか、リンクをいつ張るか。全部を 先に決めようとすると、最初の一枚までが長くなります。">
+<meta property="og:title" content="Obsidianの使い方｜初心者がアプリ導入直後に決める4つと、リンクが壊れる理由">
+<meta property="og:description" content="最初の一枚を書く前に決めること Obsidianを入れた直後は、文章を書く前に選択肢がいくつも出てきます。フォルダを どう分けるか、スマホとPCをどう同期するか、リンクをいつ張るか。全部を 先に決めようとすると、最初の一枚までが長くなります。">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://gamigamigamigami.github.io/a/obsidianの使い方-初心者がアプリ導入直後に決める4つと-リンクが壊れる理由/">
 <style>
-:root { color-scheme: light dark; --fg:#1b1d21; --bg:#ffffff; --sub:#5a6270;
-        --accent:#2f6fdd; --line:#e3e6eb; }
+:root { color-scheme: light dark; --fg:#202420; --bg:#f7f5ef; --surface:#fffefb;
+        --sub:#626960; --accent:#176b5b; --accent-strong:#0e5346;
+        --accent-soft:#e2f1ec; --warm:#c56538; --warm-soft:#f8e9df;
+        --line:#dfe2da; --shadow:0 16px 40px rgba(42,52,45,.08); }
 @media (prefers-color-scheme: dark) {
-  :root { --fg:#e8ecf2; --bg:#14171c; --sub:#9aa3b0; --accent:#7aa8ff; --line:#272c34; }
+  :root { --fg:#eef2ed; --bg:#151a17; --surface:#1d2420; --sub:#abb5ad;
+          --accent:#79c9b5; --accent-strong:#9bdacb; --accent-soft:#203b34;
+          --warm:#eda47f; --warm-soft:#3a2b24; --line:#354039;
+          --shadow:0 16px 40px rgba(0,0,0,.22); }
 }
 * { box-sizing: border-box; }
+html { scroll-behavior:smooth; }
 body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
-       font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
-.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.2rem 5rem; }
-header a { color: var(--fg); text-decoration: none; font-weight: 700; }
-h1 { font-size: 1.6rem; line-height: 1.5; margin: 1.6rem 0 .6rem; }
-h2 { font-size: 1.25rem; margin: 2.4rem 0 .6rem; }
-h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
-p, li { font-size: 1rem; }
-a { color: var(--accent); }
-img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.2rem 0; }
-pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
-      overflow-x: auto; }
-code { font-size: .92em; }
-.meta { color: var(--sub); font-size: .88rem; }
-.card { display:block; padding:1rem 0; border-bottom:1px solid var(--line);
-        text-decoration:none; color:inherit; }
-.card:hover h2 { color: var(--accent); }
-.card h2 { margin:0 0 .3rem; font-size:1.05rem; }
-.cta { margin-top:3rem; padding:1.2rem; border:1px solid var(--line);
-       border-radius:10px; }
-.cta a { font-weight:700; }
-.about { color: var(--sub); font-size:.95rem; border-left:3px solid var(--line);
-         padding-left:1rem; margin:1.5rem 0 2.5rem; }
-.about p { margin:.6rem 0; }
-footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
+       font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+       -webkit-font-smoothing:antialiased; }
+a { color:var(--accent); text-underline-offset:.18em; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--warm); outline-offset:3px; }
+.skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; padding:.7rem 1rem;
+             background:var(--surface); color:var(--fg); border-radius:.6rem; }
+.skip-link:focus { top:1rem; }
+.site-header { position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 90%,transparent);
+               backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+.header-inner { max-width:74rem; margin:auto; min-height:4.25rem; padding:0 1.5rem;
+                display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.brand { color:var(--fg); text-decoration:none; font-weight:800; letter-spacing:-.02em; }
+.site-nav { display:flex; gap:1.2rem; }
+.site-nav a { color:var(--sub); text-decoration:none; font-size:.9rem; font-weight:700; }
+.site-nav a:hover { color:var(--accent); }
+.wrap { max-width:74rem; margin:0 auto; padding:3rem 1.5rem 6rem; }
+h1,h2,h3 { line-height:1.45; letter-spacing:-.025em; text-wrap:pretty; }
+h1 { font-size:clamp(2rem,4.5vw,3.5rem); margin:.65rem 0 1rem; }
+h2 { font-size:clamp(1.4rem,2.4vw,1.85rem); margin:3.2rem 0 1rem; }
+h3 { font-size:1.18rem; margin:2.2rem 0 .65rem; }
+p,li { font-size:1rem; }
+.eyebrow { margin:0; color:var(--warm); font-size:.78rem; font-weight:800;
+           letter-spacing:.14em; text-transform:uppercase; }
+.hero { max-width:52rem; padding:3rem 0 3.5rem; }
+.hero h1 { max-width:48rem; }
+.hero-copy { max-width:42rem; color:var(--sub); font-size:1.08rem; }
+.button { display:inline-flex; align-items:center; justify-content:center; min-height:3rem;
+          padding:.75rem 1.1rem; border-radius:.75rem; background:var(--accent);
+          color:#fff; text-decoration:none; font-weight:800; box-shadow:0 8px 20px rgba(23,107,91,.18); }
+.button:hover { background:var(--accent-strong); transform:translateY(-1px); }
+.button.secondary { background:var(--surface); color:var(--accent); border:1px solid var(--line);
+                    box-shadow:none; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:1rem;
+                margin-bottom:1.25rem; }
+.section-head h2 { margin:0; }
+.meta { color:var(--sub); font-size:.88rem; }
+.card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.card { display:flex; min-height:15rem; flex-direction:column; padding:1.35rem;
+        border:1px solid var(--line); border-radius:1rem; background:var(--surface);
+        color:inherit; text-decoration:none; box-shadow:0 1px 0 rgba(42,52,45,.03);
+        transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+.card:hover { transform:translateY(-3px); border-color:var(--accent);
+              box-shadow:var(--shadow); }
+.card-top { display:flex; align-items:center; justify-content:space-between; gap:.7rem; }
+.badge { display:inline-flex; align-items:center; min-height:1.65rem; padding:.18rem .58rem;
+         border-radius:999px; background:var(--accent-soft); color:var(--accent-strong);
+         font-size:.76rem; font-weight:800; }
+.badge.price { background:var(--warm-soft); color:var(--warm); }
+.card h3 { margin:1rem 0 .55rem; font-size:1.12rem; }
+.card .summary { margin:0 0 1rem; color:var(--sub); line-height:1.75; }
+.card-more { margin-top:auto; color:var(--accent); font-weight:800; }
+.about-panel { margin-top:5rem; padding:2rem; border-radius:1rem; background:var(--surface);
+               border:1px solid var(--line); }
+.about-panel h2 { margin:0 0 1rem; }
+.about-panel p { max-width:52rem; color:var(--sub); margin:.7rem 0; }
+.breadcrumb { margin:0 0 2rem; font-size:.88rem; color:var(--sub); }
+.breadcrumb a { color:inherit; }
+.article-head { max-width:52rem; margin-bottom:2.5rem; }
+.article-head h1 { font-size:clamp(2rem,4vw,3rem); }
+.article-dek { color:var(--sub); font-size:1.05rem; max-width:44rem; }
+.article-layout { display:grid; grid-template-columns:minmax(0,46rem) minmax(14rem,18rem);
+                  gap:4rem; align-items:start; }
+.article-body { min-width:0; font-size:1.02rem; }
+.article-body > p { margin:0 0 1.25rem; }
+.article-body h2 { padding-top:.8rem; border-top:1px solid var(--line); }
+.article-body strong { font-weight:800; }
+.article-body img { display:block; max-width:100%; height:auto; border-radius:.85rem;
+                    margin:1.5rem auto; border:1px solid var(--line); }
+.article-body ul,.article-body ol { padding-left:1.4rem; margin:0 0 1.4rem; }
+.article-body li { margin:.35rem 0; }
+pre { background:#171b18; color:#eef2ed; padding:1rem 1.1rem; border-radius:.8rem;
+      overflow-x:auto; line-height:1.65; }
+code { font-size:.9em; }
+p code,li code { padding:.12rem .35rem; border-radius:.3rem; background:var(--accent-soft); }
+blockquote { margin:1.5rem 0; padding:.8rem 1rem; border-left:4px solid var(--warm);
+             background:var(--warm-soft); border-radius:0 .6rem .6rem 0; }
+hr { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+.table-wrap { overflow-x:auto; margin:1.5rem 0; border:1px solid var(--line);
+              border-radius:.8rem; background:var(--surface); }
+table { width:100%; border-collapse:collapse; min-width:34rem; font-size:.9rem; }
+th,td { padding:.75rem .85rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+th { background:var(--accent-soft); color:var(--accent-strong); }
+tbody tr:last-child td { border-bottom:0; }
+.article-side { position:sticky; top:6rem; display:grid; gap:1rem; }
+.toc,.side-cta { padding:1.1rem; border:1px solid var(--line); border-radius:.85rem;
+                 background:var(--surface); }
+.toc-title { margin:0 0 .65rem; font-size:.78rem; font-weight:800; letter-spacing:.1em;
+             color:var(--sub); }
+.toc ol { margin:0; padding:0; list-style:none; }
+.toc li { margin:.4rem 0; line-height:1.5; }
+.toc a { color:var(--sub); text-decoration:none; font-size:.84rem; }
+.toc a:hover { color:var(--accent); }
+.side-cta p { margin:0 0 .85rem; font-size:.9rem; line-height:1.65; }
+.side-cta .button { width:100%; }
+.cta { margin-top:3.5rem; padding:1.5rem; border:1px solid var(--accent);
+       border-radius:1rem; background:var(--accent-soft); }
+.cta-label { margin:0 0 .35rem; color:var(--accent-strong); font-size:.78rem;
+             font-weight:800; letter-spacing:.1em; }
+.cta p { margin:.3rem 0 1rem; }
+.mobile-cta { display:none; }
+.site-footer { border-top:1px solid var(--line); }
+.footer-inner { max-width:74rem; margin:auto; padding:2rem 1.5rem 3rem; color:var(--sub);
+                display:flex; justify-content:space-between; gap:1rem; font-size:.85rem; }
+@media (max-width:800px) {
+  .header-inner { min-height:3.75rem; padding:0 1rem; }
+  .site-nav a:last-child { display:none; }
+  .wrap { padding:2rem 1rem 6rem; }
+  .hero { padding:1.2rem 0 2.5rem; }
+  .hero h1 { font-size:2.15rem; }
+  .card-grid { grid-template-columns:1fr; }
+  .card { min-height:0; }
+  .about-panel { margin-top:3rem; padding:1.25rem; }
+  .article-layout { display:flex; flex-direction:column; align-items:stretch; gap:1.5rem; }
+  .article-body { width:100%; }
+  .article-side { position:static; width:100%; order:-1; }
+  .side-cta { display:none; }
+  .article-head { margin-bottom:1.5rem; }
+  .article-head h1 { font-size:1.95rem; }
+  .article-body h2 { font-size:1.45rem; }
+  .mobile-cta { position:fixed; z-index:15; left:.75rem; right:.75rem; bottom:.75rem;
+                display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+                padding:.7rem; border:1px solid var(--line); border-radius:.9rem;
+                background:color-mix(in srgb,var(--surface) 94%,transparent);
+                backdrop-filter:blur(12px); box-shadow:var(--shadow); }
+  .mobile-cta span { font-size:.78rem; font-weight:700; line-height:1.35; }
+  .mobile-cta .button { min-height:2.65rem; padding:.6rem .8rem; white-space:nowrap; }
+  .footer-inner { flex-direction:column; padding-bottom:6rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .card,.button { transition:none; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header><a href="/">つくりながら書いています</a></header>
-<h1>Obsidianの使い方｜初心者がアプリ導入直後に決める4つと、リンクが壊れる理由</h1><h2>この記事が答えること、答えないこと</h2>
-<p>Obsidianを入れて、最初のノートで手が止まっている人向けの記事です。フォルダをどう切るか、スマホとPCでどう同期するか、<code>[[リンク]]</code>をどこまで張るか。決めることが多すぎて、決まらないまま画面を閉じたところだと思います。</p>
-<p>ここで扱うのは、<strong>最初の1週間で決めないと、あとから直すのが高くつく設定</strong>だけに絞ります。具体的には4つです。保管庫をどこに置くか、複数端末でどう同期するか、リンクの形式をどれにするか、新規ノートと添付ファイルをどこに落とすか。この4つは、ノートが増えてから変更すると既存のノートに影響が出ます。</p>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/">つくりながら書いています</a>
+<nav class="site-nav" aria-label="主なメニュー">
+<a href="/#articles">記事一覧</a><a href="/#about">このサイトについて</a>
+</nav></div></header>
+<main class="wrap" id="main">
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">ツール・設定</span><span class="badge price">無料記事</span></div><h1>Obsidianの使い方｜初心者がアプリ導入直後に決める4つと、リンクが壊れる理由</h1><p class="article-dek">最初の一枚を書く前に決めること Obsidianを入れた直後は、文章を書く前に選択肢がいくつも出てきます。フォルダを どう分けるか、スマホとPCをどう同期するか、リンクをいつ張るか。全部を 先に決めようとすると、最初の一枚までが長くなります。</p></header><div class="article-layout"><div class="article-body"><h2 id="最初の一枚を書く前に決めること">最初の一枚を書く前に決めること</h2>
+<p>Obsidianを入れた直後は、文章を書く前に選択肢がいくつも出てきます。フォルダを</p>
+<p>どう分けるか、スマホとPCをどう同期するか、<code>[[リンク]]</code>をいつ張るか。全部を</p>
+<p>先に決めようとすると、最初の一枚までが長くなります。</p>
+<p>最初に決めるのは、後から変えると既存ノートへ影響する設定だけです。保管庫の</p>
+<p>置き場所、複数端末の同期方法、リンク形式、新規ノートと添付ファイルの保存先。</p>
+<p>この4つを決めたら、残りは実際に使いながら選べます。</p>
 <p>逆に扱わないものも先に書いておきます。ツェッテルカステン、PARA、Dataviewによる集計、AIプラグイン連携。これらは<strong>ノートが数十本たまってから意味を持つ</strong>話です。0本の状態で導入しても、集計する対象も分類する対象も存在しないので運用が回りません。なぜそうなるかは3節目で書きます。</p>
-<p>前提を1つ。Obsidianの公式ヘルプは<a href="https://help.obsidian.md/">Obsidian Help</a>にあり、日本語ページも用意されています。UIの言語は設定→General→Languageで切り替わるため、この記事では<strong>日本語表記と英語表記の両方</strong>を併記します。検索するときは英語名のほうが情報量が多いので、覚えるなら英語名のほうです。</p>
-<h2>Obsidianは「アプリ」ではなく、Markdownファイルが入ったフォルダである</h2>
+<p>UIの言語は設定→General→Languageで切り替えられます。この記事では、設定画面で</p>
+<p>迷わないよう日本語表記と英語表記を併記します。検索するときは英語名のほうが</p>
+<p>見つけやすいため、括弧内の表記も残します。</p>
+<h2 id="obsidianは-アプリ-ではなく-markdownファイルが入ったフォルダである">Obsidianは「アプリ」ではなく、Markdownファイルが入ったフォルダである</h2>
 <p>検索語に「obsidian 使い方 アプリ」が多いことからも分かるとおり、EvernoteやNotionと同じ<strong>サーバー上のサービス</strong>を想像して入れる人がいます。しかしObsidianの実体は違います。あなたのPCの中にある普通のフォルダを開いて表示しているだけのエディタです。</p>
 <p>このフォルダを<strong>保管庫（Vault）</strong>と呼びます。一言で言うと、Vault＝ただのフォルダです。中をFinderやエクスプローラで開くと、ノート1本につき <code>.md</code> ファイルが1個あります。<code>2026-08-11.md</code> をメモ帳やテキストエディットで開けば、Obsidianで書いた文字がそのまま入っています。画像を貼れば <code>.png</code> が同じフォルダのどこかに置かれます。</p>
-<p>保管庫の直下には <code>.obsidian</code> という隠しフォルダができます。ここに入るのは、<strong>設定・有効化したプラグイン・ホットキー・テーマ</strong>です。つまり設定は端末ごとではなく保管庫ごとに保存されます。この事実は同期の話で効いてきます。</p>
+<p>保管庫の直下には <code>.obsidian</code> という隠しフォルダができます。ここに入るのは、<strong>設定・有効化したプラグイン・ホットキー・テーマ</strong>です。設定は端末ごとではなく保管庫ごとに保存されます。この事実は同期の話で効いてきます。</p>
 <p>この構造を知ると、初心者がつまずく点のほとんどが説明できます。<strong>ノートが消えた</strong>のはアプリのバグではなく、クラウド側がファイル本体を手元に落としていないから。<strong>リンクが切れた</strong>のはファイルパスが変わったから。<strong>スマホで開けない</strong>のは、そのフォルダにスマホからアクセスできないから。サーバー型のサービスなら起きない問題が、フォルダだからこそ起きます。</p>
 <p>裏を返せば、<strong>Obsidianが将来サービスを終了しても、書いたものはMarkdownファイルとして残ります</strong>。この点はNotionやEvernoteとの決定的な差で、出口が確保されていること自体が選定理由になります。</p>
-<h2>なぜ最初の保管庫は2週間で使われなくなるのか</h2>
+<h2 id="なぜ最初の保管庫は2週間で使われなくなるのか">なぜ最初の保管庫は2週間で使われなくなるのか</h2>
 <p>理由の1つめは、<strong>フォルダ構成から決めてしまうこと</strong>です。ノートが0本の時点で「仕事／プライベート／学習／アイデア」のような分類を作ると、実際に書き始めたときに「どちらにも入る」ノートが必ず出ます。仕事で読んだ本の感想は学習なのか仕事なのか。分類に迷う時間が書く時間より長くなった瞬間に、手が止まります。</p>
 <p>2つめは、<strong>入口を決めていないこと</strong>。Obsidianは起動しても「今日はここに書け」という場所を提示しません。書きたいことがあるたびに新規ノートの名前を考える必要が生まれます。名前を考える手間がそのまま入力の摩擦になります。デイリーノートというコアプラグインは、この摩擦を消すために用意されています。</p>
 <p>3つめは、<strong>リンクを張らずにフォルダだけで整理すること</strong>です。フォルダは1つのノートを1か所にしか置けません。一方 <code>[[ノート名]]</code> のリンクは何本でも張れて、しかも<strong>リンクされた側からバックリンクとして逆向きに辿れます</strong>。フォルダだけで運用すると、Obsidianを使う理由がほぼ消え、ただのフォルダ内テキストエディタになります。</p>
 <p>そして4つめが、<strong>同期を後回しにすること</strong>。PCだけで数十本書いてからスマホと同期しようとすると、保管庫ごと別の場所へ移動することになります。移動すると、後述するリンク形式の設定によってはリンクが一斉に壊れます。だから同期方法は、ノートが0本の今こそ決めるべきものになります。</p>
-<h2>決める順番は「あとから直すコストが高い順」</h2>
+<h2 id="決める順番は-あとから直すコストが高い順">決める順番は「あとから直すコストが高い順」</h2>
 <p>設定項目は数十個ありますが、<strong>あとから変更したときに既存ノートを壊すもの</strong>と、<strong>いつ変えても影響がないもの</strong>の2種類に分かれます。この区別を持たないまま設定画面を上から順に見ていくと、どれが重要なのか判断がつきません。</p>
-<p>壊すほうの代表が、設定→ファイルとリンク（Files and links）の<strong>新規リンクの形式（New link format）</strong>です。ここには「可能な限り最短のパス／ファイルへの相対パス／保管庫内の絶対パス」の3択があり、どれを選ぶかで <code>[[...]]</code> の中身が変わります。すでに書いたリンクは選び直しても書き換わりません。つまり途中で変更すると、<strong>表記が混在した保管庫</strong>ができあがります。</p>
+<p>壊すほうの代表が、設定→ファイルとリンク（Files and links）の<strong>新規リンクの形式（New link format）</strong>です。ここには「可能な限り最短のパス／ファイルへの相対パス／保管庫内の絶対パス」の3択があり、どれを選ぶかで <code>[[...]]</code> の中身が変わります。すでに書いたリンクは選び直しても書き換わりません。途中で変更すると、<strong>表記が混在した保管庫</strong>ができあがります。</p>
 <p>同じく壊すほうが、保管庫の物理的な置き場所と同期方法です。逆に、テーマ、フォント、サイドバーの配置、グラフビューの色は<strong>いつ変えても既存ノートに影響しません</strong>。だから最初に触る必要はありません。</p>
 <p>以下、壊すほうから順に手順を書きます。Windows・Mac・iOS・Androidで分岐する箇所は、どの条件でどう変わるかを明示します。</p>
-<h2>手順1｜保管庫をどこに作るか</h2>
+<h2 id="手順1-保管庫をどこに作るか">手順1｜保管庫をどこに作るか</h2>
 <p>初回起動画面には3択が出ます。「新規保管庫を作成（Create new vault）」「既存のフォルダを保管庫として開く（Open folder as vault）」「同期から保管庫を開く」。何もない状態なら1つめです。</p>
-<p>1. <strong>端末構成を先に決める。</strong> PCだけで使うなら、ドキュメント配下など普段バックアップが効く場所でかまいません。PCとiPhone/iPadを使うならiCloud Drive内。<strong>Androidを含むならiCloudは選択肢から外れます</strong>——AndroidアプリはiCloud Driveにアクセスできないためです。</p>
-<p>2. <strong>「新規保管庫を作成」を選び、保管庫名と保存先フォルダを指定する。</strong> この保存先が以後すべての前提になります。</p>
-<p>3. <strong>保存先を確認する。</strong> 避けたほうがよい場所が3つあります。デスクトップ直下は誤操作で消しやすい。OneDrive/Dropbox/Google Driveのデスクトップ同期フォルダは、手順2で書く競合ファイル問題が起きます。日本語のフォルダ名を含むパスは、一部プラグインやGit連携でパスの扱いが問題になることがあります。</p>
-<p>4. <strong>保管庫は1つに絞る。</strong> 複数作れますが、<strong>保管庫をまたいだ <code>[[リンク]]</code> は張れません</strong>。仕事とプライベートを分けたくなったら、保管庫ではなくフォルダかタグで分けます。</p>
-<p>5. <strong><code>.obsidian</code> が生成されたか確認する。</strong> Finderやエクスプローラでそのフォルダを開きます。隠しファイルの表示は、Macが <code>Cmd + Shift + .</code>、Windowsはエクスプローラの「表示」→「隠しファイル」にチェック。</p>
-<p>ここで止まる人が多いのが5番です。<code>.obsidian</code> が見えていないと、あとで同期の設定がおかしくなったときに原因を追えません。設定の実体がどこにあるかを目で見て確認しておくと、以降のトラブルが「ファイルの問題」として扱えるようになります。</p>
-<h2>手順2｜同期方法を選ぶ</h2>
-<p>選択肢は実質4つです。<strong>Obsidian Sync</strong>（公式の有料サービス、エンドツーエンド暗号化、バージョン履歴あり）、<strong>iCloud Drive</strong>（iOS/Mac限定、追加費用なし）、<strong>汎用クラウドストレージ</strong>（Google Drive / Dropbox / OneDrive）、<strong>Git</strong>（Obsidian Gitプラグイン）。料金は変わりうるので、金額は<a href="https://obsidian.md/pricing">公式の価格ページ</a>で確認してください。</p>
+<ol>
+<li><strong>端末構成を先に決める。</strong> PCだけで使うなら、ドキュメント配下など普段バックアップが効く場所でかまいません。PCとiPhone/iPadを使うならiCloud Drive内。<strong>Androidを含むならiCloudは選択肢から外れます</strong>——AndroidアプリはiCloud Driveにアクセスできないためです。</li>
+<li><strong>「新規保管庫を作成」を選び、保管庫名と保存先フォルダを指定する。</strong> この保存先が以後すべての前提になります。</li>
+<li><strong>保存先を確認する。</strong> 避けたほうがよい場所が3つあります。デスクトップ直下は誤操作で消しやすい。OneDrive/Dropbox/Google Driveのデスクトップ同期フォルダは、手順2で書く競合ファイル問題が起きます。日本語のフォルダ名を含むパスは、一部プラグインやGit連携でパスの扱いが問題になることがあります。</li>
+<li><strong>保管庫は1つに絞る。</strong> 複数作れますが、<strong>保管庫をまたいだ <code>[[リンク]]</code> は張れません</strong>。仕事とプライベートを分けたくなったら、保管庫ではなくフォルダかタグで分けます。</li>
+<li><strong><code>.obsidian</code> が生成されたか確認する。</strong> Finderやエクスプローラでそのフォルダを開きます。隠しファイルの表示は、Macが <code>Cmd + Shift + .</code>、Windowsはエクスプローラの「表示」→「隠しファイル」にチェック。</li>
+</ol>
+<p>見落としやすいのが5番です。<code>.obsidian</code> が見えていないと、あとで同期の設定がおかしくなったときに原因を追えません。設定の実体がどこにあるかを目で見て確認しておくと、以降のトラブルが「ファイルの問題」として扱えるようになります。</p>
+<h2 id="手順2-同期方法を選ぶ">手順2｜同期方法を選ぶ</h2>
+<p>選択肢は実質4つです。<strong>Obsidian Sync</strong>（公式の有料サービス、エンドツーエンド暗号化、バージョン履歴あり）、<strong>iCloud Drive</strong>（iOS/Mac限定、追加費用なし）、<strong>汎用クラウドストレージ</strong>（Google Drive / Dropbox / OneDrive）、<strong>Git</strong>（Obsidian Gitプラグイン）。料金は変わりうるので、金額は公式の価格ページで確認してください。</p>
 <p>判断は条件で決まります。iPhone/iPad＋Macのみで月額を払いたくないならiCloud Drive。Androidを含む、または競合を確実に避けたいならObsidian Sync。バージョン管理に慣れていてコミット操作が苦にならないならGit。<strong>汎用クラウドストレージは、モバイルを含む構成では推奨しにくい</strong>——理由を次に書きます。</p>
 <p>Obsidianは入力中に<strong>こまめに自動保存</strong>します。一方これらのサービスは、ファイルが閉じられた、あるいは変化が落ち着いたタイミングで同期を判定します。2台で近い時間に同じノートを開くと、どちらが正か判定できず、<code>ノート名 (競合コピー 2026-08-11).md</code> のようなファイルが作られます。Obsidian側から見ればこれは<strong>別ノート</strong>なので、検索結果に同じ内容が2つ並びます。</p>
 <p>iOSでiCloudを使う場合の挙動も押さえておきます。ObsidianのiOSアプリは、iCloud Drive内の <code>Obsidian</code> フォルダを保管庫の置き場所として扱います。Mac側ではFinderのサイドバー→iCloud Drive→Obsidianがそれにあたります。<strong>この場所以外に置いたフォルダは、iOSアプリから直接は開けません</strong>。</p>
 <p><code>.obsidian</code> を同期対象に含めるかどうかも決めておきます。含めればプラグインとホットキーが全端末で揃いますが、<strong>端末ごとに違う設定（ウィンドウ配置、モバイル用ツールバー）まで往復します</strong>。Obsidian Syncには何を同期するかの選択項目がありますが、iCloud等では選べません。迷うなら含めておき、動作がおかしくなってから切り分けます。</p>
 <p>なお、どの方法を選んでも同期はバックアップではありません。片方で消せばもう片方でも消えます。だから<strong>別系統のバックアップ</strong>——Time Machine、外付けへの定期コピー、Gitのリモート——を1つ持っておく必要があります。</p>
-<h2>手順3｜設定→ファイルとリンクで、最初に触る6項目</h2>
+<h2 id="手順3-設定-ファイルとリンクで-最初に触る6項目">手順3｜設定→ファイルとリンクで、最初に触る6項目</h2>
 <p>設定は左下の歯車から開きます。触るのは「ファイルとリンク（Files and links）」の6項目だけで、他は初期値のままでかまいません。</p>
-<p>1. <strong>新規ノートの保存先（Default location for new notes）</strong>：「保管庫のルート／指定したフォルダ／現在のファイルと同じフォルダ」の3択。<code>00_Inbox</code> のようなフォルダを1つ作り、そこを指定します。書き始めるときに保存先を考えなくて済むようにするためです。</p>
-<p>2. <strong>新しい添付ファイルの保存先（Default location for new attachments）</strong>：初期状態だと画像が保管庫のルートに散らばります。<code>99_Attachments</code> のような専用フォルダを指定すると、ノート一覧が画像ファイルで埋まりません。</p>
-<p>3. <strong>新規リンクの形式（New link format）</strong>：「可能な限り最短のパス（Shortest path when possible）」を選びます。同名ファイルが複数ないかぎりリンクが <code>[[ノート名]]</code> だけで済み、<strong>フォルダを移動しても表記が変わりません</strong>。相対パスは移動に弱く、絶対パスは表示が長くなります。</p>
-<p>4. <strong>ウィキリンクを使用（Use [[Wikilinks]]）</strong>：オンなら <code>[[ノート名]]</code>、オフなら <code><a href="ノート名.md">ノート名</a></code> という標準Markdown形式になります。GitHubや他のMarkdownエディタでも読ませたいならオフ、Obsidian内で完結するならオン。<strong>あとから切り替えても既存のリンクは書き換わりません</strong>。</p>
-<p>5. <strong>内部リンクを自動更新（Automatically update internal links）</strong>：オンにします。オフのままファイルをリネーム・移動すると、他のノートから張られていたリンクが<strong>そのまま古い名前を指し続けます</strong>。</p>
-<p>6. <strong>削除したファイルの扱い（Deleted files）</strong>：「システムのゴミ箱へ移動／Obsidianの <code>.trash</code> へ移動／完全に削除」の3択。完全削除以外を選びます。</p>
-<p>ここで止まる人が多いのは5番です。オフのままでも、その場ではエラーも警告も出ません。Obsidianは存在しないノートへのリンクを薄い色で表示するだけなので、壊れたことに気づくのは数週間後、そのリンクをクリックしたときになります。しかもその頃には、どのノートをいつリネームしたか思い出せません。だから最初にオンにします。</p>
-<h2>手順4｜覚えるショートカットは3つだけでいい</h2>
+<ol>
+<li><strong>新規ノートの保存先（Default location for new notes）</strong>：「保管庫のルート／指定したフォルダ／現在のファイルと同じフォルダ」の3択。<code>00_Inbox</code> のようなフォルダを1つ作り、そこを指定します。書き始めるときに保存先を考えなくて済むようにするためです。</li>
+<li><strong>新しい添付ファイルの保存先（Default location for new attachments）</strong>：初期状態だと画像が保管庫のルートに散らばります。<code>99_Attachments</code> のような専用フォルダを指定すると、ノート一覧が画像ファイルで埋まりません。</li>
+<li><strong>新規リンクの形式（New link format）</strong>：「可能な限り最短のパス（Shortest path when possible）」を選びます。同名ファイルが複数ないかぎりリンクが <code>[[ノート名]]</code> だけで済み、<strong>フォルダを移動しても表記が変わりません</strong>。相対パスは移動に弱く、絶対パスは表示が長くなります。</li>
+<li><strong>ウィキリンクを使用（Use [[Wikilinks]]）</strong>：オンなら <code>[[ノート名]]</code>、オフなら <code><a href="ノート名.md">ノート名</a></code> という標準Markdown形式になります。GitHubや他のMarkdownエディタでも読ませたいならオフ、Obsidian内で完結するならオン。<strong>あとから切り替えても既存のリンクは書き換わりません</strong>。</li>
+<li><strong>内部リンクを自動更新（Automatically update internal links）</strong>：オンにします。オフのままファイルをリネーム・移動すると、他のノートから張られていたリンクが<strong>そのまま古い名前を指し続けます</strong>。</li>
+<li><strong>削除したファイルの扱い（Deleted files）</strong>：「システムのゴミ箱へ移動／Obsidianの <code>.trash</code> へ移動／完全に削除」の3択。完全削除以外を選びます。</li>
+</ol>
+<p>見落としやすいのは5番です。オフのままでも、その場ではエラーも警告も出ません。Obsidianは存在しないノートへのリンクを薄い色で表示するだけなので、壊れたことに気づくのは数週間後、そのリンクをクリックしたときになります。しかもその頃には、どのノートをいつリネームしたか思い出せません。だから最初にオンにします。</p>
+<h2 id="手順4-覚えるショートカットは3つだけでいい">手順4｜覚えるショートカットは3つだけでいい</h2>
 <p>コマンドは数百ありますが、最初に体に入れるのは3つです。<strong>クイックスイッチャー（Ctrl/Cmd + O）</strong>、<strong>コマンドパレット（Ctrl/Cmd + P）</strong>、<strong>保管庫内検索（Ctrl/Cmd + Shift + F）</strong>。</p>
-<p>Ctrl/Cmd + O はノート名を打って飛ぶ機能です。ここで重要なのは、<strong>存在しない名前を打ってEnterすると、その名前で新規作成される</strong>こと。つまり「開く」と「作る」が同じキーで済みます。これが分かると、サイドバーのファイルツリーを触る回数が激減します。</p>
+<p>Ctrl/Cmd + O はノート名を打って飛ぶ機能です。ここで重要なのは、<strong>存在しない名前を打ってEnterすると、その名前で新規作成される</strong>こと。「開く」と「作る」が同じキーで済みます。これが分かると、サイドバーのファイルツリーを触る回数が激減します。</p>
 <p>Ctrl/Cmd + P はコマンド名の一部を打つと候補が絞り込まれます。設定画面のどこに何があるかを覚える必要がなくなるので、「あの機能どこだっけ」で迷いません。日本語UIなら日本語で、英語UIなら英語で打ちます。</p>
 <p>Ctrl/Cmd + Shift + F は全ノートの本文を検索します。演算子が使えて、<code>file:</code> はファイル名、<code>path:</code> はパス、<code>tag:</code> はタグ、<code>line:(A B)</code> は同一行に両方を含むもの、<code>/正規表現/</code> は正規表現に限定されます。ここで注意が要るのは日本語です。<strong>日本語は単語の区切りがないため、短い語で検索すると意図しない語の一部にヒットします</strong>——たとえば「会議」で検索すると「社会議論」が拾われます。絞りたいときは <code>line:</code> や <code>path:</code> を足します。</p>
-<p>ここで止まる人が多いのは、そもそもキーが反応しないケースです。対応するコアプラグインが無効になっている可能性があるので、設定→コアプラグイン（Core plugins）で「クイックスイッチャー」「コマンドパレット」「検索」がオンか確認してください。ホットキー自体は設定→ホットキー（Hotkeys）で変更できますが、<strong>変更内容は <code>.obsidian</code> に保存される</strong>ため、同期対象に <code>.obsidian</code> を含めていない端末には反映されません。</p>
-<h2>手順5｜リンクの張り方と、張るタイミング</h2>
+<p>見落としやすいのは、そもそもキーが反応しないケースです。対応するコアプラグインが無効になっている可能性があるので、設定→コアプラグイン（Core plugins）で「クイックスイッチャー」「コマンドパレット」「検索」がオンか確認してください。ホットキー自体は設定→ホットキー（Hotkeys）で変更できますが、<strong>変更内容は <code>.obsidian</code> に保存される</strong>ため、同期対象に <code>.obsidian</code> を含めていない端末には反映されません。</p>
+<h2 id="手順5-リンクの張り方と-張るタイミング">手順5｜リンクの張り方と、張るタイミング</h2>
 <p>基本形は <code>[[ノート名]]</code> です。編集中に <code>[[</code> を打つと候補が出ます。ここで効くのは、<strong>まだ存在しないノート名を書いてもリンクとして成立する</strong>こと。クリックした時点でファイルが作られるので、「あとで書く」を先にリンクとして置いておけます。</p>
 <p>書き方は4種類あります。</p>
-<p>| 書き方 | 何が起きるか |</p>
-<p>| --- | --- |</p>
-<p>| <code>[[ノート名]]</code> | そのノートへのリンク |</p>
-<p>| <code>[[ノート名\|表示したい文字]]</code> | 表示だけ差し替える |</p>
-<p>| <code>[[ノート名#見出し]]</code> | 見出し単位で指す |</p>
-<p>| <code>![[ノート名]]</code> | リンクではなく中身をその場に展開する |</p>
-<p>段落単位で指す <code>[[ノート名#^ブロックID]]</code> には、知っておくべき挙動があります。ブロックIDは、リンクを作ろうとしたときにObsidianが元の段落末尾へ <code>^abc123</code> のような文字列を自動で書き込みます。つまり<strong>元ノートの本文が書き換わります</strong>。この仕組みを知らないと「勝手に文字が増えた」と見えます。</p>
+<div class="table-wrap"><table><thead><tr><th>書き方</th><th>何が起きるか</th></tr></thead><tbody><tr><td><code>[[ノート名]]</code></td><td>そのノートへのリンク</td></tr><tr><td>`[[ノート名\</td><td>表示したい文字]]`</td><td>表示だけ差し替える</td></tr><tr><td><code>[[ノート名#見出し]]</code></td><td>見出し単位で指す</td></tr><tr><td><code>![[ノート名]]</code></td><td>リンクではなく中身をその場に展開する</td></tr></tbody></table></div>
+<p>段落単位で指す <code>[[ノート名#^ブロックID]]</code> には、知っておくべき挙動があります。ブロックIDは、リンクを作ろうとしたときにObsidianが元の段落末尾へ <code>^abc123</code> のような文字列を自動で書き込みます。この操作では<strong>元ノートの本文が書き換わります</strong>。この仕組みを知らないと「勝手に文字が増えた」と見えます。</p>
 <p><code>!</code> を付けた <code>![[ノート名]]</code> は埋め込みです。画像を貼ったときに自動で入るのもこの形式で、<code>![[ノート名#見出し]]</code> と書けば特定の見出し以下だけを引っ張れます。</p>
 <p>では、いつ張るのか。判断基準は1つです——<strong>そのノートの中で、他のノートでも説明が必要になる語が出てきたら張る</strong>。人名、ツール名、プロジェクト名、専門用語がこれにあたります。逆に、その場限りの固有名詞には張りません。リンクを張るほど後で辿れますが、全部に張ると辿れる先が多すぎて、辿ること自体が意味を持たなくなります。</p>
 <p>張った結果は右サイドバーの<strong>バックリンク（Backlinks）</strong>に出ます。ノートAからBへ張れば、B側に「Aから参照されている」と表示されます。ここが空のままのノートばかりなら、リンクを張らずに書いている合図です。</p>
 <p>グラフビューについても触れておきます。全体の形は見えますが、実際にノートを探す作業ではバックリンクとクイックスイッチャーのほうが速い。<strong>理由は、グラフが「どのノートか」を点でしか示さないため</strong>、結局どの点かを特定するのにノート名が要るからです。最初のうちは開かなくてかまいません。</p>
-<h2>手順6｜最初の1週間はデイリーノート1本に集約する</h2>
-<p>1. <strong>設定→コアプラグインでデイリーノート（Daily notes）をオンにする。</strong></p>
-<p>2. <strong>「新規ファイルの場所」を <code>10_Daily</code> のようなフォルダに指定する。</strong></p>
-<p>3. <strong>「日付形式」を <code>YYYY-MM-DD</code> にする。</strong> これはMoment.jsの記法で、<code>YYYY-MM-DD</code> なら <code>2026-08-11.md</code> というファイル名になります。<strong>ファイル名が日付順＝辞書順で並ぶ</strong>ので、ファイルツリーがそのまま時系列になります。</p>
-<p>4. <strong>「起動時にデイリーノートを開く」をオンにする。</strong> Obsidianを開いた瞬間に今日のノートが出ます。何を書くか決める前に入力欄がある状態を作るのが、この設定の目的です。</p>
-<p>5. <strong>1週間、分類しない。</strong> 思いついたこと、読んだもの、決めたことを全部その日のデイリーノートに時系列で書きます。フォルダを増やすのは、同じ話題が3回以上出てから。3回出て初めて、その分類が実際に使われていることが確認できます。</p>
-<p>6. <strong>1週間の終わりに読み返し、繰り返し出てきた語を <code>[[ ]]</code> で囲む。</strong> 囲んだ時点でノートが1本できます。ここで初めて、フォルダではなくリンクで構造ができ始めます。</p>
+<h2 id="手順6-最初の1週間はデイリーノート1本に集約する">手順6｜最初の1週間はデイリーノート1本に集約する</h2>
+<ol>
+<li><strong>設定→コアプラグインでデイリーノート（Daily notes）をオンにする。</strong></li>
+<li><strong>「新規ファイルの場所」を <code>10_Daily</code> のようなフォルダに指定する。</strong></li>
+<li><strong>「日付形式」を <code>YYYY-MM-DD</code> にする。</strong> これはMoment.jsの記法で、<code>YYYY-MM-DD</code> なら <code>2026-08-11.md</code> というファイル名になります。<strong>ファイル名が日付順＝辞書順で並ぶ</strong>ので、ファイルツリーがそのまま時系列になります。</li>
+<li><strong>「起動時にデイリーノートを開く」をオンにする。</strong> Obsidianを開いた瞬間に今日のノートが出ます。何を書くか決める前に入力欄がある状態を作るのが、この設定の目的です。</li>
+<li><strong>1週間、分類しない。</strong> 思いついたこと、読んだもの、決めたことを全部その日のデイリーノートに時系列で書きます。フォルダを増やすのは、同じ話題が3回以上出てから。3回出て初めて、その分類が実際に使われていることが確認できます。</li>
+<li><strong>1週間の終わりに読み返し、繰り返し出てきた語を <code>[[ ]]</code> で囲む。</strong> 囲んだ時点でノートが1本できます。ここで初めて、フォルダではなくリンクで構造ができ始めます。</li>
+</ol>
 <p>この方法が有効なのは、<strong>分類は書く前ではなく書いた後にしか決まらない</strong>からです。精神論ではなく、0本の状態では分類する対象が存在しないという単純な理由によります。</p>
-<h2>プラグインをいつ入れるか</h2>
+<h2 id="プラグインをいつ入れるか">プラグインをいつ入れるか</h2>
 <p>Obsidianのプラグインは2種類あります。<strong>コアプラグイン（Core plugins）</strong>は公式が同梱していて、設定画面のトグルで有効化するだけ。<strong>コミュニティプラグイン（Community plugins）</strong>は第三者製で、有効化するには先に「制限モード（Restricted mode）」をオフにする必要があります。この確認ダイアログは、第三者のコードを実行することへの同意にあたります。</p>
 <p>最初に見るべきはコアプラグイン側です。<strong>バックリンク、アウトゴーイングリンク、デイリーノート、テンプレート、タグペイン、アウトライン、コマンドパレット、クイックスイッチャー</strong>。検索して出てくる「便利プラグイン」の一部は、この範囲で代替できます。</p>
 <p>コミュニティプラグインを入れるかどうかは、3つの条件で判断します。<strong>手作業で3回以上繰り返した処理があるか</strong>、<strong>その処理をコアプラグインで代替できないか</strong>、<strong>最終更新が止まっていないか</strong>。3つめが必要なのは、ObsidianのAPI更新でプラグインが動かなくなることがあるからです。</p>
 <p>入れすぎたときの症状は3つ出ます。起動が遅くなる。モバイルで動かない（プラグインごとにモバイル対応の可否があります）。バージョンアップ後に特定の操作でエラーが出る。切り分けは、設定→コミュニティプラグインで<strong>全部オフにしてから1つずつ戻す</strong>のが確実です。なお、プラグインの設定も <code>.obsidian</code> に入るため、同期対象から外している端末では入れ直しが必要になります。</p>
-<h2>ここで止まる人が多い箇所——症状別の原因と対処</h2>
-<h3>iPhoneやMacで、一覧には出るのに開くと中身が空</h3>
+<h2 id="症状から原因を切り分ける-症状別の原因と対処">症状から原因を切り分ける——症状別の原因と対処</h2>
+<h3 id="iphoneやmacで-一覧には出るのに開くと中身が空">iPhoneやMacで、一覧には出るのに開くと中身が空</h3>
 <p>iCloud Driveの「ストレージを最適化」が有効だと、しばらく開いていないファイルの実体がクラウドだけに置かれ、ローカルには <code>.icloud</code> というプレースホルダのみが残ります。Obsidianはファイル名を読めるので一覧には出ますが、本文が手元に無いため空に見えます。</p>
 <p>Macはシステム設定→Apple ID→iCloud→iCloud Driveで最適化設定を確認し、Finderで保管庫フォルダを開いて雲アイコンのファイルをダウンロードします。iPhoneはファイルアプリで該当フォルダを開き、ダウンロードが終わるまで待ちます。通信の無い場所で長時間使う予定があるなら、事前に保管庫を開いて全ファイルを取得しておいてください。</p>
-<h3>同じノートが2本、3本と増えていく</h3>
+<h3 id="同じノートが2本-3本と増えていく">同じノートが2本、3本と増えていく</h3>
 <p>手順2で書いた競合です。Obsidianは編集中に短い間隔で自動保存する一方、Google Drive等はファイルの変更が落ち着いた時点で同期を判定します。2台で同じノートを近い時間に開くと、どちらの版を正とするか判定できず、両方を残す仕様が働いて <code>ノート名 (競合コピー).md</code> が作られます。</p>
 <p>競合ファイルをFinderやエクスプローラ側で開いて差分を確認し、必要な行を本体へ手で戻してから削除します。再発を止めるには、端末を切り替える前にObsidianを完全終了して同期完了を待つか、Obsidian SyncかGitに切り替えます。ファイル名で <code>(競合</code> <code>(conflicted</code> を定期的に検索しておくと、増えていることに早く気づけます。</p>
-<h3>リネームしたらリンクが飛ばなくなった</h3>
+<h3 id="リネームしたらリンクが飛ばなくなった">リネームしたらリンクが飛ばなくなった</h3>
 <p>「内部リンクを自動更新」がオフだと、リネーム・移動時に他ノート内の <code>[[旧ノート名]]</code> が書き換わりません。加えて「新規リンクの形式」を相対パスにしていると、ファイルの位置関係が変わるだけでリンク先を見失います。</p>
 <p>先に「内部リンクを自動更新」をオン、「新規リンクの形式」を「可能な限り最短のパス」に変えます。すでに壊れたリンクは、コアプラグインの「未解決リンク」表示か、Ctrl/Cmd + Shift + F で旧ノート名を検索して洗い出し、手で張り替えます。以後は<strong>Obsidian内でリネームしてください</strong>。Finder側でリネームするとObsidianが変更を検知できず、自動更新が働きません。</p>
-<h3><code>[[</code> を打っても候補が出ない</h3>
+<h3 id="を打っても候補が出ない"><code>[[</code> を打っても候補が出ない</h3>
 <p>「ウィキリンクを使用（Use [[Wikilinks]]）」がオフだと、Obsidianは <code><a href="ファイル名.md">リンク文字</a></code> という標準Markdown形式でリンクを生成し、<code>[[ ]]</code> を装飾として解釈しません。もう1つの原因は、コードブロック（``` で囲まれた範囲）やインラインコードの中に書いていることです。この範囲は仕様上リンクとして解釈されません。</p>
 <p>設定でウィキリンクの状態を確認し、コードブロック内なら囲みの外へ出します。この設定を切り替えても<strong>すでに書いたリンクは自動変換されない</strong>ので、どちらの形式で運用するかは早い段階で決めておきます。</p>
-<h3>ノートを新規作成できない</h3>
+<h3 id="ノートを新規作成できない">ノートを新規作成できない</h3>
 <p>Obsidianは保存先がファイルシステムなので、OS側で使えない文字をファイル名に含められません。エラーには「File name cannot contain any of the following characters: * &quot; \ / &lt; &gt; : | ?」という趣旨のメッセージが出ます。加えて <code>#</code> <code>^</code> <code>[</code> <code>]</code> はリンク記法で特別な意味を持つため（<code>#</code> は見出し指定、<code>^</code> はブロック指定）、ファイル名に入れるとリンクが意図どおり解決しません。</p>
 <p>記号は全角に置き換えるか外します。日付を入れるなら <code>2026-08-11</code> のようにハイフン区切りにしてください。<code>/</code> はパス区切りと解釈され、意図せずフォルダが作られます。長いタイトルはファイル名に入れず、ノートの1行目に見出しとして書くほうが扱いやすくなります。</p>
-<h3>Androidから保管庫が見つからない</h3>
+<h3 id="androidから保管庫が見つからない">Androidから保管庫が見つからない</h3>
 <p>AndroidアプリはiCloud Driveにアクセスできません。またAndroidのストレージアクセス制限により、アプリが読み書きできる場所が限られます。PC側でiCloud経由の同期を選んでいると、Android側からはその保管庫が存在しないのと同じ状態になります。</p>
 <p>Androidを含む構成では、置き場所を決める段階でiCloudを候補から外します。Obsidian Syncを使うか、Obsidian Gitでリモートリポジトリ経由にします。すでにiCloudで作ってしまった場合は、保管庫フォルダごと別の場所へコピーし、PC側で「既存のフォルダを保管庫として開く」から開き直します。このときリンク形式が「最短のパス」なら、移動してもリンク表記は影響を受けません。</p>
-<h2>1週間後に確認する4つのこと</h2>
+<h2 id="1週間後に確認する4つのこと">1週間後に確認する4つのこと</h2>
 <p>うまくいっているかどうかは、感覚ではなくファイルの状態で判定できます。</p>
 <p><strong>デイリーノートが5本以上あるか。</strong> 無いなら、Obsidianを開く動機が作れていません。「起動時にデイリーノートを開く」設定を見直してください。</p>
 <p><strong>バックリンクが1本以上あるノートが3本以上あるか。</strong> 無いなら、リンクを張らずに書いています。手順5の判断基準に戻ります。</p>
 <p><strong>同じ内容のノートが2本できていないか。</strong> できているなら同期の競合を疑います。ファイル名に <code>(競合)</code> <code>(conflicted copy)</code> <code>(1)</code> が付いていないか、保管庫フォルダをFinderやエクスプローラ側で確認してください。</p>
 <p><strong>スマホから今日のノートが開けるか。</strong> 開けないなら同期が成立していません。この4つのうち先に潰すべきは同期です。理由は、書いた量が増えるほど復旧の手間が増えるからです。</p>
-<h2>最後に確認しておくこと</h2>
-<p><strong>商用ライセンス</strong>について。個人利用は無料ですが、業務での利用には別途ライセンスが必要になる場合があります。条件と価格は変更されうるので、<a href="https://obsidian.md/pricing">公式の価格ページ</a>の記載を自分で確認してください。会社の業務で使うつもりなら、書き始める前に見ておくほうが安全です。</p>
+<h2 id="最後に確認しておくこと">最後に確認しておくこと</h2>
+<p><strong>商用ライセンス</strong>について。個人利用は無料ですが、業務での利用には別途ライセンスが必要になる場合があります。条件と価格は変更されうるので、公式の価格ページの記載を自分で確認してください。会社の業務で使うつもりなら、書き始める前に見ておくほうが安全です。</p>
 <p><strong>バックアップ</strong>については繰り返します。同期はバックアップではありません。最低限、保管庫フォルダを別の場所へ定期コピーしてください。Markdownファイルはテキストなので、数千本あっても容量はごくわずかです。</p>
 <p><strong>他ツールからの移行</strong>には、コアプラグインの「インポーター（Importer）」が使えます。ただし取り込むと大量のノートが一気に増え、手順6で書いた「1週間かけて分類を見つける」やり方が成立しなくなります。<strong>まず新規で1週間運用し、それから取り込む</strong>ほうが破綻しにくくなります。</p>
 <p>そして<strong>やめたくなったとき</strong>。アプリを消しても保管庫フォルダは残ります。中身は <code>.md</code> ファイルなので、そのまま他のMarkdownエディタで開けます。この出口があることを知っておくと、最初の設定に過剰な時間をかけずに済みます。</p>
-<h2>あわせて読みたい</h2>
+<h2 id="あわせて読みたい">あわせて読みたい</h2>
 <ul>
-<li><a href="/go/nfb323fc7c2d7/">Obsidian使い方｜初心者がアプリ導入直後に決める保管庫・同期・ファイル名</a>（¥500）</li>
 <li><a href="/go/nfb323fc7c2d7/">Obsidianの使い方｜初心者が最初に決める4設定と、あとでリンクが壊れない置き方</a>（¥500）</li>
-</ul>
-<footer>つくりながら書いています</footer>
-</div>
+</ul></div><aside class="article-side"><nav class="toc" aria-label="この記事の目次"><p class="toc-title">この記事の目次</p><ol><li><a href="#最初の一枚を書く前に決めること">最初の一枚を書く前に決めること</a></li><li><a href="#obsidianは-アプリ-ではなく-markdownファイルが入ったフォルダである">Obsidianは「アプリ」ではなく、Markdownファイルが入ったフォルダである</a></li><li><a href="#なぜ最初の保管庫は2週間で使われなくなるのか">なぜ最初の保管庫は2週間で使われなくなるのか</a></li><li><a href="#決める順番は-あとから直すコストが高い順">決める順番は「あとから直すコストが高い順」</a></li><li><a href="#手順1-保管庫をどこに作るか">手順1｜保管庫をどこに作るか</a></li><li><a href="#手順2-同期方法を選ぶ">手順2｜同期方法を選ぶ</a></li><li><a href="#手順3-設定-ファイルとリンクで-最初に触る6項目">手順3｜設定→ファイルとリンクで、最初に触る6項目</a></li><li><a href="#手順4-覚えるショートカットは3つだけでいい">手順4｜覚えるショートカットは3つだけでいい</a></li><li><a href="#手順5-リンクの張り方と-張るタイミング">手順5｜リンクの張り方と、張るタイミング</a></li><li><a href="#手順6-最初の1週間はデイリーノート1本に集約する">手順6｜最初の1週間はデイリーノート1本に集約する</a></li><li><a href="#プラグインをいつ入れるか">プラグインをいつ入れるか</a></li><li><a href="#症状から原因を切り分ける-症状別の原因と対処">症状から原因を切り分ける——症状別の原因と対処</a></li><li><a href="#1週間後に確認する4つのこと">1週間後に確認する4つのこと</a></li><li><a href="#最後に確認しておくこと">最後に確認しておくこと</a></li><li><a href="#あわせて読みたい">あわせて読みたい</a></li></ol></nav></aside></div></article>
+</main>
+<footer class="site-footer"><div class="footer-inner">
+<span>つくりながら書いています</span><span>迷ったところから、次の一手へ。</span>
+</div></footer>
 <img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/a/obsidian%E3%81%AE%E4%BD%BF%E3%81%84%E6%96%B9-%E5%88%9D%E5%BF%83%E8%80%85%E3%81%8C%E3%82%A2%E3%83%97%E3%83%AA%E5%B0%8E%E5%85%A5%E7%9B%B4%E5%BE%8C%E3%81%AB%E6%B1%BA%E3%82%81%E3%82%8B4%E3%81%A4%E3%81%A8-%E3%83%AA%E3%83%B3%E3%82%AF%E3%81%8C%E5%A3%8A%E3%82%8C%E3%82%8B%E7%90%86%E7%94%B1/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
 </body>
 </html>

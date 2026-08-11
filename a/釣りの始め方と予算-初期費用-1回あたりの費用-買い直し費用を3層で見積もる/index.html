@@ -4,67 +4,196 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>釣りの始め方と予算｜初期費用・1回あたりの費用・買い直し費用を3層で見積もる</title>
-<meta name="description" content="「釣り 始める 予算」で検索すると、1,540円で足りるという記事と、3万円は見ておきたいという記事が並んで出てきます。どちらかが間違っているわけではありません。数えている範囲が違うだけです。 答えがバラバラなのは、数え">
+<meta name="description" content="「釣りを始めるのにいくら必要か」を調べると、千円台で足りる話と、数万円は 必要だという話が同じ画面に並びます。差が大きすぎて、初めてだと予算を決められ ません。金額の差は道具の高級さだけでなく、何を費用に含めたかで生まれています。">
+<meta property="og:title" content="釣りの始め方と予算｜初期費用・1回あたりの費用・買い直し費用を3層で見積もる">
+<meta property="og:description" content="「釣りを始めるのにいくら必要か」を調べると、千円台で足りる話と、数万円は 必要だという話が同じ画面に並びます。差が大きすぎて、初めてだと予算を決められ ません。金額の差は道具の高級さだけでなく、何を費用に含めたかで生まれています。">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://gamigamigamigami.github.io/a/釣りの始め方と予算-初期費用-1回あたりの費用-買い直し費用を3層で見積もる/">
 <style>
-:root { color-scheme: light dark; --fg:#1b1d21; --bg:#ffffff; --sub:#5a6270;
-        --accent:#2f6fdd; --line:#e3e6eb; }
+:root { color-scheme: light dark; --fg:#202420; --bg:#f7f5ef; --surface:#fffefb;
+        --sub:#626960; --accent:#176b5b; --accent-strong:#0e5346;
+        --accent-soft:#e2f1ec; --warm:#c56538; --warm-soft:#f8e9df;
+        --line:#dfe2da; --shadow:0 16px 40px rgba(42,52,45,.08); }
 @media (prefers-color-scheme: dark) {
-  :root { --fg:#e8ecf2; --bg:#14171c; --sub:#9aa3b0; --accent:#7aa8ff; --line:#272c34; }
+  :root { --fg:#eef2ed; --bg:#151a17; --surface:#1d2420; --sub:#abb5ad;
+          --accent:#79c9b5; --accent-strong:#9bdacb; --accent-soft:#203b34;
+          --warm:#eda47f; --warm-soft:#3a2b24; --line:#354039;
+          --shadow:0 16px 40px rgba(0,0,0,.22); }
 }
 * { box-sizing: border-box; }
+html { scroll-behavior:smooth; }
 body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
-       font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
-.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.2rem 5rem; }
-header a { color: var(--fg); text-decoration: none; font-weight: 700; }
-h1 { font-size: 1.6rem; line-height: 1.5; margin: 1.6rem 0 .6rem; }
-h2 { font-size: 1.25rem; margin: 2.4rem 0 .6rem; }
-h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
-p, li { font-size: 1rem; }
-a { color: var(--accent); }
-img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.2rem 0; }
-pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
-      overflow-x: auto; }
-code { font-size: .92em; }
-.meta { color: var(--sub); font-size: .88rem; }
-.card { display:block; padding:1rem 0; border-bottom:1px solid var(--line);
-        text-decoration:none; color:inherit; }
-.card:hover h2 { color: var(--accent); }
-.card h2 { margin:0 0 .3rem; font-size:1.05rem; }
-.cta { margin-top:3rem; padding:1.2rem; border:1px solid var(--line);
-       border-radius:10px; }
-.cta a { font-weight:700; }
-.about { color: var(--sub); font-size:.95rem; border-left:3px solid var(--line);
-         padding-left:1rem; margin:1.5rem 0 2.5rem; }
-.about p { margin:.6rem 0; }
-footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
+       font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+       -webkit-font-smoothing:antialiased; }
+a { color:var(--accent); text-underline-offset:.18em; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--warm); outline-offset:3px; }
+.skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; padding:.7rem 1rem;
+             background:var(--surface); color:var(--fg); border-radius:.6rem; }
+.skip-link:focus { top:1rem; }
+.site-header { position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 90%,transparent);
+               backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+.header-inner { max-width:74rem; margin:auto; min-height:4.25rem; padding:0 1.5rem;
+                display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.brand { color:var(--fg); text-decoration:none; font-weight:800; letter-spacing:-.02em; }
+.site-nav { display:flex; gap:1.2rem; }
+.site-nav a { color:var(--sub); text-decoration:none; font-size:.9rem; font-weight:700; }
+.site-nav a:hover { color:var(--accent); }
+.wrap { max-width:74rem; margin:0 auto; padding:3rem 1.5rem 6rem; }
+h1,h2,h3 { line-height:1.45; letter-spacing:-.025em; text-wrap:pretty; }
+h1 { font-size:clamp(2rem,4.5vw,3.5rem); margin:.65rem 0 1rem; }
+h2 { font-size:clamp(1.4rem,2.4vw,1.85rem); margin:3.2rem 0 1rem; }
+h3 { font-size:1.18rem; margin:2.2rem 0 .65rem; }
+p,li { font-size:1rem; }
+.eyebrow { margin:0; color:var(--warm); font-size:.78rem; font-weight:800;
+           letter-spacing:.14em; text-transform:uppercase; }
+.hero { max-width:52rem; padding:3rem 0 3.5rem; }
+.hero h1 { max-width:48rem; }
+.hero-copy { max-width:42rem; color:var(--sub); font-size:1.08rem; }
+.button { display:inline-flex; align-items:center; justify-content:center; min-height:3rem;
+          padding:.75rem 1.1rem; border-radius:.75rem; background:var(--accent);
+          color:#fff; text-decoration:none; font-weight:800; box-shadow:0 8px 20px rgba(23,107,91,.18); }
+.button:hover { background:var(--accent-strong); transform:translateY(-1px); }
+.button.secondary { background:var(--surface); color:var(--accent); border:1px solid var(--line);
+                    box-shadow:none; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:1rem;
+                margin-bottom:1.25rem; }
+.section-head h2 { margin:0; }
+.meta { color:var(--sub); font-size:.88rem; }
+.card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.card { display:flex; min-height:15rem; flex-direction:column; padding:1.35rem;
+        border:1px solid var(--line); border-radius:1rem; background:var(--surface);
+        color:inherit; text-decoration:none; box-shadow:0 1px 0 rgba(42,52,45,.03);
+        transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+.card:hover { transform:translateY(-3px); border-color:var(--accent);
+              box-shadow:var(--shadow); }
+.card-top { display:flex; align-items:center; justify-content:space-between; gap:.7rem; }
+.badge { display:inline-flex; align-items:center; min-height:1.65rem; padding:.18rem .58rem;
+         border-radius:999px; background:var(--accent-soft); color:var(--accent-strong);
+         font-size:.76rem; font-weight:800; }
+.badge.price { background:var(--warm-soft); color:var(--warm); }
+.card h3 { margin:1rem 0 .55rem; font-size:1.12rem; }
+.card .summary { margin:0 0 1rem; color:var(--sub); line-height:1.75; }
+.card-more { margin-top:auto; color:var(--accent); font-weight:800; }
+.about-panel { margin-top:5rem; padding:2rem; border-radius:1rem; background:var(--surface);
+               border:1px solid var(--line); }
+.about-panel h2 { margin:0 0 1rem; }
+.about-panel p { max-width:52rem; color:var(--sub); margin:.7rem 0; }
+.breadcrumb { margin:0 0 2rem; font-size:.88rem; color:var(--sub); }
+.breadcrumb a { color:inherit; }
+.article-head { max-width:52rem; margin-bottom:2.5rem; }
+.article-head h1 { font-size:clamp(2rem,4vw,3rem); }
+.article-dek { color:var(--sub); font-size:1.05rem; max-width:44rem; }
+.article-layout { display:grid; grid-template-columns:minmax(0,46rem) minmax(14rem,18rem);
+                  gap:4rem; align-items:start; }
+.article-body { min-width:0; font-size:1.02rem; }
+.article-body > p { margin:0 0 1.25rem; }
+.article-body h2 { padding-top:.8rem; border-top:1px solid var(--line); }
+.article-body strong { font-weight:800; }
+.article-body img { display:block; max-width:100%; height:auto; border-radius:.85rem;
+                    margin:1.5rem auto; border:1px solid var(--line); }
+.article-body ul,.article-body ol { padding-left:1.4rem; margin:0 0 1.4rem; }
+.article-body li { margin:.35rem 0; }
+pre { background:#171b18; color:#eef2ed; padding:1rem 1.1rem; border-radius:.8rem;
+      overflow-x:auto; line-height:1.65; }
+code { font-size:.9em; }
+p code,li code { padding:.12rem .35rem; border-radius:.3rem; background:var(--accent-soft); }
+blockquote { margin:1.5rem 0; padding:.8rem 1rem; border-left:4px solid var(--warm);
+             background:var(--warm-soft); border-radius:0 .6rem .6rem 0; }
+hr { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+.table-wrap { overflow-x:auto; margin:1.5rem 0; border:1px solid var(--line);
+              border-radius:.8rem; background:var(--surface); }
+table { width:100%; border-collapse:collapse; min-width:34rem; font-size:.9rem; }
+th,td { padding:.75rem .85rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+th { background:var(--accent-soft); color:var(--accent-strong); }
+tbody tr:last-child td { border-bottom:0; }
+.article-side { position:sticky; top:6rem; display:grid; gap:1rem; }
+.toc,.side-cta { padding:1.1rem; border:1px solid var(--line); border-radius:.85rem;
+                 background:var(--surface); }
+.toc-title { margin:0 0 .65rem; font-size:.78rem; font-weight:800; letter-spacing:.1em;
+             color:var(--sub); }
+.toc ol { margin:0; padding:0; list-style:none; }
+.toc li { margin:.4rem 0; line-height:1.5; }
+.toc a { color:var(--sub); text-decoration:none; font-size:.84rem; }
+.toc a:hover { color:var(--accent); }
+.side-cta p { margin:0 0 .85rem; font-size:.9rem; line-height:1.65; }
+.side-cta .button { width:100%; }
+.cta { margin-top:3.5rem; padding:1.5rem; border:1px solid var(--accent);
+       border-radius:1rem; background:var(--accent-soft); }
+.cta-label { margin:0 0 .35rem; color:var(--accent-strong); font-size:.78rem;
+             font-weight:800; letter-spacing:.1em; }
+.cta p { margin:.3rem 0 1rem; }
+.mobile-cta { display:none; }
+.site-footer { border-top:1px solid var(--line); }
+.footer-inner { max-width:74rem; margin:auto; padding:2rem 1.5rem 3rem; color:var(--sub);
+                display:flex; justify-content:space-between; gap:1rem; font-size:.85rem; }
+@media (max-width:800px) {
+  .header-inner { min-height:3.75rem; padding:0 1rem; }
+  .site-nav a:last-child { display:none; }
+  .wrap { padding:2rem 1rem 6rem; }
+  .hero { padding:1.2rem 0 2.5rem; }
+  .hero h1 { font-size:2.15rem; }
+  .card-grid { grid-template-columns:1fr; }
+  .card { min-height:0; }
+  .about-panel { margin-top:3rem; padding:1.25rem; }
+  .article-layout { display:flex; flex-direction:column; align-items:stretch; gap:1.5rem; }
+  .article-body { width:100%; }
+  .article-side { position:static; width:100%; order:-1; }
+  .side-cta { display:none; }
+  .article-head { margin-bottom:1.5rem; }
+  .article-head h1 { font-size:1.95rem; }
+  .article-body h2 { font-size:1.45rem; }
+  .mobile-cta { position:fixed; z-index:15; left:.75rem; right:.75rem; bottom:.75rem;
+                display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+                padding:.7rem; border:1px solid var(--line); border-radius:.9rem;
+                background:color-mix(in srgb,var(--surface) 94%,transparent);
+                backdrop-filter:blur(12px); box-shadow:var(--shadow); }
+  .mobile-cta span { font-size:.78rem; font-weight:700; line-height:1.35; }
+  .mobile-cta .button { min-height:2.65rem; padding:.6rem .8rem; white-space:nowrap; }
+  .footer-inner { flex-direction:column; padding-bottom:6rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .card,.button { transition:none; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header><a href="/">つくりながら書いています</a></header>
-<h1>釣りの始め方と予算｜初期費用・1回あたりの費用・買い直し費用を3層で見積もる</h1><p>「釣り 始める 予算」で検索すると、1,540円で足りるという記事と、3万円は見ておきたいという記事が並んで出てきます。どちらかが間違っているわけではありません。数えている範囲が違うだけです。</p>
-<h2>答えがバラバラなのは、数えている範囲が違うから</h2>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/">つくりながら書いています</a>
+<nav class="site-nav" aria-label="主なメニュー">
+<a href="/#articles">記事一覧</a><a href="/#about">このサイトについて</a>
+</nav></div></header>
+<main class="wrap" id="main">
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">釣り</span><span class="badge price">無料公開 + note ¥500</span></div><h1>釣りの始め方と予算｜初期費用・1回あたりの費用・買い直し費用を3層で見積もる</h1><p class="article-dek">「釣りを始めるのにいくら必要か」を調べると、千円台で足りる話と、数万円は 必要だという話が同じ画面に並びます。差が大きすぎて、初めてだと予算を決められ ません。金額の差は道具の高級さだけでなく、何を費用に含めたかで生まれています。</p></header><div class="article-layout"><div class="article-body"><p>「釣りを始めるのにいくら必要か」を調べると、千円台で足りる話と、数万円は</p>
+<p>必要だという話が同じ画面に並びます。差が大きすぎて、初めてだと予算を決められ</p>
+<p>ません。金額の差は道具の高級さだけでなく、何を費用に含めたかで生まれています。</p>
+<h2 id="答えがバラバラなのは-数えている範囲が違うから">答えがバラバラなのは、数えている範囲が違うから</h2>
 <p>安いほうの記事が数えているのは、<strong>釣具店のレジを通る金額</strong>です。竿とリールと仕掛けを積み上げた合計、つまり買い物カゴの中身。</p>
 <p>高いほうの記事が数えているのは、その日を成立させるために財布から出ていく金額の合計です。</p>
 <p>比べている対象が違うので、両方を見比べても総額は出てきません。</p>
 <p>道具のリストに入らない出費があります。たとえば餌代、氷代、駐車場代、電車賃、淡水なら遊漁券、海釣り公園なら入園料。これらはどれも<strong>道具屋のレシートには載りません</strong>。そのため道具を積み上げる形式の記事からは、構造的に抜け落ちます。</p>
-<p>だから読者が本当に知りたい「いくら用意すれば行けるのか」は、道具の金額を何本足しても出ないのです。必要なのは金額の一覧ではなく、費用を分類する枠組みのほうになります。</p>
+<p>知りたいのは「いくらで道具を買えるか」より、「いくら持っていけば初回を終えられる</p>
+<p>か」のはずです。道具の価格表だけでは、ここへ答えられません。初期費用と当日費用、</p>
+<p>あとから買い直す費用を分けて見積もります。</p>
 <p>なお、この記事に固定の価格表は載せません。実売価格は時期と店舗で動きますし、書いた数字は必ず古くなるからです。代わりに、金額を決めている変数——竿の長さ、リールの番手、仕掛けの号数、失う仕掛けの本数、移動距離——と、それぞれをどこで確認できるかを扱います。</p>
-<h2>釣りの費用は3層に分かれています</h2>
+<h2 id="釣りの費用は3層に分かれています">釣りの費用は3層に分かれています</h2>
 <p><strong>第1層は初期費用</strong>です。竿、リール、ライン、クーラー、バケツ、ハサミ、プライヤーのように、1回買えば次も使えるもの。ここだけを足した金額が、「釣りは○円から始められる」として流通している数字です。</p>
 <p><strong>第2層は1回あたりの費用</strong>になります。餌、氷、仕掛け、オモリ、交通費、駐車場、入漁料。行くたびに毎回出ていく分です。</p>
 <p>とくに仕掛けとオモリは道具ではなく消耗品で、根がかりして失うことが前提の設計になっています。だから1パックに複数本入っているのです。</p>
-<p><strong>第3層は買い直し費用</strong>です。ラインは紫外線と摩擦で劣化しますし、リールは海水がかかったまま放置すると内部で塩が結晶化して回転が重くなります。つまりこの層の金額は、使い方と手入れで大きく動きます。3つのうち、読者側で制御できるのはここだけです。</p>
+<p><strong>第3層は買い直し費用</strong>です。ラインは紫外線と摩擦で劣化しますし、リールは海水がかかったまま放置すると内部で塩が結晶化して回転が重くなります。この層の金額は、使い方と手入れで大きく動きます。3つのうち、読者側で制御できるのはここだけです。</p>
 <p>この分け方をすると、よくある行き違いの正体が見えます。第1層を最安で組んだ人が「思ったよりかかった」と言うとき、増えているのはたいてい第2層のほうです。<strong>なぜなら第1層は買い物1回で終わるのに対して、第2層は行った回数だけ掛け算になるから</strong>です。</p>
-<h2>削れない費用があります——法令と施設側で先に決まっている分</h2>
-<p>船に乗る釣り、つまり乗合船やレンタルボートでは、小型船舶に乗る人のライフジャケット着用が原則として義務化されています。しかも一般的な浮き輪型やスポーツ用のベストでは要件を満たしません。<strong>国土交通省の型式承認を受けた小型船舶用救命胴衣、いわゆる桜マーク付きのもの</strong>が必要になります。制度の内容は<a href="https://www.mlit.go.jp/">国土交通省のサイト</a>の小型船舶の安全関連ページで確認できます。</p>
+<h2 id="削れない費用があります-法令と施設側で先に決まっている分">削れない費用があります——法令と施設側で先に決まっている分</h2>
+<p>船に乗る釣り、つまり乗合船やレンタルボートでは、小型船舶に乗る人のライフジャケット着用が原則として義務化されています。しかも一般的な浮き輪型やスポーツ用のベストでは要件を満たしません。<strong>国土交通省の型式承認を受けた小型船舶用救命胴衣、いわゆる桜マーク付きのもの</strong>が必要になります。制度の内容は国土交通省のサイトの小型船舶の安全関連ページで確認できます。</p>
 <p>一方、堤防や岸からの釣りに、この着用義務はかかりません。ただし義務の有無と、買うかどうかの判断は別の話です。</p>
-<p>淡水では話が変わります。河川や湖では漁業協同組合が遊漁規則を定めていて、<strong>遊漁承認証（遊漁券）</strong>を買わずに釣ると規則違反になる区域があります。金額も対象魚種も期間も漁協ごとに違い、現場で買う場合は事前購入より高く設定されていることがあります。枠組みは<a href="https://www.jfa.maff.go.jp/">水産庁のサイト</a>と、各都道府県の内水面漁業調整規則で確認できます。</p>
+<p>淡水では話が変わります。河川や湖では漁業協同組合が遊漁規則を定めていて、<strong>遊漁承認証（遊漁券）</strong>を買わずに釣ると規則違反になる区域があります。金額も対象魚種も期間も漁協ごとに違い、現場で買う場合は事前購入より高く設定されていることがあります。枠組みは水産庁のサイトと、各都道府県の内水面漁業調整規則で確認できます。</p>
 <p>海釣り公園なら入園料や釣り料金が公表されています。<strong>この層の金額は、道具と違って調べれば確定します。</strong> ですから予算を組むとき、先に確定させるべきなのはこちら側です。</p>
-<h2>予算オーバーより深刻なのは「1回で終わること」</h2>
+<h2 id="安くそろえても-組み合わせが違えば使えない">安くそろえても、組み合わせが違えば使えない</h2>
 <p>初期費用を極限まで削った構成は、道具が原因で釣れない確率を上げます。オモリ負荷が合っていない竿、糸が巻かれていないリール、狙う魚に対して大きすぎる針。これらは安いから釣れないのではなく、<strong>組み合わせが成立していないから釣れない</strong>のです。</p>
-<p>そして初回に何も釣れずに終わると、買った第1層はそのまま使われずに残ります。総額を行った回数で割れば、1回あたりの単価は最も高くなります。つまり最安構成は、2回目に行かなかった時点で最も割高な選択に変わります。</p>
-<p>逆に言えば、予算の設計目標は初期費用の最小化ではありません。<strong>2回目に行ける状態で1回目を終えること</strong>です。この基準に立つと、削っていい項目と削ると詰む項目がはっきり分かれます。</p>
+<p>そして初回に何も釣れずに終わると、買った第1層はそのまま使われずに残ります。総額を行った回数で割れば、1回あたりの単価は最も高くなります。最安構成は、2回目に行かなかった時点で最も割高な選択に変わります。</p>
+<p>予算の目標を初期費用の最小化だけに置くと、初回で使い切る仕掛けや交通費が</p>
+<p>抜けます。ここでは、<strong>2回目に行ける状態で1回目を終えること</strong>を基準にします。</p>
+<p>そうすると、安い物へ替えられる項目と、削ると当日に止まる項目を分けられます。</p>
 <p>ここから先は、実際に見積もりシートを埋める作業に入ります。</p>
 <ul>
 <li>見積もりシートを作る——3層の記入欄と、埋める順番</li>
@@ -72,9 +201,11 @@ footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
 <li>手順2：第1層の内訳を項目単位で決める——各項目で何を見て選ぶか</li>
 <li>手順3：1回あたりの費用（第2層）を計算式で出す</li>
 <li>同じ予算でも配分で結果が変わる——3つの配分パターンを比較する</li>
-</ul><div class="cta"><p>ここから先は note の有料記事です（¥500）。</p><p><a href="/go/naab5ded39bf9/">続きを note で読む</a></p></div>
-<footer>つくりながら書いています</footer>
-</div>
+</ul><section class="cta" aria-label="noteで続きを読む"><p class="cta-label">CONTINUE ON NOTE</p><p>初期費用・1回ごと・買い直しの3層を、自分の条件で埋める見積もりシートを使えます。</p><a class="button" href="/go/naab5ded39bf9/">noteで続きを読む <span aria-hidden="true">→</span></a></section></div><aside class="article-side"><nav class="toc" aria-label="この記事の目次"><p class="toc-title">この記事の目次</p><ol><li><a href="#答えがバラバラなのは-数えている範囲が違うから">答えがバラバラなのは、数えている範囲が違うから</a></li><li><a href="#釣りの費用は3層に分かれています">釣りの費用は3層に分かれています</a></li><li><a href="#削れない費用があります-法令と施設側で先に決まっている分">削れない費用があります——法令と施設側で先に決まっている分</a></li><li><a href="#安くそろえても-組み合わせが違えば使えない">安くそろえても、組み合わせが違えば使えない</a></li></ol></nav><aside class="side-cta"><p>初期費用・1回ごと・買い直しの3層を、自分の条件で埋める見積もりシートを使えます。</p><a class="button" href="/go/naab5ded39bf9/">noteで続きを読む</a></aside></aside></div></article><div class="mobile-cta"><span>続きはnoteで読めます</span><a class="button" href="/go/naab5ded39bf9/">続きを読む</a></div>
+</main>
+<footer class="site-footer"><div class="footer-inner">
+<span>つくりながら書いています</span><span>迷ったところから、次の一手へ。</span>
+</div></footer>
 <img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/a/%E9%87%A3%E3%82%8A%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9%E3%81%A8%E4%BA%88%E7%AE%97-%E5%88%9D%E6%9C%9F%E8%B2%BB%E7%94%A8-1%E5%9B%9E%E3%81%82%E3%81%9F%E3%82%8A%E3%81%AE%E8%B2%BB%E7%94%A8-%E8%B2%B7%E3%81%84%E7%9B%B4%E3%81%97%E8%B2%BB%E7%94%A8%E3%82%923%E5%B1%A4%E3%81%A7%E8%A6%8B%E7%A9%8D%E3%82%82%E3%82%8B/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
 </body>
 </html>

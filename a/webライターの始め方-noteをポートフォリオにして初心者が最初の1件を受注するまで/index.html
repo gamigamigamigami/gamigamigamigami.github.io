@@ -4,58 +4,187 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Webライターの始め方｜noteをポートフォリオにして初心者が最初の1件を受注するまで</title>
-<meta name="description" content=" この記事が扱う範囲と、扱わない範囲 この記事で扱うのは、まだ1円も受け取っていない状態から、1件目の報酬が口座に着金するまでの区間だけです。月にいくら稼ぐという話や、単価を上げ続けるための長期戦略はここには入れていませ">
+<meta name="description" content="まず「1件目」の終点を決める 「Webライターを始める」の終点は曖昧です。記事を一本書けば開始なのか、案件へ 応募したら開始なのか。それでは途中で進んでいるか分からなくなります。 ここでは、まだ報酬を受け取っていない状態から、1件目の報酬が口座へ入るまでを 一区切りにします。">
+<meta property="og:title" content="Webライターの始め方｜noteをポートフォリオにして初心者が最初の1件を受注するまで">
+<meta property="og:description" content="まず「1件目」の終点を決める 「Webライターを始める」の終点は曖昧です。記事を一本書けば開始なのか、案件へ 応募したら開始なのか。それでは途中で進んでいるか分からなくなります。 ここでは、まだ報酬を受け取っていない状態から、1件目の報酬が口座へ入るまでを 一区切りにします。">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://gamigamigamigami.github.io/a/webライターの始め方-noteをポートフォリオにして初心者が最初の1件を受注するまで/">
 <style>
-:root { color-scheme: light dark; --fg:#1b1d21; --bg:#ffffff; --sub:#5a6270;
-        --accent:#2f6fdd; --line:#e3e6eb; }
+:root { color-scheme: light dark; --fg:#202420; --bg:#f7f5ef; --surface:#fffefb;
+        --sub:#626960; --accent:#176b5b; --accent-strong:#0e5346;
+        --accent-soft:#e2f1ec; --warm:#c56538; --warm-soft:#f8e9df;
+        --line:#dfe2da; --shadow:0 16px 40px rgba(42,52,45,.08); }
 @media (prefers-color-scheme: dark) {
-  :root { --fg:#e8ecf2; --bg:#14171c; --sub:#9aa3b0; --accent:#7aa8ff; --line:#272c34; }
+  :root { --fg:#eef2ed; --bg:#151a17; --surface:#1d2420; --sub:#abb5ad;
+          --accent:#79c9b5; --accent-strong:#9bdacb; --accent-soft:#203b34;
+          --warm:#eda47f; --warm-soft:#3a2b24; --line:#354039;
+          --shadow:0 16px 40px rgba(0,0,0,.22); }
 }
 * { box-sizing: border-box; }
+html { scroll-behavior:smooth; }
 body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
-       font-family: -apple-system, "Hiragino Sans", "Noto Sans JP", sans-serif; }
-.wrap { max-width: 42rem; margin: 0 auto; padding: 2rem 1.2rem 5rem; }
-header a { color: var(--fg); text-decoration: none; font-weight: 700; }
-h1 { font-size: 1.6rem; line-height: 1.5; margin: 1.6rem 0 .6rem; }
-h2 { font-size: 1.25rem; margin: 2.4rem 0 .6rem; }
-h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
-p, li { font-size: 1rem; }
-a { color: var(--accent); }
-img { max-width: 100%; height: auto; border-radius: 8px; margin: 1.2rem 0; }
-pre { background: rgba(127,127,127,.12); padding: .9rem 1rem; border-radius: 8px;
-      overflow-x: auto; }
-code { font-size: .92em; }
-.meta { color: var(--sub); font-size: .88rem; }
-.card { display:block; padding:1rem 0; border-bottom:1px solid var(--line);
-        text-decoration:none; color:inherit; }
-.card:hover h2 { color: var(--accent); }
-.card h2 { margin:0 0 .3rem; font-size:1.05rem; }
-.cta { margin-top:3rem; padding:1.2rem; border:1px solid var(--line);
-       border-radius:10px; }
-.cta a { font-weight:700; }
-.about { color: var(--sub); font-size:.95rem; border-left:3px solid var(--line);
-         padding-left:1rem; margin:1.5rem 0 2.5rem; }
-.about p { margin:.6rem 0; }
-footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
+       font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+       -webkit-font-smoothing:antialiased; }
+a { color:var(--accent); text-underline-offset:.18em; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--warm); outline-offset:3px; }
+.skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; padding:.7rem 1rem;
+             background:var(--surface); color:var(--fg); border-radius:.6rem; }
+.skip-link:focus { top:1rem; }
+.site-header { position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 90%,transparent);
+               backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+.header-inner { max-width:74rem; margin:auto; min-height:4.25rem; padding:0 1.5rem;
+                display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.brand { color:var(--fg); text-decoration:none; font-weight:800; letter-spacing:-.02em; }
+.site-nav { display:flex; gap:1.2rem; }
+.site-nav a { color:var(--sub); text-decoration:none; font-size:.9rem; font-weight:700; }
+.site-nav a:hover { color:var(--accent); }
+.wrap { max-width:74rem; margin:0 auto; padding:3rem 1.5rem 6rem; }
+h1,h2,h3 { line-height:1.45; letter-spacing:-.025em; text-wrap:pretty; }
+h1 { font-size:clamp(2rem,4.5vw,3.5rem); margin:.65rem 0 1rem; }
+h2 { font-size:clamp(1.4rem,2.4vw,1.85rem); margin:3.2rem 0 1rem; }
+h3 { font-size:1.18rem; margin:2.2rem 0 .65rem; }
+p,li { font-size:1rem; }
+.eyebrow { margin:0; color:var(--warm); font-size:.78rem; font-weight:800;
+           letter-spacing:.14em; text-transform:uppercase; }
+.hero { max-width:52rem; padding:3rem 0 3.5rem; }
+.hero h1 { max-width:48rem; }
+.hero-copy { max-width:42rem; color:var(--sub); font-size:1.08rem; }
+.button { display:inline-flex; align-items:center; justify-content:center; min-height:3rem;
+          padding:.75rem 1.1rem; border-radius:.75rem; background:var(--accent);
+          color:#fff; text-decoration:none; font-weight:800; box-shadow:0 8px 20px rgba(23,107,91,.18); }
+.button:hover { background:var(--accent-strong); transform:translateY(-1px); }
+.button.secondary { background:var(--surface); color:var(--accent); border:1px solid var(--line);
+                    box-shadow:none; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:1rem;
+                margin-bottom:1.25rem; }
+.section-head h2 { margin:0; }
+.meta { color:var(--sub); font-size:.88rem; }
+.card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.card { display:flex; min-height:15rem; flex-direction:column; padding:1.35rem;
+        border:1px solid var(--line); border-radius:1rem; background:var(--surface);
+        color:inherit; text-decoration:none; box-shadow:0 1px 0 rgba(42,52,45,.03);
+        transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+.card:hover { transform:translateY(-3px); border-color:var(--accent);
+              box-shadow:var(--shadow); }
+.card-top { display:flex; align-items:center; justify-content:space-between; gap:.7rem; }
+.badge { display:inline-flex; align-items:center; min-height:1.65rem; padding:.18rem .58rem;
+         border-radius:999px; background:var(--accent-soft); color:var(--accent-strong);
+         font-size:.76rem; font-weight:800; }
+.badge.price { background:var(--warm-soft); color:var(--warm); }
+.card h3 { margin:1rem 0 .55rem; font-size:1.12rem; }
+.card .summary { margin:0 0 1rem; color:var(--sub); line-height:1.75; }
+.card-more { margin-top:auto; color:var(--accent); font-weight:800; }
+.about-panel { margin-top:5rem; padding:2rem; border-radius:1rem; background:var(--surface);
+               border:1px solid var(--line); }
+.about-panel h2 { margin:0 0 1rem; }
+.about-panel p { max-width:52rem; color:var(--sub); margin:.7rem 0; }
+.breadcrumb { margin:0 0 2rem; font-size:.88rem; color:var(--sub); }
+.breadcrumb a { color:inherit; }
+.article-head { max-width:52rem; margin-bottom:2.5rem; }
+.article-head h1 { font-size:clamp(2rem,4vw,3rem); }
+.article-dek { color:var(--sub); font-size:1.05rem; max-width:44rem; }
+.article-layout { display:grid; grid-template-columns:minmax(0,46rem) minmax(14rem,18rem);
+                  gap:4rem; align-items:start; }
+.article-body { min-width:0; font-size:1.02rem; }
+.article-body > p { margin:0 0 1.25rem; }
+.article-body h2 { padding-top:.8rem; border-top:1px solid var(--line); }
+.article-body strong { font-weight:800; }
+.article-body img { display:block; max-width:100%; height:auto; border-radius:.85rem;
+                    margin:1.5rem auto; border:1px solid var(--line); }
+.article-body ul,.article-body ol { padding-left:1.4rem; margin:0 0 1.4rem; }
+.article-body li { margin:.35rem 0; }
+pre { background:#171b18; color:#eef2ed; padding:1rem 1.1rem; border-radius:.8rem;
+      overflow-x:auto; line-height:1.65; }
+code { font-size:.9em; }
+p code,li code { padding:.12rem .35rem; border-radius:.3rem; background:var(--accent-soft); }
+blockquote { margin:1.5rem 0; padding:.8rem 1rem; border-left:4px solid var(--warm);
+             background:var(--warm-soft); border-radius:0 .6rem .6rem 0; }
+hr { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+.table-wrap { overflow-x:auto; margin:1.5rem 0; border:1px solid var(--line);
+              border-radius:.8rem; background:var(--surface); }
+table { width:100%; border-collapse:collapse; min-width:34rem; font-size:.9rem; }
+th,td { padding:.75rem .85rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+th { background:var(--accent-soft); color:var(--accent-strong); }
+tbody tr:last-child td { border-bottom:0; }
+.article-side { position:sticky; top:6rem; display:grid; gap:1rem; }
+.toc,.side-cta { padding:1.1rem; border:1px solid var(--line); border-radius:.85rem;
+                 background:var(--surface); }
+.toc-title { margin:0 0 .65rem; font-size:.78rem; font-weight:800; letter-spacing:.1em;
+             color:var(--sub); }
+.toc ol { margin:0; padding:0; list-style:none; }
+.toc li { margin:.4rem 0; line-height:1.5; }
+.toc a { color:var(--sub); text-decoration:none; font-size:.84rem; }
+.toc a:hover { color:var(--accent); }
+.side-cta p { margin:0 0 .85rem; font-size:.9rem; line-height:1.65; }
+.side-cta .button { width:100%; }
+.cta { margin-top:3.5rem; padding:1.5rem; border:1px solid var(--accent);
+       border-radius:1rem; background:var(--accent-soft); }
+.cta-label { margin:0 0 .35rem; color:var(--accent-strong); font-size:.78rem;
+             font-weight:800; letter-spacing:.1em; }
+.cta p { margin:.3rem 0 1rem; }
+.mobile-cta { display:none; }
+.site-footer { border-top:1px solid var(--line); }
+.footer-inner { max-width:74rem; margin:auto; padding:2rem 1.5rem 3rem; color:var(--sub);
+                display:flex; justify-content:space-between; gap:1rem; font-size:.85rem; }
+@media (max-width:800px) {
+  .header-inner { min-height:3.75rem; padding:0 1rem; }
+  .site-nav a:last-child { display:none; }
+  .wrap { padding:2rem 1rem 6rem; }
+  .hero { padding:1.2rem 0 2.5rem; }
+  .hero h1 { font-size:2.15rem; }
+  .card-grid { grid-template-columns:1fr; }
+  .card { min-height:0; }
+  .about-panel { margin-top:3rem; padding:1.25rem; }
+  .article-layout { display:flex; flex-direction:column; align-items:stretch; gap:1.5rem; }
+  .article-body { width:100%; }
+  .article-side { position:static; width:100%; order:-1; }
+  .side-cta { display:none; }
+  .article-head { margin-bottom:1.5rem; }
+  .article-head h1 { font-size:1.95rem; }
+  .article-body h2 { font-size:1.45rem; }
+  .mobile-cta { position:fixed; z-index:15; left:.75rem; right:.75rem; bottom:.75rem;
+                display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+                padding:.7rem; border:1px solid var(--line); border-radius:.9rem;
+                background:color-mix(in srgb,var(--surface) 94%,transparent);
+                backdrop-filter:blur(12px); box-shadow:var(--shadow); }
+  .mobile-cta span { font-size:.78rem; font-weight:700; line-height:1.35; }
+  .mobile-cta .button { min-height:2.65rem; padding:.6rem .8rem; white-space:nowrap; }
+  .footer-inner { flex-direction:column; padding-bottom:6rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .card,.button { transition:none; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header><a href="/">つくりながら書いています</a></header>
-<h1>Webライターの始め方｜noteをポートフォリオにして初心者が最初の1件を受注するまで</h1><h2>この記事が扱う範囲と、扱わない範囲</h2>
-<p>この記事で扱うのは、まだ1円も受け取っていない状態から、1件目の報酬が口座に着金するまでの区間だけです。月にいくら稼ぐという話や、単価を上げ続けるための長期戦略はここには入れていません。理由は単純で、1件目を通していない段階では単価交渉の材料そのものが手元に無いからです。</p>
-<p>noteの使い方も限定します。ここでのnoteは<strong>有料記事を売る場所ではなく、発注者に読ませるポートフォリオの置き場</strong>として使います。つまり収益はnoteからではなく、案件から発生する前提で全体を組み立てます。</p>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/">つくりながら書いています</a>
+<nav class="site-nav" aria-label="主なメニュー">
+<a href="/#articles">記事一覧</a><a href="/#about">このサイトについて</a>
+</nav></div></header>
+<main class="wrap" id="main">
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">仕事</span><span class="badge price">無料公開 + note ¥500</span></div><h1>Webライターの始め方｜noteをポートフォリオにして初心者が最初の1件を受注するまで</h1><p class="article-dek">まず「1件目」の終点を決める 「Webライターを始める」の終点は曖昧です。記事を一本書けば開始なのか、案件へ 応募したら開始なのか。それでは途中で進んでいるか分からなくなります。 ここでは、まだ報酬を受け取っていない状態から、1件目の報酬が口座へ入るまでを 一区切りにします。</p></header><div class="article-layout"><div class="article-body"><h2 id="まず-1件目-の終点を決める">まず「1件目」の終点を決める</h2>
+<p>「Webライターを始める」の終点は曖昧です。記事を一本書けば開始なのか、案件へ</p>
+<p>応募したら開始なのか。それでは途中で進んでいるか分からなくなります。</p>
+<p>ここでは、まだ報酬を受け取っていない状態から、1件目の報酬が口座へ入るまでを</p>
+<p>一区切りにします。月収や長期的な単価交渉は扱いません。1件目の納品を通す前には、</p>
+<p>交渉に使える実績も作業時間の記録も、まだ手元にないためです。</p>
+<p>noteは、この記事では販売場所として使いません。**発注者に読ませる</p>
+<p>ポートフォリオの置き場**にします。収益はnoteではなく、受注した案件から発生する</p>
+<p>前提です。同じサービスでも目的を混ぜないほうが、公開設定で迷わずに済みます。</p>
 <p>必要な道具は5つです。パソコン、Googleアカウント、noteアカウント、クラウドソーシングのアカウント、報酬振込用の銀行口座。スマホだけでも記事は書けますが、後半で出てくるWordPress入稿とGoogleドキュメントの共有設定で確認が取りにくくなります。有料ツールは1件目の段階では要りません。</p>
-<h2>「始め方」で検索した人が止まっているのは、たいてい3か所のどれか</h2>
+<h2 id="始め方-で検索した人が止まっているのは-たいてい3か所のどれか">「始め方」で検索した人が止まっているのは、たいてい3か所のどれか</h2>
 <p>1か所目は<strong>学習と応募の境目</strong>です。何をどこまで学べば応募していいのかという基準が自分の中に無いので、区切りがつかないまま学習だけが続きます。この区切りは自分では作れません。なぜなら「もう十分だ」と判断できるだけの相場観は、案件の募集要項をまだ見ていない段階では手に入らないからです。</p>
 <p>2か所目は<strong>実績欄の空白</strong>です。クラウドソーシングの提案フォームには「実績」「ポートフォリオURL」を入れる欄があり、そこを空欄のまま送ると、発注者側には文章力を判断する材料がゼロの応募として届きます。手が止まるのは意志が弱いからではなく、単に埋める対象がまだ存在しないという構造の問題です。</p>
 <p>3か所目は<strong>受注後の実務</strong>です。レギュレーション（表記ルール）の読み方、Googleドキュメントの共有設定、コピペチェック、WordPressへの入稿、修正依頼への返し方。この領域は学習本にもブログ運営にも出てこないので、初めて受注した時点で初めて遭遇することになります。</p>
-<h2>本・ブログ・知恵袋で埋まらない部分がどこかを先に切り分ける</h2>
+<h2 id="本-ブログ-知恵袋で埋まらない部分がどこかを先に切り分ける">本・ブログ・知恵袋で埋まらない部分がどこかを先に切り分ける</h2>
 <p><strong>本で埋まるのは「文章の型」までです。</strong> PREP法、一文を短くする、主語と述語をねじれさせない。こうした原則は書籍の得意分野で、実際に案件でも毎回使います。一方で、レギュレーションの読み解きやクライアント固有の入稿ルールは発注者ごとに中身が違うため、そもそも書籍化できません。だから何冊読んでも、この部分だけは空白のまま残ります。</p>
 <p><strong>ブログ（WordPress）は、ポートフォリオとしては立ち上がりが遅い手段です。</strong> ドメイン取得、サーバー契約、テーマ設定、SSL設定を済ませてようやく1記事目、という順序になるので、発注者に見せられるURLが出るまでに数日かかります。対してnoteは登録直後にクリエイターページのURLが発行され、記事を公開した瞬間にそのまま共有できるリンクになります。これは品質の差ではなく、読ませられる状態になるまでの工程数の差です。</p>
 <p>ただしWordPressの操作経験そのものは、案件では<strong>入稿作業として単価に乗る要素</strong>になります。つまりブログは不要ではなく、1件目より後に効いてくる投資という位置づけです。両方やる場合の順序は有料部分で扱います。</p>
 <p><strong>知恵袋の回答が食い違うのは、質問文に前提が書かれていないからです。</strong> 「未経験でも稼げますか」という質問には、ジャンル、週の稼働時間、目標単価、既存スキルのどれも含まれていません。回答者はそれぞれ自分の条件を暗黙に補って答えるので、結論が割れます。参考にするなら結論ではなく、回答者が前提として書いている条件のほうを読んでください。</p>
-<h2>「勉強を終えてから応募する」という順序が、なぜ終わらないのか</h2>
+<h2 id="勉強を終えてから応募する-という順序が-なぜ終わらないのか">「勉強を終えてから応募する」という順序が、なぜ終わらないのか</h2>
 <p>学習を先に置くと、終了条件が自己申告になります。そして自己申告の基準は、知識が増えるほど「まだ知らないこと」の輪郭も同時に見えてくるので、上がっていきます。つまり学習量に比例して合格ラインも上がるため、いつまでも到達しません。これは意欲の問題ではなく、基準をどこに置いたかの問題です。</p>
 <p>一方、終了条件を外部に置くと止まります。たとえば「公開済みの記事が3本ある」「プロフィールに未入力の欄が無い」「提案文のテンプレートが1つある」といった、他人が見て真偽を判定できる状態です。<strong>判定するのが自分ではなく他人だという点が重要</strong>で、だから終わります。</p>
 <p>もう一つ理由があります。初心者向け案件の選考では、文章の上手さより先に見られる項目があるからです。募集要項に書かれた条件（文字数、納期、本数、指定ツール、本人確認の完了）に応募が合致しているか、という照合がそれにあたります。ここは学習量と無関係に満たせる部分なので、先に学習を積み増しても応募の通過率にはそのまま反映されません。</p>
@@ -67,9 +196,11 @@ footer { margin-top:4rem; color:var(--sub); font-size:.85rem; }
 <li>クラウドソーシングのプロフィールと提案文：どの欄に何を書くか</li>
 <li>単価の計算：提示額と手取りが一致しない理由</li>
 <li>受注してから納品までに実際に起きること</li>
-</ul><div class="cta"><p>ここから先は note の有料記事です（¥500）。</p><p><a href="/go/n39d46af82692/">続きを note で読む</a></p></div>
-<footer>つくりながら書いています</footer>
-</div>
+</ul><section class="cta" aria-label="noteで続きを読む"><p class="cta-label">CONTINUE ON NOTE</p><p>ポートフォリオ3本の作り方から、募集要項と照合できる提案文テンプレートまで順番に使えます。</p><a class="button" href="/go/n39d46af82692/">noteで続きを読む <span aria-hidden="true">→</span></a></section></div><aside class="article-side"><nav class="toc" aria-label="この記事の目次"><p class="toc-title">この記事の目次</p><ol><li><a href="#まず-1件目-の終点を決める">まず「1件目」の終点を決める</a></li><li><a href="#始め方-で検索した人が止まっているのは-たいてい3か所のどれか">「始め方」で検索した人が止まっているのは、たいてい3か所のどれか</a></li><li><a href="#本-ブログ-知恵袋で埋まらない部分がどこかを先に切り分ける">本・ブログ・知恵袋で埋まらない部分がどこかを先に切り分ける</a></li><li><a href="#勉強を終えてから応募する-という順序が-なぜ終わらないのか">「勉強を終えてから応募する」という順序が、なぜ終わらないのか</a></li></ol></nav><aside class="side-cta"><p>ポートフォリオ3本の作り方から、募集要項と照合できる提案文テンプレートまで順番に使えます。</p><a class="button" href="/go/n39d46af82692/">noteで続きを読む</a></aside></aside></div></article><div class="mobile-cta"><span>続きはnoteで読めます</span><a class="button" href="/go/n39d46af82692/">続きを読む</a></div>
+</main>
+<footer class="site-footer"><div class="footer-inner">
+<span>つくりながら書いています</span><span>迷ったところから、次の一手へ。</span>
+</div></footer>
 <img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/a/web%E3%83%A9%E3%82%A4%E3%82%BF%E3%83%BC%E3%81%AE%E5%A7%8B%E3%82%81%E6%96%B9-note%E3%82%92%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA%E3%81%AB%E3%81%97%E3%81%A6%E5%88%9D%E5%BF%83%E8%80%85%E3%81%8C%E6%9C%80%E5%88%9D%E3%81%AE1%E4%BB%B6%E3%82%92%E5%8F%97%E6%B3%A8%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
 </body>
 </html>

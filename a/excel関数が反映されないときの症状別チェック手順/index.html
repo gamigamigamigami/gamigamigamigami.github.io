@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel関数が反映されないときの症状別チェック手順</title>
+<meta name="description" content="Excel関数が反映されないときの症状別チェック手順 CSVや外部システムのデータをExcelへ移した後、数式がそのまま表示されたり、参照元を変えても古い結果が残ったりすることがあります。0、空白、#N/Aが出て、どこを直せばよいのか分からない場面もあります。">
+<meta property="og:title" content="Excel関数が反映されないときの症状別チェック手順">
+<meta property="og:description" content="Excel関数が反映されないときの症状別チェック手順 CSVや外部システムのデータをExcelへ移した後、数式がそのまま表示されたり、参照元を変えても古い結果が残ったりすることがあります。0、空白、#N/Aが出て、どこを直せばよいのか分からない場面もあります。">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://gamigamigamigami.github.io/a/excel関数が反映されないときの症状別チェック手順/">
+
+<style>
+:root { color-scheme: light dark; --fg:#202420; --bg:#f7f5ef; --surface:#fffefb;
+        --sub:#626960; --accent:#176b5b; --accent-strong:#0e5346;
+        --accent-soft:#e2f1ec; --warm:#c56538; --warm-soft:#f8e9df;
+        --line:#dfe2da; --shadow:0 16px 40px rgba(42,52,45,.08); }
+@media (prefers-color-scheme: dark) {
+  :root { --fg:#eef2ed; --bg:#151a17; --surface:#1d2420; --sub:#abb5ad;
+          --accent:#79c9b5; --accent-strong:#9bdacb; --accent-soft:#203b34;
+          --warm:#eda47f; --warm-soft:#3a2b24; --line:#354039;
+          --shadow:0 16px 40px rgba(0,0,0,.22); }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior:smooth; }
+body { margin:0; background:var(--bg); color:var(--fg); line-height:1.9;
+       font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;
+       -webkit-font-smoothing:antialiased; }
+a { color:var(--accent); text-underline-offset:.18em; }
+a:focus-visible, button:focus-visible { outline:3px solid var(--warm); outline-offset:3px; }
+.skip-link { position:fixed; left:1rem; top:-5rem; z-index:100; padding:.7rem 1rem;
+             background:var(--surface); color:var(--fg); border-radius:.6rem; }
+.skip-link:focus { top:1rem; }
+.site-header { position:sticky; top:0; z-index:20; background:color-mix(in srgb,var(--bg) 90%,transparent);
+               backdrop-filter:blur(14px); border-bottom:1px solid var(--line); }
+.header-inner { max-width:74rem; margin:auto; min-height:4.25rem; padding:0 1.5rem;
+                display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+.brand { color:var(--fg); text-decoration:none; font-weight:800; letter-spacing:-.02em; }
+.site-nav { display:flex; gap:1.2rem; }
+.site-nav a { color:var(--sub); text-decoration:none; font-size:.9rem; font-weight:700; }
+.site-nav a:hover { color:var(--accent); }
+.wrap { max-width:74rem; margin:0 auto; padding:3rem 1.5rem 6rem; }
+h1,h2,h3 { line-height:1.45; letter-spacing:-.025em; text-wrap:pretty; }
+h1 { font-size:clamp(2rem,4.5vw,3.5rem); margin:.65rem 0 1rem; }
+h2 { font-size:clamp(1.4rem,2.4vw,1.85rem); margin:3.2rem 0 1rem; }
+h3 { font-size:1.18rem; margin:2.2rem 0 .65rem; }
+p,li { font-size:1rem; }
+.eyebrow { margin:0; color:var(--warm); font-size:.78rem; font-weight:800;
+           letter-spacing:.14em; text-transform:uppercase; }
+.hero { max-width:52rem; padding:3rem 0 3.5rem; }
+.hero h1 { max-width:48rem; }
+.hero-copy { max-width:42rem; color:var(--sub); font-size:1.08rem; }
+.button { display:inline-flex; align-items:center; justify-content:center; min-height:3rem;
+          padding:.75rem 1.1rem; border-radius:.75rem; background:var(--accent);
+          color:#fff; text-decoration:none; font-weight:800; box-shadow:0 8px 20px rgba(23,107,91,.18); }
+.button:hover { background:var(--accent-strong); transform:translateY(-1px); }
+.button.secondary { background:var(--surface); color:var(--accent); border:1px solid var(--line);
+                    box-shadow:none; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:1rem;
+                margin-bottom:1.25rem; }
+.section-head h2 { margin:0; }
+.meta { color:var(--sub); font-size:.88rem; }
+.card-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; }
+.card { display:flex; min-height:15rem; flex-direction:column; padding:1.35rem;
+        border:1px solid var(--line); border-radius:1rem; background:var(--surface);
+        color:inherit; text-decoration:none; box-shadow:0 1px 0 rgba(42,52,45,.03);
+        transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+.card:hover { transform:translateY(-3px); border-color:var(--accent);
+              box-shadow:var(--shadow); }
+.card-top { display:flex; align-items:center; justify-content:space-between; gap:.7rem; }
+.badge { display:inline-flex; align-items:center; min-height:1.65rem; padding:.18rem .58rem;
+         border-radius:999px; background:var(--accent-soft); color:var(--accent-strong);
+         font-size:.76rem; font-weight:800; }
+.badge.price { background:var(--warm-soft); color:var(--warm); }
+.card h3 { margin:1rem 0 .55rem; font-size:1.12rem; }
+.card img { width:100%; aspect-ratio:4/3; object-fit:contain; border-radius:.7rem;
+            background:#fff; }
+.card .summary { margin:0 0 1rem; color:var(--sub); line-height:1.75; }
+.card-more { margin-top:auto; color:var(--accent); font-weight:800; }
+.about-panel { margin-top:5rem; padding:2rem; border-radius:1rem; background:var(--surface);
+               border:1px solid var(--line); }
+.about-panel h2 { margin:0 0 1rem; }
+.about-panel p { max-width:52rem; color:var(--sub); margin:.7rem 0; }
+.breadcrumb { margin:0 0 2rem; font-size:.88rem; color:var(--sub); }
+.breadcrumb a { color:inherit; }
+.article-head { max-width:52rem; margin-bottom:2.5rem; }
+.article-head h1 { font-size:clamp(2rem,4vw,3rem); }
+.article-dek { color:var(--sub); font-size:1.05rem; max-width:44rem; }
+.article-layout { display:grid; grid-template-columns:minmax(0,46rem) minmax(14rem,18rem);
+                  gap:4rem; align-items:start; }
+.article-body { min-width:0; font-size:1.02rem; }
+.article-body > p { margin:0 0 1.25rem; }
+.article-body h2 { padding-top:.8rem; border-top:1px solid var(--line); }
+.article-body strong { font-weight:800; }
+.article-body img { display:block; max-width:100%; height:auto; border-radius:.85rem;
+                    margin:1.5rem auto; border:1px solid var(--line); }
+.article-body ul,.article-body ol { padding-left:1.4rem; margin:0 0 1.4rem; }
+.article-body li { margin:.35rem 0; }
+pre { background:#171b18; color:#eef2ed; padding:1rem 1.1rem; border-radius:.8rem;
+      overflow-x:auto; line-height:1.65; }
+code { font-size:.9em; }
+p code,li code { padding:.12rem .35rem; border-radius:.3rem; background:var(--accent-soft); }
+blockquote { margin:1.5rem 0; padding:.8rem 1rem; border-left:4px solid var(--warm);
+             background:var(--warm-soft); border-radius:0 .6rem .6rem 0; }
+hr { border:0; border-top:1px solid var(--line); margin:2.5rem 0; }
+.table-wrap { overflow-x:auto; margin:1.5rem 0; border:1px solid var(--line);
+              border-radius:.8rem; background:var(--surface); }
+table { width:100%; border-collapse:collapse; min-width:34rem; font-size:.9rem; }
+th,td { padding:.75rem .85rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; }
+th { background:var(--accent-soft); color:var(--accent-strong); }
+tbody tr:last-child td { border-bottom:0; }
+.article-side { position:sticky; top:6rem; display:grid; gap:1rem; }
+.toc,.side-cta { padding:1.1rem; border:1px solid var(--line); border-radius:.85rem;
+                 background:var(--surface); }
+.toc-title { margin:0 0 .65rem; font-size:.78rem; font-weight:800; letter-spacing:.1em;
+             color:var(--sub); }
+.toc ol { margin:0; padding:0; list-style:none; }
+.toc li { margin:.4rem 0; line-height:1.5; }
+.toc a { color:var(--sub); text-decoration:none; font-size:.84rem; }
+.toc a:hover { color:var(--accent); }
+.side-cta p { margin:0 0 .85rem; font-size:.9rem; line-height:1.65; }
+.side-cta .button { width:100%; }
+.cta { margin-top:3.5rem; padding:1.5rem; border:1px solid var(--accent);
+       border-radius:1rem; background:var(--accent-soft); }
+.cta-label { margin:0 0 .35rem; color:var(--accent-strong); font-size:.78rem;
+             font-weight:800; letter-spacing:.1em; }
+.cta p { margin:.3rem 0 1rem; }
+.selection-note { padding:.9rem 1rem; border-left:4px solid var(--accent);
+                  background:var(--accent-soft); border-radius:0 .7rem .7rem 0; }
+.mobile-cta { display:none; }
+.site-footer { border-top:1px solid var(--line); }
+.footer-inner { max-width:74rem; margin:auto; padding:2rem 1.5rem 3rem; color:var(--sub);
+                display:flex; justify-content:space-between; gap:1rem; font-size:.85rem; }
+@media (max-width:800px) {
+  .header-inner { min-height:3.75rem; padding:0 1rem; }
+  .site-nav a:last-child { display:none; }
+  .wrap { padding:2rem 1rem 6rem; }
+  .hero { padding:1.2rem 0 2.5rem; }
+  .hero h1 { font-size:2.15rem; }
+  .card-grid { grid-template-columns:1fr; }
+  .card { min-height:0; }
+  .about-panel { margin-top:3rem; padding:1.25rem; }
+  .article-layout { display:flex; flex-direction:column; align-items:stretch; gap:1.5rem; }
+  .article-body { width:100%; }
+  .article-side { position:static; width:100%; order:-1; }
+  .side-cta { display:none; }
+  .article-head { margin-bottom:1.5rem; }
+  .article-head h1 { font-size:1.95rem; }
+  .article-body h2 { font-size:1.45rem; }
+  .mobile-cta { position:fixed; z-index:15; left:.75rem; right:.75rem; bottom:.75rem;
+                display:flex; align-items:center; justify-content:space-between; gap:.75rem;
+                padding:.7rem; border:1px solid var(--line); border-radius:.9rem;
+                background:color-mix(in srgb,var(--surface) 94%,transparent);
+                backdrop-filter:blur(12px); box-shadow:var(--shadow); }
+  .mobile-cta span { font-size:.78rem; font-weight:700; line-height:1.35; }
+  .mobile-cta .button { min-height:2.65rem; padding:.6rem .8rem; white-space:nowrap; }
+  .footer-inner { flex-direction:column; padding-bottom:6rem; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  .card,.button { transition:none; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/">つくりながら書いています</a>
+<nav class="site-nav" aria-label="主なメニュー">
+<a href="/#articles">記事一覧</a><a href="/#about">このサイトについて</a>
+<a href="/privacy/">プライバシー</a>
+</nav></div></header>
+<main class="wrap" id="main">
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">Excel</span><span class="badge price">無料記事</span></div><h1>Excel関数が反映されないときの症状別チェック手順</h1><p class="article-dek">Excel関数が反映されないときの症状別チェック手順 CSVや外部システムのデータをExcelへ移した後、数式がそのまま表示されたり、参照元を変えても古い結果が残ったりすることがあります。0、空白、#N/Aが出て、どこを直せばよいのか分からない場面もあります。</p></header><div class="article-layout"><div class="article-body"><p><strong>Excel関数が反映されないときの症状別チェック手順</strong></p>
+<p>CSVや外部システムのデータをExcelへ移した後、数式がそのまま表示されたり、参照元を変えても古い結果が残ったりすることがあります。0、空白、#N/Aが出て、どこを直せばよいのか分からない場面もあります。</p>
+<p>この記事の操作名は、Windowsデスクトップ版Excelを基準にしています。Mac版やWeb版ではメニュー名やキー操作が異なる場合があります。</p>
+<p>この記事では、数式をむやみに書き直しません。まず画面に見えている症状を分け、<strong>表示・再計算・データ型・参照範囲のどこで止まっているか</strong>を確かめます。その後、該当する操作だけを行います。</p>
+<p>最初に勧めるのは、「数式そのものが見えるか」「古い結果が残るか」「0・空白・#N/Aになるか」の順で確認する方法です。すべてを読む必要はありません。次の表で自分の症状を選び、該当する節から確認できます。</p>
+<div class="table-wrap"><table><thead><tr><th>画面に見えているもの</th><th>最初に疑う場所</th><th>最初に読む節</th></tr></thead><tbody><tr><td><code>=VLOOKUP(...)</code>など式そのもの</td><td>セルの文字列扱い</td><td>「1．数式のまま見える一セルを再確定する」</td></tr><tr><td>変更前の古い数値</td><td>計算方法</td><td>「2．古い結果が残るなら計算方法を確認する」</td></tr><tr><td>0・空白・#N/A・一部の行だけ違う</td><td>データ型、参照範囲、式の条件</td><td>「3」から症状が一致する節</td></tr></tbody></table></div>
+<p>最後の判定表まで進めれば、ファイルを作成者へ戻すべきか、自分で修正できるかも判断できます。</p>
+<h2 id="まず-数式を書き直さずに症状を分ける">まず、数式を書き直さずに症状を分ける</h2>
+<p>セルに「=」から始まる数式そのものが見えているなら、式の内容より先に<strong>表示状態とセルの扱い</strong>を確認します。数式として計算されておらず、文字列として表示されている可能性があるためです。</p>
+<p>一方、数値は表示されているものの、参照元を変えても以前の結果が残るなら、計算方法を確認します。こちらは数式として認識されていても、再計算が止まっている場合があります。</p>
+<p>0や空白は、計算が止まっている証拠ではありません。数式が正常に動いたうえで0や空文字列を返していることもあります。冒頭の表で選んだ症状に対応する節へ進んでください。</p>
+<ul>
+<li><code>=VLOOKUP(...)</code>など、数式そのものが見える</li>
+<li>参照元を変更しても、以前の結果が残る</li>
+<li>0、空白、または#N/Aが表示される</li>
+<li>追加した行だけ数式や合計へ入らない</li>
+<li>特定のセルだけ編集できない</li>
+</ul>
+<p>症状が複数あるときは、数式そのものが見えるセルから始めます。文字列扱いを直さないまま再計算や検索範囲を確認しても、結果が変わらないためです。</p>
+<h2 id="1-数式のまま見える一セルを再確定する">1．数式のまま見える一セルを再確定する</h2>
+<p>CSVの読み込み後や、外部システムから貼り付けた列では、入力した数式が文字列として扱われる場合があります。この状態では、F9を押しても数式の文字は消えません。</p>
+<p>まず一セルだけで、次の操作を行います。</p>
+<ol>
+<li>数式のまま表示されているセルを一つ選びます。</li>
+<li>セルの表示形式を<strong>「標準」</strong>へ変更します。</li>
+<li>そのセルを選んだままF2を押し、編集できる状態にします。</li>
+<li>数式を書き換えず、そのままEnterを押します。</li>
+<li>数式の表示が計算結果へ変わったか確認します。</li>
+</ol>
+<p>F2が反応しないPCでは、Fnキーを押しながらF2を押します。ダブルクリックでセルを編集できる状態にしてから、Enterで確定しても同じ目的の操作になります。</p>
+<h3 id="ここで止まる人が多い">ここで止まる人が多い</h3>
+<p>表示形式を「標準」に変えただけでは、数式が計算されないことがあります。なぜなら、すでに文字列として確定した入力内容は、書式を変えただけでは数式として再入力されないためです。</p>
+<p>そのため、<strong>「標準」へ変更した後のF2→Enter</strong>までを一組として行います。一セルが計算結果へ変われば、式の誤りではなく、そのセルが文字列として扱われていたと判断できます。</p>
+<p>列全体を一度に直す前に、一セルで結果を見てください。一セルも変わらないなら、同じ操作を列全体へ広げても原因は解消しません。</p>
+<h2 id="2-古い結果が残るなら計算方法を確認する">2．古い結果が残るなら計算方法を確認する</h2>
+<p>参照元を変更しても以前の数値が残る場合、現在の計算方法が「手動」になっている可能性があります。同じExcelで開いているほかのブックも含め、現在の画面で設定を確認します。誰が設定したかは推測しません。</p>
+<p>次の順で確認します。</p>
+<ol>
+<li>リボンの「数式」タブを開き、「計算方法の設定」を確認します。</li>
+<li>「手動」になっていたら、<strong>「自動」</strong>へ変更します。</li>
+<li>更新されないセルを選び、F2を押してからEnterで再確定します。</li>
+<li>F9を押して再計算します。</li>
+<li>参照元に対応した結果へ変わったか確認します。</li>
+</ol>
+<p>F9は再計算に使う操作です。しかし、文字列を数式へ変える操作ではありません。したがって、数式そのものが見えている場合は前節のF2→Enterを先に行い、数値が古い場合に計算方法とF9を確認します。</p>
+<h3 id="ここで止まる人が多い-2">ここで止まる人が多い</h3>
+<p>計算方法を「自動」に変えても、古い値が残る場合があります。そのときは対象セルをF2→Enterで再確定し、もう一度F9を押します。</p>
+<p>それでも変わらなければ、ファイルを保存してExcelを終了し、再起動後に同じセルを確認します。再起動で更新された場合はExcel側の一時的な状態、更新されない場合はデータ型や参照範囲を次に調べます。</p>
+<p>なお、手動計算は固定値とは異なります。F9やセルの再編集によって結果が変わるため、更新させたくない数値を保存する目的では扱えません。</p>
+<h2 id="3-n-aなら検索値の見た目ではなく型をそろえる">3．#N/Aなら検索値の見た目ではなく型をそろえる</h2>
+<p>数式は計算されているのにVLOOKUPが#N/Aを返すなら、検索値と検索範囲の値を確認します。</p>
+<p>CSVや外部システム由来のデータでは、見た目が同じ「1001」でも、一方が数値、もう一方が文字列になる場合があります。VLOOKUPでは、この違いによって同じ値として検索されないことがあります。</p>
+<ol>
+<li>#N/Aが出ているセルの検索値を確認します。</li>
+<li>VLOOKUPが参照している検索範囲の対応値を確認します。</li>
+<li>空いているセルで<code>=TYPE(A2)</code>のように検索値を確認します。結果が1なら数値、2なら文字列です。</li>
+<li>検索範囲側も<code>=TYPE(E2)</code>のように確認し、結果が一致するか見ます。</li>
+<li>数値として扱う列なら、補助列で<code>=VALUE(A2)</code>を一セルだけ試します。</li>
+<li>変換後の値でVLOOKUPを試し、#N/Aから対応する検索結果へ変わったか確認します。</li>
+</ol>
+<p>ここでは、VLOOKUPの式を先に別の式へ交換しません。型をそろえた後に結果が出れば、検索式ではなく<strong>検索値と検索範囲の型の不一致</strong>が影響していたと切り分けられます。</p>
+<p>商品コードや会員番号のように先頭の0を残す値へ、安易にVALUEを使わないでください。<code>0012</code>を数値化すると<code>12</code>になり、識別子そのものが変わります。この場合は、数値へ変換するのではなく、検索値と検索範囲を文字列としてそろえます。</p>
+<p>日付も同じ考え方です。「2023.10.01」や「2023 10 01」は、日付ではなく文字列として扱われる場合があります。その状態では、表示だけ日付らしく見えても、日付関数は期待した結果を返しません。</p>
+<h3 id="ここで止まる人が多い-3">ここで止まる人が多い</h3>
+<p>#N/Aが消えただけで確認を終えると、別の問題を見逃すことがあります。VLOOKUPの検索範囲がずれていると、エラーを出さずに誤った値を返す場合があるためです。</p>
+<p>型をそろえて値が返ったら、その値が検索値に対応していることまで確認します。別の値が出た場合は、次の検索範囲の確認へ進みます。</p>
+<h2 id="4-vlookupが値を返しても検索範囲を確認する">4．VLOOKUPが値を返しても検索範囲を確認する</h2>
+<p>式を下や横へコピーすると、VLOOKUPの検索範囲が一緒に移動する場合があります。移動先にも該当する値があれば、#N/Aではなく誤った値が表示されます。</p>
+<ol>
+<li>正しい結果を返しているセルを選びます。</li>
+<li>数式内の検索範囲の先頭と末尾を確認します。</li>
+<li>問題のセルを選び、同じ位置を比較します。</li>
+<li>コピーしても検索範囲を動かしたくない場合は、範囲を絶対参照へ修正します。たとえば<code>=VLOOKUP(A2,E2:G100,3,FALSE)</code>を<code>=VLOOKUP(A2,$E$2:$G$100,3,FALSE)</code>へ変更します。</li>
+<li>同じ式をコピーしたほかのセルも確認します。</li>
+<li>修正した式を一行下へコピーし、<code>$E$2:$G$100</code>が動かず、検索値に対応する結果が表示されたことを確かめます。</li>
+</ol>
+<p>返された値だけを見るのではなく、<strong>どの表のどこからどこまでを検索しているか</strong>を見ます。エラーが出ていないことと、正しい範囲を参照していることは別だからです。</p>
+<h3 id="ここで止まる人が多い-4">ここで止まる人が多い</h3>
+<p>一セルだけ範囲を直しても、コピー先にずれた式が残ることがあります。修正後は同じ列や行の数式も確認し、検索範囲の先頭と末尾が意図した位置を指しているか見てください。</p>
+<p>検索範囲が正しいのに、新しく追加した行だけ結果へ入らない場合は、表の末尾を確認します。</p>
+<h2 id="5-追加した行だけ反映されないときは末尾を見る">5．追加した行だけ反映されないときは末尾を見る</h2>
+<p>通常のセル範囲で作った表は、下に行を追加しただけでは数式や集計範囲が自動で広がらない場合があります。そのため、既存行は正しいのに、追加行だけ空白になったり、合計へ含まれなかったりします。</p>
+<ol>
+<li>追加した行の数式欄を選びます。</li>
+<li>すぐ上の行と同じ式が入っているか確認します。</li>
+<li>式がなければ、必要な数式を追加行へコピーします。</li>
+<li>合計などの集計式を選びます。</li>
+<li>参照範囲の末尾が追加行まで届いているか確認します。</li>
+<li>必要なら範囲を追加行まで広げます。</li>
+</ol>
+<p>数式のコピーと集計範囲の修正は、別々に見ます。追加行に式を入れても、合計範囲が以前の末尾で止まっていれば、集計結果には反映されません。</p>
+<h3 id="ここで止まる人が多い-5">ここで止まる人が多い</h3>
+<p>追加行のセルが空白に見えると、式が入っていないと判断しがちです。しかし、数式が空文字列を返している可能性もあります。セルを選び、数式バーに式があるか確認してください。</p>
+<h2 id="6-空白と0を-計算停止-と決めつけない">6．空白と0を「計算停止」と決めつけない</h2>
+<p>数式が返す空文字列（<code>&quot;&quot;</code>）は、画面上では何も表示されません。しかし、数式の入ったセルなので、<code>=ISBLANK(A1)</code>はFALSEになります。一方、<code>=A1=&quot;&quot;</code>はTRUEになり得ます。COUNTAの件数も、見た目の空白と一致しない場合があります。</p>
+<ol>
+<li>空白に見えるセルを選びます。</li>
+<li>数式バーに式が入っているか確認します。</li>
+<li>式があれば、空文字列を返す条件を確認します。</li>
+<li>参照元に値があるなら、IFなどの条件と参照先を見直します。</li>
+<li>空文字列が意図した結果なら、そのセルは未反映ではないと判断します。</li>
+</ol>
+<p>0も同様です。参照元を変更し、計算方法が自動の状態で0から別の結果へ変わるなら、計算自体は動いています。その場合に確認するのはF9ではなく、式の条件と元データです。</p>
+<h3 id="ここで止まる人が多い-6">ここで止まる人が多い</h3>
+<p>COUNTAの件数が合わないとき、見た目が空白のセルを削除する前に数式バーを見ます。空文字列を返す数式が入っていれば、そのセルは本当の空白ではありません。</p>
+<h2 id="7-特定セルだけ触れないなら保護と非表示を確認する">7．特定セルだけ触れないなら保護と非表示を確認する</h2>
+<p>特定のセルだけ編集できない場合は、シートの保護状態を確認します。保護の設定によっては、数式の変更だけでなく、計算に関わる操作も制限される場合があります。</p>
+<ol>
+<li>対象シートが保護されているか確認します。</li>
+<li>解除できる権限がある場合だけ、保護を解除して対象セルを確認します。</li>
+<li>権限や解除方法が不明なら、数式を上書きしません。</li>
+<li>ファイルの管理者へ、対象セルと症状を伝えて確認します。</li>
+</ol>
+<p>また、結果が合わないのに式とデータ型に問題が見つからない場合は、行番号や列記号の連続性を見ます。番号や記号が飛んでいれば、非表示の行や列が参照範囲に含まれていないか、または見落としていないかを数式と照合します。</p>
+<h3 id="ここで止まる人が多い-7">ここで止まる人が多い</h3>
+<p>見えているセルだけを比べると、非表示部分にある参照元を見落とします。隠れている範囲を確認したうえで、数式が実際に指している先頭と末尾を見てください。</p>
+<p>保護を解除できない場合は、そこで作業を止めます。未反映を直すために、管理された数式を別の内容へ上書きしないためです。</p>
+<h2 id="8-最後にexcelを再起動して再判定する">8．最後にExcelを再起動して再判定する</h2>
+<p>セルの形式、計算方法、データ型、参照範囲、保護状態を確認しても変わらない場合は、Excelを再起動します。</p>
+<ol>
+<li>編集中のファイルを保存します。</li>
+<li>Excelを終了します。</li>
+<li>Excelを起動し、同じファイルを開きます。</li>
+<li>参照元の値を変更します。</li>
+<li>対象セルが更新されるか確認します。</li>
+</ol>
+<p>再起動によって更新されたことまでは確認できますが、この操作だけでは原因を特定できません。更新されなければ、再起動を繰り返さず、直前までに確認したデータ型、参照範囲、保護状態へ戻ります。</p>
+<p>再起動を最初に行わないのは、直った原因が分からなくなるためです。先に一セルずつ確認しておけば、次に同じ症状が出たときも必要な操作だけを選べます。</p>
+<h2 id="症状別の修正判定表">症状別の修正判定表</h2>
+<div class="table-wrap"><table><thead><tr><th>見えている症状</th><th>最初に試す操作</th></tr></thead><tbody><tr><td>数式がそのまま見える</td><td>「標準」へ変更後、F2→Enter</td></tr><tr><td>F9でも数式の文字が残る</td><td>文字列扱いを確認し、F2→Enter</td></tr><tr><td>古い結果が残る</td><td>「数式」→「計算方法の設定」→「自動」</td></tr><tr><td>自動へ戻しても古い</td><td>再確定、F9、保存後に再起動</td></tr><tr><td>#N/Aになる</td><td>TYPEで検索値と検索範囲の型を比較</td></tr><tr><td>VLOOKUPが別の値を返す</td><td>検索範囲を絶対参照にして一行コピー</td></tr><tr><td>追加行だけ空白</td><td>上の行と式を比較してコピー</td></tr><tr><td>追加行が合計に入らない</td><td>集計範囲の末尾を追加行まで広げる</td></tr><tr><td>空白なのにCOUNTAへ入る</td><td>数式バーとISBLANKの結果を確認</td></tr><tr><td>特定セルだけ編集できない</td><td>保護状態と解除権限を確認</td></tr></tbody></table></div>
+<h2 id="うまくいったかを最後に確認する">うまくいったかを最後に確認する</h2>
+<p>修正後は、表示が変わっただけで終わらせません。参照元を一つ変更し、対象セルがその変更に応じて更新されるか確認します。</p>
+<p>VLOOKUPなら、#N/Aが消えたことに加えて、検索値に対応した結果が出ているかを見ます。追加行なら、その行に数式が入り、集計範囲にも含まれていることを別々に確かめてください。</p>
+<p>ここまで確認できれば、作業は終わりです。</p>
+<p>自分で直すのは、一セルの試行で原因が確認でき、修正後の値を元データと照合できた場合です。次のいずれかに当てはまる場合は、数式を作り直さず管理者へ戻します。</p>
+<ul>
+<li>シート保護を解除する権限がない</li>
+<li>どの表を参照する仕様なのか分からない</li>
+<li>修正後に値は出たが、正しい行の値か説明できない</li>
+<li>データ型と参照範囲を確認しても結果が変わらない</li>
+</ul>
+<p>対象セル、表示されている症状、ここまでに確認した項目を添えれば、管理者も同じ確認を最初から繰り返さずに済みます。</p></div><aside class="article-side"><nav class="toc" aria-label="この記事の目次"><p class="toc-title">この記事の目次</p><ol><li><a href="#まず-数式を書き直さずに症状を分ける">まず、数式を書き直さずに症状を分ける</a></li><li><a href="#1-数式のまま見える一セルを再確定する">1．数式のまま見える一セルを再確定する</a></li><li><a href="#2-古い結果が残るなら計算方法を確認する">2．古い結果が残るなら計算方法を確認する</a></li><li><a href="#3-n-aなら検索値の見た目ではなく型をそろえる">3．#N/Aなら検索値の見た目ではなく型をそろえる</a></li><li><a href="#4-vlookupが値を返しても検索範囲を確認する">4．VLOOKUPが値を返しても検索範囲を確認する</a></li><li><a href="#5-追加した行だけ反映されないときは末尾を見る">5．追加した行だけ反映されないときは末尾を見る</a></li><li><a href="#6-空白と0を-計算停止-と決めつけない">6．空白と0を「計算停止」と決めつけない</a></li><li><a href="#7-特定セルだけ触れないなら保護と非表示を確認する">7．特定セルだけ触れないなら保護と非表示を確認する</a></li><li><a href="#8-最後にexcelを再起動して再判定する">8．最後にExcelを再起動して再判定する</a></li><li><a href="#症状別の修正判定表">症状別の修正判定表</a></li><li><a href="#うまくいったかを最後に確認する">うまくいったかを最後に確認する</a></li></ol></nav></aside></div></article>
+</main>
+<footer class="site-footer"><div class="footer-inner">
+<span>つくりながら書いています</span><span>テーマを限定せず、調べて書く。</span>
+<span><a href="/privacy/">プライバシー</a> · <a href="/terms/">利用条件</a></span>
+</div></footer>
+<img src="https://noteos-counter.gamigamigamigami.workers.dev/px?p=/a/excel%E9%96%A2%E6%95%B0%E3%81%8C%E5%8F%8D%E6%98%A0%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AE%E7%97%87%E7%8A%B6%E5%88%A5%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E6%89%8B%E9%A0%86/" alt="" width="1" height="1" style="position:absolute;left:-9999px">
+</body>
+</html>

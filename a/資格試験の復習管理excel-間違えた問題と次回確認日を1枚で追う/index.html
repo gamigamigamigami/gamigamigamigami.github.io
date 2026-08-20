@@ -8,6 +8,7 @@
 <meta property="og:title" content="資格試験の復習管理Excel｜間違えた問題と次回確認日を1枚で追う">
 <meta property="og:description" content="資格試験の復習で時間を使うのは、解き直しだけではありません。「前回どこを間違えたか」「次は何を見ればよいか」を教材の中から探し直す時間も積み重なります。この記事には、間違えた問題と次回確認日を一枚で追える完成Excelを添付しています。自分で列や入力規則を作る必要はありません。">
 <meta property="og:type" content="article">
+<meta property="og:image" content="https://gamigamigamigami.github.io/img/%E8%B3%87%E6%A0%BC%E8%A9%A6%E9%A8%93%E3%81%AE%E5%BE%A9%E7%BF%92%E7%AE%A1%E7%90%86Excel-%E9%96%93%E9%81%95%E3%81%88%E3%81%9F%E5%95%8F%E9%A1%8C%E3%81%A8%E6%AC%A1%E5%9B%9E%E7%A2%BA%E8%AA%8D%E6%97%A5%E3%82%921%E6%9E%9A%E3%81%A7%E8%BF%BD%E3%81%86.png">
 <link rel="canonical" href="https://gamigamigamigami.github.io/a/資格試験の復習管理excel-間違えた問題と次回確認日を1枚で追う/">
 
 <style>
@@ -75,6 +76,10 @@ p,li { font-size:1rem; }
 .card h3 { margin:1rem 0 .55rem; font-size:1.12rem; }
 .card img { width:100%; aspect-ratio:4/3; object-fit:contain; border-radius:.7rem;
             background:#fff; }
+.card-thumb { width:calc(100% + 2.7rem) !important; max-width:none;
+              margin:-1.35rem -1.35rem 1rem; aspect-ratio:1280/670 !important;
+              object-fit:cover !important; border-radius:1rem 1rem 0 0 !important;
+              background:var(--surface) !important; }
 .card .summary { margin:0 0 1rem; color:var(--sub); line-height:1.75; }
 .card-more { margin-top:auto; color:var(--accent); font-weight:800; }
 .about-panel { margin-top:5rem; padding:2rem; border-radius:1rem; background:var(--surface);
@@ -84,6 +89,8 @@ p,li { font-size:1rem; }
 .breadcrumb { margin:0 0 2rem; font-size:.88rem; color:var(--sub); }
 .breadcrumb a { color:inherit; }
 .article-head { max-width:52rem; margin-bottom:2.5rem; }
+.article-hero { display:block; width:100%; aspect-ratio:1280/670; object-fit:cover;
+                margin:0 0 2rem; border-radius:1rem; box-shadow:var(--shadow); }
 .article-head h1 { font-size:clamp(2rem,4vw,3rem); }
 .article-dek { color:var(--sub); font-size:1.05rem; max-width:44rem; }
 .article-layout { display:grid; grid-template-columns:minmax(0,46rem) minmax(14rem,18rem);
@@ -171,7 +178,7 @@ tbody tr:last-child td { border-bottom:0; }
 <a href="/privacy/">プライバシー</a>
 </nav></div></header>
 <main class="wrap" id="main">
-<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">資格勉強</span><span class="badge price">無料公開 + note ¥500</span></div><h1>資格試験の復習管理Excel｜間違えた問題と次回確認日を1枚で追う</h1><p class="article-dek">資格試験の復習で時間を使うのは、解き直しだけではありません。「前回どこを間違えたか」「次は何を見ればよいか」を教材の中から探し直す時間も積み重なります。この記事には、間違えた問題と次回確認日を一枚で追える完成Excelを添付しています。自分で列や入力規則を作る必要はありません。</p></header><div class="article-layout"><div class="article-body"><p>資格試験の復習で時間を使うのは、解き直しだけではありません。「前回どこを間違えたか」「次は何を見ればよいか」を教材の中から探し直す時間も積み重なります。</p>
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><img class="article-hero" src="/img/資格試験の復習管理Excel-間違えた問題と次回確認日を1枚で追う.png" alt="資格試験の復習管理Excel｜間違えた問題と次回確認日を1枚で追う" fetchpriority="high"><div class="card-top"><span class="badge">資格勉強</span><span class="badge price">無料公開 + note ¥500</span></div><h1>資格試験の復習管理Excel｜間違えた問題と次回確認日を1枚で追う</h1><p class="article-dek">資格試験の復習で時間を使うのは、解き直しだけではありません。「前回どこを間違えたか」「次は何を見ればよいか」を教材の中から探し直す時間も積み重なります。この記事には、間違えた問題と次回確認日を一枚で追える完成Excelを添付しています。自分で列や入力規則を作る必要はありません。</p></header><div class="article-layout"><div class="article-body"><p>資格試験の復習で時間を使うのは、解き直しだけではありません。「前回どこを間違えたか」「次は何を見ればよいか」を教材の中から探し直す時間も積み重なります。</p>
 <p>この記事には、間違えた問題と次回確認日を一枚で追える完成Excelを添付しています。自分で列や入力規則を作る必要はありません。</p>
 <p>入力するのは、登録日、科目、問題・論点、間違えた理由、次の手がかり、次回確認日、結果です。結果は×・△・○から選び、確認日を過ぎた未完了行は黄色で表示されます。</p>
 <h2 id="このexcelで省ける作業">このExcelで省ける作業</h2>

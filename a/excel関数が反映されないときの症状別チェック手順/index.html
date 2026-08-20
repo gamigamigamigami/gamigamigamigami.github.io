@@ -8,6 +8,7 @@
 <meta property="og:title" content="Excel関数が反映されないときの症状別チェック手順">
 <meta property="og:description" content="Excel関数が反映されないときの症状別チェック手順 CSVや外部システムのデータをExcelへ移した後、数式がそのまま表示されたり、参照元を変えても古い結果が残ったりすることがあります。0、空白、#N/Aが出て、どこを直せばよいのか分からない場面もあります。">
 <meta property="og:type" content="article">
+<meta property="og:image" content="https://gamigamigamigami.github.io/img/Excel%E9%96%A2%E6%95%B0%E3%81%8C%E5%8F%8D%E6%98%A0%E3%81%95%E3%82%8C%E3%81%AA%E3%81%84%E3%81%A8%E3%81%8D%E3%81%AE%E7%97%87%E7%8A%B6%E5%88%A5%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E6%89%8B%E9%A0%86.png">
 <link rel="canonical" href="https://gamigamigamigami.github.io/a/excel関数が反映されないときの症状別チェック手順/">
 
 <style>
@@ -75,6 +76,10 @@ p,li { font-size:1rem; }
 .card h3 { margin:1rem 0 .55rem; font-size:1.12rem; }
 .card img { width:100%; aspect-ratio:4/3; object-fit:contain; border-radius:.7rem;
             background:#fff; }
+.card-thumb { width:calc(100% + 2.7rem) !important; max-width:none;
+              margin:-1.35rem -1.35rem 1rem; aspect-ratio:1280/670 !important;
+              object-fit:cover !important; border-radius:1rem 1rem 0 0 !important;
+              background:var(--surface) !important; }
 .card .summary { margin:0 0 1rem; color:var(--sub); line-height:1.75; }
 .card-more { margin-top:auto; color:var(--accent); font-weight:800; }
 .about-panel { margin-top:5rem; padding:2rem; border-radius:1rem; background:var(--surface);
@@ -84,6 +89,8 @@ p,li { font-size:1rem; }
 .breadcrumb { margin:0 0 2rem; font-size:.88rem; color:var(--sub); }
 .breadcrumb a { color:inherit; }
 .article-head { max-width:52rem; margin-bottom:2.5rem; }
+.article-hero { display:block; width:100%; aspect-ratio:1280/670; object-fit:cover;
+                margin:0 0 2rem; border-radius:1rem; box-shadow:var(--shadow); }
 .article-head h1 { font-size:clamp(2rem,4vw,3rem); }
 .article-dek { color:var(--sub); font-size:1.05rem; max-width:44rem; }
 .article-layout { display:grid; grid-template-columns:minmax(0,46rem) minmax(14rem,18rem);
@@ -171,7 +178,7 @@ tbody tr:last-child td { border-bottom:0; }
 <a href="/privacy/">プライバシー</a>
 </nav></div></header>
 <main class="wrap" id="main">
-<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><div class="card-top"><span class="badge">Excel</span><span class="badge price">無料記事</span></div><h1>Excel関数が反映されないときの症状別チェック手順</h1><p class="article-dek">Excel関数が反映されないときの症状別チェック手順 CSVや外部システムのデータをExcelへ移した後、数式がそのまま表示されたり、参照元を変えても古い結果が残ったりすることがあります。0、空白、#N/Aが出て、どこを直せばよいのか分からない場面もあります。</p></header><div class="article-layout"><div class="article-body"><p><strong>Excel関数が反映されないときの症状別チェック手順</strong></p>
+<nav class="breadcrumb" aria-label="パンくず"><a href="/">ホーム</a> <span aria-hidden="true">/</span> 記事</nav><article><header class="article-head"><img class="article-hero" src="/img/Excel関数が反映されないときの症状別チェック手順.png" alt="Excel関数が反映されないときの症状別チェック手順" fetchpriority="high"><div class="card-top"><span class="badge">Excel</span><span class="badge price">無料記事</span></div><h1>Excel関数が反映されないときの症状別チェック手順</h1><p class="article-dek">Excel関数が反映されないときの症状別チェック手順 CSVや外部システムのデータをExcelへ移した後、数式がそのまま表示されたり、参照元を変えても古い結果が残ったりすることがあります。0、空白、#N/Aが出て、どこを直せばよいのか分からない場面もあります。</p></header><div class="article-layout"><div class="article-body"><p><strong>Excel関数が反映されないときの症状別チェック手順</strong></p>
 <p>CSVや外部システムのデータをExcelへ移した後、数式がそのまま表示されたり、参照元を変えても古い結果が残ったりすることがあります。0、空白、#N/Aが出て、どこを直せばよいのか分からない場面もあります。</p>
 <p>この記事の操作名は、Windowsデスクトップ版Excelを基準にしています。Mac版やWeb版ではメニュー名やキー操作が異なる場合があります。</p>
 <p>この記事では、数式をむやみに書き直しません。まず画面に見えている症状を分け、<strong>表示・再計算・データ型・参照範囲のどこで止まっているか</strong>を確かめます。その後、該当する操作だけを行います。</p>
